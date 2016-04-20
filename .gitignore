@@ -1,0 +1,6 @@
+.DS_Store
+.dropbox
+.neosafety.sublime*
+.idea/
+node_modules/
+

@@ -24,7 +24,9 @@
             }, function (error) {
                 alert('code: '    + error.code    + '\n' +
                     'message: ' + error.message + '\n');
-            });
+            }, 
+            {enableHighAccuracy: true}
+            );
 
 
         }

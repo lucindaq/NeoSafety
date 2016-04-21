@@ -26,8 +26,6 @@ function editProfile(){
 }
 
 $(document).on('pageshow', '#profile', function (e, data) {
-	
-	window.localStorage.clear();
 
 	toggleInvertClass($("#profile-footer"));
 

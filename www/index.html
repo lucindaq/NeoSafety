@@ -38,6 +38,15 @@
         {
             document.getElementById('app').style.display = 'none'; 
             document.getElementById('pages').style.display = 'block';
+
+            var gender = localStorage.getItem("gender");
+            var age = localStorage.getItem("age");
+
+            if (!gender && !age) {
+                $("#profile").pageshow();
+            } else {
+                $("#home").pageshow();
+            }
         }
 		$(function() {
         $("body").on('click', '.phonecell', (function(){
@@ -55,7 +64,7 @@
         
         <div id="deviceready">
             <p class="event listening blink">Connecting</p>
-            <p class="event received"><button class="ui-btn ui-btn-inline" onclick="firstTime()"><a id="go-button" href="#profile">NeoSafety</a></button></p>
+            <p class="event received"><button class="ui-btn ui-btn-inline" onclick="firstTime()"><a id="go-button">NeoSafety</a></button></p>
         </div>
     </div>
 

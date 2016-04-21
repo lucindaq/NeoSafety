@@ -38,6 +38,15 @@
         {
             document.getElementById('app').style.display = 'none'; 
             document.getElementById('pages').style.display = 'block';
+
+            var gender = localStorage.getItem("gender");
+            var age = localStorage.getItem("age");
+
+            if (!gender && !age) {
+                $("#profile").pageshow();
+            } else {
+                $("#home").pageshow();
+            }
         }
 		$(function() {
         $("body").on('click', '.phonecell', (function(){
@@ -55,7 +64,7 @@
         
         <div id="deviceready">
             <p class="event listening blink">Connecting</p>
-            <p class="event received"><button class="ui-btn ui-btn-inline" onclick="firstTime()"><a id="go-button" href="#profile">NeoSafety</a></button></p>
+            <p class="event received"><button class="ui-btn ui-btn-inline" onclick="firstTime()"><a id="go-button">NeoSafety</a></button></p>
         </div>
     </div>
 
@@ -105,8 +114,10 @@
                 <div style="text-align: center;">
                     <a href="#" id="refresh-rating" name="refresh-rating" data-role="button" data-icon="refresh" data-inline="true">Refresh</a>
                 </div>
-
-                <div id="safety-gauge" class="plot" style="width: 100%;height: 200px;"></div>
+                <div>
+                    <div id="safety-gauge" class="plot" style="width: 100%;height: 200px;"></div>
+                    <img src="gauge_legend.png" height="100px" style="align-content: center;" />
+                </div>
 
             </div>
         </div>
@@ -121,7 +132,7 @@
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup">
 					
-                    <legend><h3>What's your gender</h3></legend>
+                    <legend><h3>Gender:</h3></legend>
                         <input type="radio" name="radio-group-2" id="radio-choice-1" value="Male"/>
                         <label for="radio-choice-1">Male</label>
 
@@ -135,7 +146,7 @@
 
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup">
-                        <legend><h3>What best describe you?</h3></legend>
+                        <legend><h3>Age Classification:</h3></legend>
 
                             <input type="radio" name="radio-group-1" id="radio-choice-4" value="Teenager"/>
                             <label for="radio-choice-4">Teenager</label>

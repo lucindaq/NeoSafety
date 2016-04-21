@@ -154,14 +154,14 @@
 
                                         if (county == alamedaCounty) {
                                             var ratings = [];
-
+                                            //added 2 to each log
                                             ratings.push(
-                                                { type: "murder", rating: Math.log(murderCount + 1)/Math.log(1.25)},
-                                                { type: "theft", rating: Math.log(theftCount + 1)/Math.log(1.9)},
-                                                { type: "subAbuse", rating: Math.log(subAbuseCount + 1)/Math.log(3)},
-                                                { type: "assault", rating: Math.log(assaultCount + 1)/Math.log(1.9)},
-                                                { type: "sexual", rating: Math.log(sexualCount + 1)/Math.log(1.9)},
-                                                { type: "other", rating: Math.log(otherCount + 1)/Math.log(1.9)}
+                                                { type: "murder", rating: Math.log(murderCount + 1)/Math.log(3.25)},
+                                                { type: "theft", rating: Math.log(theftCount + 1)/Math.log(3.9)},
+                                                { type: "subAbuse", rating: Math.log(subAbuseCount + 1)/Math.log(5)},
+                                                { type: "assault", rating: Math.log(assaultCount + 1)/Math.log(3.9)},
+                                                { type: "sexual", rating: Math.log(sexualCount + 1)/Math.log(3.9)},
+                                                { type: "other", rating: Math.log(otherCount + 1)/Math.log(3.9)}
                                             );
 
                                             $.each(ratings, function(i, object) {

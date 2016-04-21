@@ -198,7 +198,7 @@
 		        	marginTop: 0,
 		            renderer:$.jqplot.PieRenderer,
 		            rendererOptions: { padding: 0, showDataLabels: true, diameter: 200 },
-		            seriesColors: [ "#58B659", "lightgrey", "#285727", "black", "#FED631", "#58B659", "white"]
+		            seriesColors: [ "grey", "lightgrey", "#285727", "black", "#FED631", "#58B659", "white"]
 		        },
 
 		        legend: {

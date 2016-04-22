@@ -49,6 +49,6 @@ Getting the proper icons set up for Android was a challenge... It is not transpa
     </platform>
   ...
 ````
-The thing that was difficult to find in documentation is that you are required to generate the different sized icons.  Fortunately, this is made VERY easy with this [great icon generation tool](https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html).  Also, [this answer](http://stackoverflow.com/questions/5350624/set-icon-for-android-application) is what helped us figure it out.
+The thing that was difficult to find in documentation is that you are required to generate the different sized icons.  Fortunately, this is made VERY easy with this [great icon generation tool](https://romannurik.github.io/AndroidAssetStudio/icons-launcher.html). (Tip: for that icon generation tool, to get a transparent background choose "shape: none".)  Also, [this answer](http://stackoverflow.com/questions/5350624/set-icon-for-android-application) is what helped us figure it out.
 
 

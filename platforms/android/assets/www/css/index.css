@@ -183,27 +183,27 @@ th {
 
 .ui-icon-helenlogoRating {
     background: url('http://merl.us/cdn/neosafety/icons/rating.png') 50% 50% no-repeat !important;
-    background-size: 30px 30px;
+    /*background-size: 30px 30px;*/
 }
 
 .ui-icon-helenlogoCrime {
     background: url('http://merl.us/cdn/neosafety/icons/crimestats.png') 50% 50% no-repeat !important;
-    background-size: 30px 30px;
+    /*background-size: 30px 30px;*/
 }
 
 .ui-icon-helenlogoEmerg {
     background: url('http://merl.us/cdn/neosafety/icons/emergency.png') 50% 50% no-repeat !important;
-    background-size: 30px 30px;
+    /*background-size: 30px 30px;*/
 }
 
 .ui-icon-helenlogoReport {
     background: url('http://merl.us/cdn/neosafety/icons/services.png') 50% 50% no-repeat !important;
-    background-size: 30px 30px;
+    /*background-size: 30px 30px;*/
 }
 
 .ui-icon-helenlogoAccount {
     background: url('http://merl.us/cdn/neosafety/icons/account.png') 50% 50% no-repeat !important;
-    background-size: 30px 30px;
+    /*background-size: 30px 30px;*/
 }
 
 .custom-logo {

@@ -145,7 +145,7 @@ img.center {
 .header {
     border-top-width: 20px;
     border-top-color: red;
-    padding-top: 5px;
+    margin-top: 5px;
 	text-transform: Uppercase;
 }
 

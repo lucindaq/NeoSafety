@@ -75,7 +75,7 @@
 			
 		</div>
 		
-		<div data-role="footer" data-theme="b" data-position="fixed">
+		<div data-role="footer" data-theme="b" data-position="fixed" data-tap-toggle="false">
           <div data-role="navbar" class="footer">
                 <ul>
                     <li><a id="rating-footer" href="#rating" class="custom-logo" data-icon="helenlogoRating" data-iconpos="notext" data-transition="pop"></a></li>
@@ -92,7 +92,7 @@
             <div class="header" data-role="header" data-theme="b" data-position="fixed">
                 <h1>Home</h1>
             </div>
-            <div data-role="content">
+            <div data-role="content" class="mapContent">
               <div style="display:flex;justify-content:center;align-items:center;">
                 <div class="home-content" style="width:250px;height:250px;">
                   <a href="#rating"><img src="http://merl.us/cdn/neosafety/icons/ButtonRating.png" class="home-bubble" data-transition="pop"></a>
@@ -109,7 +109,7 @@
                 <h1>Safety Rating</h1>
 				<a href="#home" data-icon="home" data-iconpos="notext" class="custom-logo" data-transition="pop"></a>
             </div>
-            <div data-role="content">
+            <div data-role="content" class="mapContent">
                 <h4 class="top-message">Safety rating based on crimes near you and demographics provided.</h4>
                 <div style="text-align: center;">
                     <a href="#" id="refresh-rating" name="refresh-rating" data-role="button" data-icon="refresh" data-inline="true">Refresh</a>
@@ -127,7 +127,7 @@
                 <h1>Profile</h1>
 				<a href="#home" data-icon="home" data-iconpos="notext" class="custom-logo" data-transition="pop"></a>
             </div>
-            <div data-role="content">
+            <div data-role="content" class="mapContent">
                 <h4 class="top-message">Enter Demographics For You or Someone Else to Get a More Accurate Safety Rating</h4>
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup">
@@ -164,7 +164,6 @@
                     <button onclick="editProfile()">Update</button>
                 </div>
             </div>
-
         </div>
 
 		
@@ -276,7 +275,7 @@
                 <h1>Crime Stats</h1>
 				<a href="#home" data-icon="home" data-iconpos="notext" class="custom-logo" data-transition="pop"></a>
             </div>
-            <div data-role="content">
+            <div data-role="content" class="mapContent">
 				<div role="main" class="ui-content">
 					
                     <form>

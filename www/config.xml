@@ -48,6 +48,12 @@
     <icon src="res/icon/ios/icon-76@2x.png" gap:platform="ios" width="152" height="152" />
     <icon src="res/icon/ios/icon-114.png" gap:platform="ios" width="114" height="114" />
     <icon src="res/icon/ios/icon-144.png" gap:platform="ios" width="144" height="144" />
+    <gap:splash src="res/screen/ios/screen-iphone-portrait.png"          gap:platform="ios"     width="320" height="480" />
+    <gap:splash src="res/screen/ios/screen-iphone-portrait-2x.png"       gap:platform="ios"     width="640" height="960" />
+    <gap:splash src="res/screen/ios/screen-iphone-landscape.png"         gap:platform="ios"     width="480" height="320" />
+    <gap:splash src="res/screen/ios/screen-iphone-landscape-2x.png"      gap:platform="ios"     width="960" height="640" />
+    <gap:splash src="res/screen/ios/screen-iphone-portrait-568h.png"     gap:platform="ios"     width="320"  height="568" />
+    <gap:splash src="res/screen/ios/screen-iphone-portrait-568h-2x.png"  gap:platform="ios"     width="640"  height="1136" />
     <platform name="android">
         <icon density="ldpi" src="www/res/drawable-ldpi/icon.png" />
         <icon density="mdpi" src="www/res/drawable-mdpi/icon.png" />

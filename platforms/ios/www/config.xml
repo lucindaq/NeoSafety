@@ -42,6 +42,8 @@
     <icon src="res/icon/ios/icon-60.png" gap:platform="ios" width="60" height="60" />
     <icon src="res/icon/ios/icon-60@2x.png" gap:platform="ios" width="120" height="120" />
     <icon src="res/icon/ios/icon-60@3x.png" gap:platform="ios" width="180" height="180" />
+    <icon src="res/icon/ios/icon-72.png" gap:platform="ios" width="72" height="72" />
+    <icon src="res/icon/ios/icon-72@2x.png" gap:platform="ios" width="144" height="144" />
     <icon src="res/icon/ios/icon-76.png" gap:platform="ios" width="76" height="76" />
     <icon src="res/icon/ios/icon-76@2x.png" gap:platform="ios" width="152" height="152" />
     <icon src="res/icon/ios/icon-114.png" gap:platform="ios" width="114" height="114" />

@@ -15,6 +15,9 @@
         <param name="ios-package" value="CDVGestureHandler" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="Geolocation">
+        <param name="ios-package" value="CDVLocation" />
+    </feature>
     <name>NeoSafety</name>
     <description>Violent crimes are regularly being committed. To address this problem, we designed NeoSafety to safeguard users against the potential dangers surrounding them and to help build safer communities. By providing safety ratings based on users’ personalized information and real-time crime statistics, our users are able to know how safe they are at any given moment anywhere in Alameda and San Francisco Counties and eventually throughout the nation. Users also have quick access to local emergency services, crime statistics and the ability to report a crime. With NeoSafety, users can take safety into their own hands!</description>
     <author email="neosafetyapp@gmail.com" href="http://neosafety.org">NeoSafety Team</author>
@@ -57,7 +60,6 @@
     <allow-intent href="itms-apps:*" />
     <preference name="AllowInlineMediaPlayback" value="false" />
     <preference name="BackupWebStorage" value="cloud" />
-    <preference name="DisallowOverscroll" value="true" />
     <preference name="EnableViewportScale" value="false" />
     <preference name="KeyboardDisplayRequiresUserAction" value="true" />
     <preference name="MediaPlaybackRequiresUserAction" value="false" />
@@ -68,5 +70,6 @@
     <preference name="PageLength" value="0" />
     <preference name="PaginationBreakingMode" value="page" />
     <preference name="PaginationMode" value="unpaginated" />
+    <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
 </widget>

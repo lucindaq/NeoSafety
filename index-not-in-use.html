@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<!--
+    Copyright (c) 2012-2014 Adobe Systems Incorporated. All rights reserved.
+
+    Licensed to the Apache Software Foundation (ASF) under one
+    or more contributor license agreements.  See the NOTICE file
+    distributed with this work for additional information
+    regarding copyright ownership.  The ASF licenses this file
+    to you under the Apache License, Version 2.0 (the
+    "License"); you may not use this file except in compliance
+    with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing,
+    software distributed under the License is distributed on an
+    "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+     KIND, either express or implied.  See the License for the
+    specific language governing permissions and limitations
+    under the License.
+-->
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi" />
+        <link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css">
+        <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places&extension=.js"></script>
+
+        <script>
+            $(document).ready(function(){
+
+                $("#go-button").on("click", function() {
+                    $("[data-role=footer]").toolbar();
+                });
+
+            });
+        </script>
+		
+		<script>
+		$(function() {
+        $("body").on('click', '.phonecell', (function(){
+            var PhoneNumber = $(this).text();
+            window.location.href="tel://"+PhoneNumber;
+        }));
+    });
+		</script>
+
+    </head>
+    <body>
+
+    <div class="app" id="app">
+        <img src="http://images.clipartpanda.com/magnifying-glass-clipart-ssss-md.png" height="100px" width="100px" alt="crimepic"/>
+        
+        <div id="deviceready">
+            <p class="event listening blink">Connecting</p>
+            <p class="event received"><button class="ui-btn ui-btn-inline" onclick="document.getElementById('app').style.display = 'none'; document.getElementById('pages').style.display = 'block'"><a id="go-button" href="#home" data-icon="arrow-r" data-iconpos="right">NeoSafety</a></button></p>
+        </div>
+    </div>
+
+
+    <div id='pages' class="page" style="display:none">
+
+
+
+        <div data-role="header" data-theme="b" data-position="fixed">
+			
+		</div>
+		
+		<div data-role="footer" data-theme="b" data-position="fixed">
+          <div data-role="navbar" class="footer">
+                <ul>
+                    <li><a href="#map" class="custom-logo" data-icon="helenlogo" data-iconpos="notext"></a></li>
+                    <li><a href="#crimeStats" data-icon="info" data-iconpos="notext"></a></li>
+                    <li><a href="#emergServ" data-icon="alert" data-iconpos="notext"></a></li>
+					<li><a href="#report" data-icon="abc" data-iconpos="notext"></a></li>
+                    <li><a href="#profile" data-icon="user" data-iconpos="notext"></a></li>
+                </ul>
+            </div>
+
+        </div>
+
+        <div data-role="page" id="home">
+            <div class="header" data-role="header" data-theme="b" data-position="fixed">
+                <h1>Home</h1>
+				<a href="#home" data-icon="home" data-iconpos="notext"></a>
+            </div>
+            <div data-role="content">
+              <div style="display:flex;justify-content:center;align-items:center;">
+                <div style="width:250px;height:250px;">
+                  <a class="home-bubble" href="#map"><img src="http://www.cahea.org/~site/siteapps/shapes.action?CMD=GetCircleGif&r=185&g=24&b=6&w=329&h=182" height="120" width="120"></a>
+                  <a class="home-bubble" href="#crimeStats"><img src="http://static1.squarespace.com/static/52803c95e4b0a13e700c5f6c/t/528d92d7e4b007dacd889482/1385009881389/pastel-green-circle.png" height="120" width="120"></a>
+                  <a class="home-bubble" href="#emergServ"><img src="https://www.script-tutorials.com/demos/89/images/l3.png" height="120" width="120"></a>
+                  <a class="home-bubble" href="#report"><img src="http://www.bevlabvet.com/images/circle-dark.png" height="120" width="120"></a>
+                </div>
+              </div>
+
+
+            </div>
+
+        </div>
+
+        <div data-role="page" id="map">
+            <div class="header" data-role="header" data-theme="b" data-position="fixed">
+                <h1>Map</h1>
+				<a href="#home" data-icon="home" data-iconpos="notext"></a>
+            </div>
+            <div data-role="content">
+                <p>In this page, I'll be able to see how safe I am based on my location and my personalized information.</p>
+            </div>
+        </div>
+
+		<div data-role="page" id="profile">
+            <div class="header" data-role="header" data-theme="b" data-position="fixed">
+                <h1>Profile</h1>
+				<a href="#home" data-icon="home" data-iconpos="notext"></a>
+            </div>
+            <div data-role="content">
+			<h3>Username</h3>
+			<h4 id="username"></h4>
+			<h3>Gender</h3>
+			<h4 id="gender"></h4>
+			<h3>Age Classification</h3>
+			<h4 id="age"></h4>
+			<button><a href="#edit">Edit</a></button>
+			</div>
+		</div>
+
+        <div data-role="page" id="edit">
+            <div class="header" data-role="header" data-theme="b" data-position="fixed">
+                <h1>Edit</h1>
+				<a href="#home" data-icon="home" data-iconpos="notext"></a>
+            </div>
+            <div data-role="content">
+                <h4 id="profile-message">Enter Demographics For You or Someone Else to Get a More Accurate Safety Rating</h4>
+				<h3>Please choose a username</h3>
+				<input type="text" id="userName"></input>
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+					
+                    <legend><h3>What's your gender</h3></legend>
+                        <input type="radio" name="radio-choice-2" id="radio-choice-1" value="Male"/>
+                        <label for="radio-choice-1">Male</label>
+                        <input type="radio" name="radio-choice-2" id="radio-choice-2" value="Female"/>
+                        <label for="radio-choice-2">Female</label> 
+						<input type="radio" name="radio-choice-2" id="radio-choice-3" value="Other"/>
+                        <label for="radio-choice-3">Other</label> 
+                    </fieldset>
+                </div>
+
+                <div data-role="fieldcontain">
+                    <fieldset data-role="controlgroup">
+                        <legend><h3>What best describe you?</h3></legend>
+                            <input type="radio" name="radio-choice-1" id="radio-choice-1" value="Child"/>
+                            <label for="radio-choice-1">Child</label>
+
+                            <input type="radio" name="radio-choice-1" id="radio-choice-2" value="Teenager"/>
+                            <label for="radio-choice-2">Teenager</label>
+
+                            <input type="radio" name="radio-choice-1" id="radio-choice-3" value="Adult"/>
+                            <label for="radio-choice-3">Adult</label>
+							
+							<input type="radio" name="radio-choice-1" id="radio-choice-5" value="Adult with kids"/>
+                            <label for="radio-choice-5">Adult with kids</label>
+
+                            <input type="radio" name="radio-choice-1" id="radio-choice-4" value="Senior Citizen"/>
+                            <label for="radio-choice-4">Senior Citizen</label>
+                    </fieldset>
+					<button><a href="#profile">Cancel</a></button>
+                    <button onclick="editProfile()">Continue</button>
+                </div>
+            </div>
+
+        </div>
+
+		
+		<div data-role="page" id="report">
+            <div class="header" data-role="header" data-theme="b" data-position="fixed">
+                <h1>Report</h1>
+				<a href="#home" data-icon="home" data-iconpos="notext"></a>
+            </div>
+            <div data-role="content">
+                <p>Click here to report the crimes near you</p>
+            </div>
+        </div>
+
+        <div data-role="page" id="emergServ">
+
+            <div class="header" data-role="header" data-theme="b" data-position="fixed">
+                <h1>Services</h1>
+				<a href="#home" data-icon="home" data-iconpos="notext"></a>
+            </div>
+
+            <div class="mapContent" data-role="content">
+			<br>
+                <h3>Emergency Services Near Me</h3>
+				<!-- show the map here -->
+                <div id="map-hospitals" class="map"></div>
+
+                    <div data-role="tabs">
+                      <div data-role="navbar" id="service-navbar"> 
+                        <ul>
+                          <li><a href="#hospitals-tab" class="ui-btn-active">Hospitals</a></li>
+                          <li><a href="#police-tab">Police</a></li>
+                          <li><a href="#fire-tab">Fire</a></li>
+                        </ul>
+                      </div>
+                      <div id="hospitals-tab">
+                        <div role="main" class="ui-content">
+                            <table data-role="table" id="hospitals" class="ui-responsive ui-shadow" data-mode="reflow">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Address</th>
+                                        <th>Phone</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                      </div>
+                      <div id="police-tab">
+                        <div role="main" class="ui-content">
+                            <table data-role="table" id="police" class="ui-responsive ui-shadow" data-mode="reflow">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Address</th>
+                                        <th>Phone</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                      </div>
+                      <div id="fire-tab">
+                        <div role="main" class="ui-content">
+                            <table data-role="table" id="fire" class="ui-responsive ui-shadow" data-mode="reflow">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Address</th>
+                                        <th>Phone</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                </tbody>
+                            </table>
+                        </div>
+                      </div>
+                    </div>
+
+                <p id="emergStatus"></p>
+            </div>
+
+        </div>
+
+        <div data-role="page" id="crimeStats">
+            <div class="header" data-role="header" data-theme="b" data-position="fixed">
+                <h1>Crime Stats</h1>
+				<a href="#home" data-icon="home" data-iconpos="notext"></a>
+            </div>
+            <div data-role="content">
+                <p>Crime Stats</p>
+					<div role="main" class="ui-content">
+						<table data-role="table" id="crime-count" class="ui-responsive ui-shadow" data-mode="reflow">
+							<thead>
+								<tr>
+									<th>Crime code</th>
+									<th>Number count</th>
+								</tr>
+							</thead>
+
+							<tbody>
+
+							</tbody>
+						</table>
+					</div>
+                      
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+        <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="js/index.js"></script>
+		<script type="text/javascript" src="js/search_place_map.js"></script>
+		<script type="text/javascript" src="js/profile.js"></script>
+		<script type="text/javascript" src="js/crime_stats.js"></script>
+        <script type="text/javascript">
+            app.initialize();
+        </script>
+    </body>
+</html>

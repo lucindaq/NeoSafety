@@ -29,7 +29,61 @@ cordova platform update ios --save
 ```
 
 ## iOS
-We followed [this guide](http://wiki.nsbasic.com/Submitting_to_the_iOS_App_Store) to set up everything we needed to get on the Apple App Store.
+We followed [this guide](http://wiki.nsbasic.com/Submitting_to_the_iOS_App_Store) to set up everything we needed to get on the Apple App Store.  
+
+### Application Icons for iOS
+Regarding icons in the above guide, however, the section in there about icons is confusing and misleading.  To get the icons and splash screens to work, we created the actual icons and splash files in these directories, and added them to the `config.xml` like this:
+````xml
+    <icon src="res/icon/ios/icon.png" gap:platform="ios" width="57" height="57" />
+    <icon src="res/icon/ios/icon@2x.png" gap:platform="ios" width="114" height="114" />
+    <icon src="res/icon/ios/icon-40.png" gap:platform="ios" width="40" height="40" />
+    <icon src="res/icon/ios/icon-40@2x.png" gap:platform="ios" width="80" height="80" />
+    <icon src="res/icon/ios/icon-50.png" gap:platform="ios" width="50" height="50" />
+    <icon src="res/icon/ios/icon-50@2x.png" gap:platform="ios" width="100" height="100" />
+    <icon src="res/icon/ios/icon-60.png" gap:platform="ios" width="60" height="60" />
+    <icon src="res/icon/ios/icon-60@2x.png" gap:platform="ios" width="120" height="120" />
+    <icon src="res/icon/ios/icon-60@3x.png" gap:platform="ios" width="180" height="180" />
+    <icon src="res/icon/ios/icon-72.png" gap:platform="ios" width="72" height="72" />
+    <icon src="res/icon/ios/icon-72@2x.png" gap:platform="ios" width="144" height="144" />
+    <icon src="res/icon/ios/icon-76.png" gap:platform="ios" width="76" height="76" />
+    <icon src="res/icon/ios/icon-76@2x.png" gap:platform="ios" width="152" height="152" />
+    <icon src="res/icon/ios/icon-114.png" gap:platform="ios" width="114" height="114" />
+    <icon src="res/icon/ios/icon-144.png" gap:platform="ios" width="144" height="144" />
+....
+    <platform name="ios">
+        <icon height="57" platform="ios" src="icon/ios/icon.png" width="57" />
+        <icon height="114" platform="ios" src="icon/ios/icon@2x.png" width="114" />
+        <icon height="40" platform="ios" src="icon/ios/icon-40.png" width="40" />
+        <icon height="80" platform="ios" src="icon/ios/icon-40@2x.png" width="80" />
+        <icon height="50" platform="ios" src="icon/ios/icon-50.png" width="50" />
+        <icon height="100" platform="ios" src="icon/ios/icon-50@2x.png" width="100" />
+        <icon height="60" platform="ios" src="icon/ios/icon-60.png" width="60" />
+        <icon height="120" platform="ios" src="icon/ios/icon-60@2x.png" width="120" />
+        <icon height="180" platform="ios" src="icon/ios/icon-60@3x.png" width="180" />
+        <icon height="72" platform="ios" src="icon/ios/icon-72.png" width="72" />
+        <icon height="144" platform="ios" src="icon/ios/icon-72@2x.png" width="144" />
+        <icon height="76" platform="ios" src="icon/ios/icon-76.png" width="76" />
+        <icon height="152" platform="ios" src="icon/ios/icon-76@2x.png" width="152" />
+        <icon height="29" platform="ios" src="icon/ios/icon-small.png" width="29" />
+        <icon height="58" platform="ios" src="icon/ios/icon-small@2x.png" width="58" />
+        <icon height="87" platform="ios" src="icon/ios/icon-small@3x.png" width="87" />
+        <splash src='splash/ios/Default.png' width='320' height='480' />
+        <splash src='splash/ios/Default@2x.png' width='640' height='960' />
+        <splash src='splash/ios/Default-568h@2x.png' width='640' height='1136' />
+        <splash src='splash/ios/Default-Portrait.png' width='768' height='1024' />
+        <splash src='splash/ios/Default-Landscape.png' width='1024' height='768' />
+        <splash src='splash/ios/Default-Portrait@2x.png' width='1536' height='2048' />
+        <splash src='splash/ios/Default-Landscape@2x.png' width='2048' height='1536' />
+    </platform>
+
+````
+TODO: I read somewhere that the `<platform name="XXX"></platform>` block is the preferred method to specify these things over `<icon ... gap:platform="ios" ... />` -- need to test this and remove the `<icon>` elements if that is true.
+
+### Building/making distribution for iOS
+Apple has alot of restrictions for creating and installing the application file (.ipa file).  First, you can create two types of .ipa files -- one for an ad-hoc build, aka "developer", (where you install it directly on your phone from your Mac thru iTunes), and also a "distribution" .ipa for submission to the App Store.  In the developer.apple.com admin site, you need to do two important things -- set up both a certificate and provisioning profile for each *development* and *distribution*.   For the development provisioning profile, you must identify each phone on which you want to install the app.  (First you identify the phone by adding it as a device in the "Devices" section).   When building the app on build.phonegap.com, you need to create a key for each iOS deployment type.  Name the keys appropriately, so you know which is which.  When you create the key here, you will upload the certificate and provisioning profile per type (either development or distribution).   Then, when you want to build a .ipa file, you must select the correct key for the type of .ipa you want.  You cannot install an .ipa file that was generated from a 'distribution' certificate/provisioning profile directly via iTunes locally on your phone... the iTunes installation process will just hang saying "Installing..." and never return.  And vice-versa, you will get an error if you attempt to upload an .ipa file for development to the App Store.  
+
+To upload the .ipa to the app store, we used Application Loader from Apple. 
+
 
 ## Android
 ### Application Icons for Android

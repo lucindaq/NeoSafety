@@ -1,31 +1,38 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.neosafety.neosafety" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+<widget id="org.neosafety.neosafety" 
+        version="1.0.0" 
+        xmlns="http://www.w3.org/ns/widgets" 
+        xmlns:gap="http://phonegap.com/ns/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+    
     <name>NeoSafety</name>
-    <description>Violent crimes are regularly being committed. To address this problem, we designed NeoSafety to safeguard users against the potential dangers surrounding them and to help build safer communities. By providing safety ratings based on users’ personalized information and real-time crime statistics, our users are able to know how safe they are at any given moment anywhere in Alameda and San Francisco Counties and eventually throughout the nation. Users also have quick access to local emergency services, crime statistics and the ability to report a crime. With NeoSafety, users can take safety into their own hands!</description>
-    <author email="neosafetyapp@gmail.com" href="http://neosafety.org">NeoSafety Team</author>
+    
+    <description>
+        Violent crimes are regularly being committed. To address this problem, we designed NeoSafety to safeguard users against the potential dangers surrounding them and to help build safer communities. By providing safety ratings based on users’ personalized information and real-time crime statistics, our users are able to know how safe they are at any given moment anywhere in Alameda and San Francisco Counties and eventually throughout the nation. Users also have quick access to local emergency services, crime statistics and the ability to report a crime. With NeoSafety, users can take safety into their own hands!
+    </description>
+    
+    <author email="neosafetyapp@gmail.com" 
+            href="http://neosafety.org">
+            NeoSafety Team
+    </author>
+    
     <content src="index.html" />
+    
     <preference name="DisallowOverscroll" value="true" />
     <preference name="android-minSdkVersion" value="14" />
-    <plugin name="cordova-plugin-battery-status" source="npm" />
-    <plugin name="cordova-plugin-camera" source="npm" />
-    <plugin name="cordova-plugin-media-capture" source="npm" />
-    <plugin name="cordova-plugin-console" source="npm" />
-    <plugin name="cordova-plugin-contacts" source="npm" />
     <plugin name="cordova-plugin-device" source="npm" />
-    <plugin name="cordova-plugin-device-motion" source="npm" />
-    <plugin name="cordova-plugin-device-orientation" source="npm" />
-    <plugin name="cordova-plugin-dialogs" source="npm" />
-    <plugin name="cordova-plugin-file" source="npm" />
-    <plugin name="cordova-plugin-file-transfer" source="npm" />
     <plugin name="cordova-plugin-geolocation" source="npm" />
     <plugin name="cordova-plugin-globalization" source="npm" />
     <plugin name="cordova-plugin-inappbrowser" source="npm" />
-    <plugin name="cordova-plugin-media" source="npm" />
-    <plugin name="cordova-plugin-network-information" source="npm" />
     <plugin name="cordova-plugin-splashscreen" source="npm" />
     <plugin name="cordova-plugin-statusbar" source="npm" />
     <plugin name="cordova-plugin-vibration" source="npm" />
     <plugin name="cordova-plugin-whitelist" source="npm" />
+    
+    <preference name="permissions" value="none" />
+    
+    <feature name="http://api.phonegap.com/1.0/geolocation"/>
+    
     <icon src="icon.png" />
     <icon src="res/drawable-ldpi/icon.png"   gap:platform="android"    gap:density="ldpi" />
     <icon src="res/drawable-mdpi/icon.png"   gap:platform="android"    gap:density="mdpi" />

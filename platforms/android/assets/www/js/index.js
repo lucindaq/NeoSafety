@@ -16,6 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
+
+var errorMessage = $('#error-message');
+
 var app = {
     // Application Constructor
     initialize: function() {
@@ -100,4 +103,19 @@ $(document).on('pageshow', '#home', function (e, data) {
 
 });
 
-
+function showError(error) {
+  switch(error.code) {
+    case error.PERMISSION_DENIED:
+      errorMessage.innerHTML="User denied the request for Geolocation."
+      break;
+    case error.POSITION_UNAVAILABLE:
+      errorMessage.innerHTML="Location information is unavailable."
+      break;
+    case error.TIMEOUT:
+      errorMessage.innerHTML="The request to get user location timed out."
+      break;
+    case error.UNKNOWN_ERROR:
+      errorMessage.innerHTML="An unknown error occurred."
+      break;
+    }
+}

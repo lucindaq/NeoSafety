@@ -4,7 +4,28 @@
 
         init: function () {
 
-            navigator.geolocation.getCurrentPosition(function crimeResult (position) {
+            navigator.geolocation.getCurrentPosition(crimeResult, showError, {enableHighAccuracy: true});
+
+        }
+    };
+
+    $(document).on('pageshow', '#rating', function (e, data) {
+        toggleInvertClass($("#rating-footer"));
+
+        setTimeout(function () {
+            initializeRating.init();
+        }, 1000);
+
+
+        $('#refresh-rating').on('click', function() {
+            $('#safety-gauge').empty();
+            initializeRating.init();
+        })
+
+    });
+})();
+
+function crimeResult (position) {
                 var murder = ["'09A'", "'09B'", "'09C'"];
                 var theft = ["'120'", "'220'", "'23D'", "'23F'", "'23G'", "'23H'", "'240'", "'280'", "'BURGLARY'", "'LARCENY/THEFT'", "'ROBBERY'", "'STOLEN PROPERTY'", "'VEICHLE THEFT'"];
                 var subAbuse = ["'35A'", "'35B'", "'90D'", "'90E'", "'90G'", "'DRIVING UNDER THE INFLUENCE'", "'DRUG/NARCOTIC'", "'DRUNKENNESS'", "'LIQUOR LAWS'"];
@@ -218,31 +239,7 @@
                         // sorry no results for your location
                     }
                 });
-            }, function (error) {
-                alert('code: '    + error.code    + '\n' +
-                    'message: ' + error.message + '\n');
-            }, 
-            {enableHighAccuracy: true}
-            );
-
-        }
-    };
-
-    $(document).on('pageshow', '#rating', function (e, data) {
-        toggleInvertClass($("#rating-footer"));
-
-        setTimeout(function () {
-            initializeRating.init();
-        }, 1000);
-
-
-        $('#refresh-rating').on('click', function() {
-            $('#safety-gauge').empty();
-            initializeRating.init();
-        })
-
-    });
-})();
+            }
 
 function plotRating(rating) {
 

@@ -262,3 +262,9 @@ h3{
 #crime-chart {
     height: 425px;
 }
+
+#error-message {
+    color: red;
+    font-weight: bold;
+    font-style: italic;
+}

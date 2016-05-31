@@ -4,7 +4,15 @@
 
         init: function () {
 
-            navigator.geolocation.getCurrentPosition(function crimeResult (position) {
+            navigator.geolocation.getCurrentPosition(crimeResult, showError, {enableHighAccuracy: true});
+
+		}
+
+
+	};
+
+
+function crimeResult (position) {
 				var murder = ["'09A'", "'09B'", "'09C'"];
 				var theft = ["'120'", "'220'", "'23D'", "'23F'", "'23G'", "'23H'", "'240'", "'280'", "'BURGLARY'", "'LARCENY/THEFT'", "'ROBBERY'", "'STOLEN PROPERTY'", "'VEICHLE THEFT'"];
 				var subAbuse = ["'35A'", "'35B'", "'90D'", "'90E'", "'90G'", "'DRIVING UNDER THE INFLUENCE'", "'DRUG/NARCOTIC'", "'DRUNKENNESS'", "'LIQUOR LAWS'"];
@@ -165,18 +173,7 @@
 
 
 				})
-			}, function (error) {
-				alert('code: '    + error.code    + '\n' +
-					'message: ' + error.message + '\n');
-			}, 
-			{enableHighAccuracy: true}
-			);
-
-		}
-
-
-	};
-
+			}
 
     function plotCrimeStats(data) {
     	$.jqplot.config.enablePlugins = true;

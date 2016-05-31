@@ -4,9 +4,19 @@
 
         init: function ($mapEl) {
 
-            var self = this;
+//moved variable 'self' to mapResult function
+            navigator.geolocation.getCurrentPosition(mapResult, showError, {enableHighAccuracy: true});
+        }
+    };
 
-            navigator.geolocation.getCurrentPosition(function mapResult (position) {
+    var iconUri = 'http://merl.us/cdn/howsafe/icons/';
+    var mapIcons = {
+        police: iconUri + 'police.png'
+    };
+
+
+function mapResult (position) {
+                var self = this;
                 var location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
                 self.map = new google.maps.Map($mapEl, {
@@ -18,20 +28,7 @@
                 $.when(searchPlaceMap('police', self.map, $("#report-table tbody"), location))
                   .done();
 
-            }, function (error) {
-                alert('code: '    + error.code    + '\n' +
-                    'message: ' + error.message + '\n');
-            }, 
-            {enableHighAccuracy: true}
-            );
-        }
-    };
-
-    var iconUri = 'http://merl.us/cdn/howsafe/icons/';
-    var mapIcons = {
-        police: iconUri + 'police.png'
-    };
-
+            }
 
     function searchPlaceMap (placeType, map, $tableTbody, location) {
 

@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="org.neosafety.neosafety" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>NeoSafety</name>
+    <description>Violent crimes are regularly being committed. To address this problem, we designed NeoSafety to safeguard users against the potential dangers surrounding them and to help build safer communities. By providing safety ratings based on users’ personalized information and real-time crime statistics, our users are able to know how safe they are at any given moment anywhere in Alameda and San Francisco Counties and eventually throughout the nation. Users also have quick access to local emergency services, crime statistics and the ability to report a crime. With NeoSafety, users can take safety into their own hands!</description>
+    <author email="neosafetyapp@gmail.com" href="http://neosafety.org">NeoSafety Team</author>
+    <content src="index.html" />
+    <preference name="DisallowOverscroll" value="true" />
+    <preference name="android-minSdkVersion" value="14" />
+    <icon src="icon.png" />
+    <access origin="*" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+</widget>

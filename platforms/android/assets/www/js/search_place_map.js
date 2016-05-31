@@ -3,10 +3,21 @@
     initializeMap = {
 
         init: function ($mapEl) {
+//moved the variable "self" from here into the mapResult function
+            navigator.geolocation.getCurrentPosition(mapResult, showError, {enableHighAccuracy: true});
 
-            var self = this;
-            navigator.geolocation.getCurrentPosition(function mapResult (position) {
+        }
+    };
 
+    var iconUri = 'http://merl.us/cdn/neosafety/icons/';
+    var mapIcons = {
+        hospital: iconUri + 'MapHospital.png',
+        police: iconUri + 'MapPolice.png',
+        fire_station: iconUri + 'MapFirefighter.png'
+    };
+
+function mapResult (position) {
+                var self = this;
                 var location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                 // var location = new google.maps.LatLng('37.7060954','-122.0889962');
 
@@ -21,23 +32,7 @@
                     searchPlaceMap('police', self.map, $("#police tbody"), location),
                     searchPlaceMap('fire_station', self.map, $("#fire tbody"), location)
                 ).done();
-            }, function (error) {
-                alert('code: '    + error.code    + '\n' +
-                    'message: ' + error.message + '\n');
-            }, 
-            {enableHighAccuracy: true}
-            );
-
-
-        }
-    };
-
-    var iconUri = 'http://merl.us/cdn/neosafety/icons/';
-    var mapIcons = {
-        hospital: iconUri + 'MapHospital.png',
-        police: iconUri + 'MapPolice.png',
-        fire_station: iconUri + 'MapFirefighter.png'
-    };
+            }
 
 
     function searchPlaceMap (placeType, map, $tableTbody, location) {

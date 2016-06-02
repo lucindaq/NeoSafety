@@ -3,8 +3,8 @@
     initializeRating = {
 
         init: function () {
-
-            navigator.geolocation.getCurrentPosition(crimeResult, showError, {enableHighAccuracy: true});
+// removed '{enableHighAccuracy: true}' from after 'showError,' from all js files
+            navigator.geolocation.getCurrentPosition(crimeResult, showError);
 
         }
     };

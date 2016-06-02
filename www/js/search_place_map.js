@@ -1,22 +1,10 @@
 (function ($) {
 
     initializeMap = {
-
+// what does the $mapEl do?
         init: function ($mapEl) {
 //moved the variable "self" from here into the mapResult function
-            navigator.geolocation.getCurrentPosition(mapResult, showError, {enableHighAccuracy: true});
-
-        }
-    };
-
-    var iconUri = 'http://merl.us/cdn/neosafety/icons/';
-    var mapIcons = {
-        hospital: iconUri + 'MapHospital.png',
-        police: iconUri + 'MapPolice.png',
-        fire_station: iconUri + 'MapFirefighter.png'
-    };
-
-function mapResult (position) {
+            navigator.geolocation.getCurrentPosition(function mapResult (position) {
                 var self = this;
                 var location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                 // var location = new google.maps.LatLng('37.7060954','-122.0889962');
@@ -32,7 +20,19 @@ function mapResult (position) {
                     searchPlaceMap('police', self.map, $("#police tbody"), location),
                     searchPlaceMap('fire_station', self.map, $("#fire tbody"), location)
                 ).done();
-            }
+            }, showError);
+
+        }
+    };
+
+    var iconUri = 'http://merl.us/cdn/neosafety/icons/';
+    var mapIcons = {
+        hospital: iconUri + 'MapHospital.png',
+        police: iconUri + 'MapPolice.png',
+        fire_station: iconUri + 'MapFirefighter.png'
+    };
+
+
 
 
     function searchPlaceMap (placeType, map, $tableTbody, location) {

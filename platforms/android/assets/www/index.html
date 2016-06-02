@@ -43,9 +43,9 @@
             var age = localStorage.getItem("age");
 
             if (!gender && !age) {
-                $("#profile").pageshow();
+                $.mobile.navigate("#profile");
             } else {
-                $("#home").pageshow();
+                $.mobile.navigate("#home");
             }
         }
 		$(function() {
@@ -93,7 +93,7 @@
                 <h1>Home</h1>
             </div>
             <div data-role="content" class="mapContent">
-                <p id="error-message"></p>
+                <p id="error-message" class="no-error-class">&nbsp;</p>
               <div style="display:flex;justify-content:center;align-items:center;">
                 <div class="home-content" style="width:250px;height:250px;">
                   <a href="#rating"><img src="http://merl.us/cdn/neosafety/icons/ButtonRating.png" class="home-bubble" data-transition="pop"></a>

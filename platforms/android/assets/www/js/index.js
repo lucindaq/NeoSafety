@@ -17,7 +17,6 @@
  * under the License.
  */
 
-var errorMessage = $('#error-message');
 
 var app = {
     // Application Constructor
@@ -103,19 +102,14 @@ $(document).on('pageshow', '#home', function (e, data) {
 
 });
 
-function showError(error) {
-  switch(error.code) {
-    case error.PERMISSION_DENIED:
-      errorMessage.innerHTML="User denied the request for Geolocation."
-      break;
-    case error.POSITION_UNAVAILABLE:
-      errorMessage.innerHTML="Location information is unavailable."
-      break;
-    case error.TIMEOUT:
-      errorMessage.innerHTML="The request to get user location timed out."
-      break;
-    case error.UNKNOWN_ERROR:
-      errorMessage.innerHTML="An unknown error occurred."
-      break;
-    }
+var errorMessage = $('#error-message');
+
+function showError() {
+    $.mobile.navigate("#home");
+    errorMessage.removeClass('no-error-class');
+    errorMessage.addClass('error-message-class');
+    errorMessage.text("This app requires location services to be enabled");
+    $(".home-content").css("margin-top", 0);
+
 }
+

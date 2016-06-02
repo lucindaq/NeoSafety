@@ -4,18 +4,7 @@
 
         init: function ($mapEl) {
 
-//moved variable 'self' to mapResult function
-            navigator.geolocation.getCurrentPosition(mapResult, showError, {enableHighAccuracy: true});
-        }
-    };
-
-    var iconUri = 'http://merl.us/cdn/howsafe/icons/';
-    var mapIcons = {
-        police: iconUri + 'police.png'
-    };
-
-
-function mapResult (position) {
+            navigator.geolocation.getCurrentPosition(function mapResult (position) {
                 var self = this;
                 var location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 
@@ -28,7 +17,17 @@ function mapResult (position) {
                 $.when(searchPlaceMap('police', self.map, $("#report-table tbody"), location))
                   .done();
 
-            }
+            }, showError);
+        }
+    };
+
+    var iconUri = 'http://merl.us/cdn/howsafe/icons/';
+    var mapIcons = {
+        police: iconUri + 'police.png'
+    };
+
+
+
 
     function searchPlaceMap (placeType, map, $tableTbody, location) {
 

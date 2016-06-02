@@ -263,8 +263,16 @@ h3{
     height: 425px;
 }
 
-#error-message {
+.no-error-class {
+    display: none;
+}
+
+.error-message-class {
+    display: block;
     color: red;
     font-weight: bold;
     font-style: italic;
-}
+    border: 5px red solid;
+    border-radius: 20px;
+    padding: 10px;
+} 

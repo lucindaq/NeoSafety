@@ -32,6 +32,7 @@
         <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
         <script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true&libraries=places&extension=.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.2/modernizr.js"></script>
 		
 		<script>
         function firstTime()
@@ -55,13 +56,10 @@
         }));
         });
 		</script>
-
     </head>
     <body>
 
-    <div class="app" id="app">
-        <!--<img src="../icon.png" height="200px" width="200px"/>-->
-        
+    <div class="app" id="app">        
         <div id="deviceready">
             <p class="event listening blink">Connecting</p>
             <p class="event received"><button class="ui-btn ui-btn-inline" onclick="firstTime()"><a id="go-button">NeoSafety</a></button></p>
@@ -115,6 +113,10 @@
                 <div style="text-align: center;">
                     <a href="#" id="refresh-rating" name="refresh-rating" data-role="button" data-icon="refresh" data-inline="true">Refresh</a>
                 </div>
+                <div class="loader">
+                    <img src="not-final-loader.gif">
+                </div>
+
                 <div>
                     <div id="safety-gauge" class="plot" style="width: 100%;height: 200px;"></div>
                     <img src="gauge_legend.png" height="100px" style="align-content: center;" />
@@ -176,20 +178,26 @@
             <div data-role="content" class="mapContent">
                 <h4 class="top-message">Below is a list of police stations you can call to report crimes or suspicious activity.</h4>  
 				<div id="map-police" class="map" style="display: none;"></div>
-				<div role="main" class="ui-content">
-					<table data-role="table" id="report-table" class="ui-responsive ui-shadow" data-mode="reflow">
-						<thead>
-							<tr>  
-								<th>Name</th>
-								<th>Phone</th>
-							</tr>
-						</thead>
+                <div class="loader">
+                    <img src="not-final-loader.gif">
+                </div>
+				<div class="content">
+                    <div role="main" class="ui-content report-content">
+                    <table data-role="table" id="report-table" class="ui-responsive ui-shadow" data-mode="reflow">
+                        <thead>
+                            <tr>  
+                                <th>Name</th>
+                                <th>Phone</th>
+                            </tr>
+                        </thead>
 
-						<tbody>
+                        <tbody>
 
-						</tbody>
-					</table>
-				</div>
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+                
             </div>
         </div>
 
@@ -204,6 +212,10 @@
 			<br>
                 <h3>Emergency Services Near Me</h3>
 				<!-- show the map here -->
+                <div class="loader">
+                    <img src="not-final-loader.gif">
+                </div>
+
                 <div id="map-hospitals" class="map"></div>
 
                     <div data-role="tabs">
@@ -276,9 +288,11 @@
                 <h1>Crime Stats</h1>
 				<a href="#home" data-icon="home" data-iconpos="notext" class="custom-logo" data-transition="pop"></a>
             </div>
-            <div data-role="content" class="mapContent">
+            <div class="loader">
+                <img src="not-final-loader.gif">
+            </div>
+            <div data-role="content" class="mapContent content" style="display: none">
 				<div role="main" class="ui-content">
-					
                     <form>
                         <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" style="width: 100%;">
                             <label for="select-native-11">Radius</label>

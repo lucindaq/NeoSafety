@@ -156,19 +156,16 @@ function crimeResult (position) {
 										}
 
 										plotCrimeStats(crimeStatsData);
-
 									}
 								}
 							});
 
-
-
 						} else {
-							// sorry no results for your county
+							wrongLocation();// sorry no results for your county
 						}
 
 					} else {
-						// sorry no results for your location
+						wrongLocation();// sorry no results for your location
 					}
 
 
@@ -176,9 +173,10 @@ function crimeResult (position) {
 			}
 
     function plotCrimeStats(data) {
-    	$.jqplot.config.enablePlugins = true;
+			hideLoader(); 
+			$.jqplot.config.enablePlugins = true;
 
-		var plot1 = $.jqplot('crime-chart', [data], {
+			var plot1 = $.jqplot('crime-chart', [data], {
 		        gridPadding: {
 		        	top: 0,
 		        	bottom: 10, 
@@ -210,6 +208,8 @@ function crimeResult (position) {
                  	borderColor: 'transparent', shadow: false, drawBorder: true
              	}    
 		    });
+
+    	
     }
 	
 
@@ -239,9 +239,11 @@ function crimeResult (position) {
 				$('#select-native-12').val(timespan);
 				$('#select-native-12').selectmenu('refresh');
 			}
+            $(".content").hide();
 
         	toggleInvertClass($("#crimeStats-footer"));
             initializeCrimeStats.init();
+
         }, 100);
 
   

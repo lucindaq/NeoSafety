@@ -15,7 +15,7 @@
                 });
 
                 $.when(searchPlaceMap('police', self.map, $("#report-table tbody"), location))
-                  .done();
+                  .done(hideLoader);
 
             }, showError);
         }
@@ -144,9 +144,9 @@
         setTimeout(function () {
             toggleInvertClass($("#report-footer"));
             initializeReport.init(document.getElementById('map-police'));
-
+            $(".content").hide();
+            $('.loader').show();
         }, 100);
-
         
     });
 

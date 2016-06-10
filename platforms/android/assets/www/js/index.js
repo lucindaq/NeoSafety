@@ -113,3 +113,16 @@ function showError() {
 
 }
 
+function wrongLocation() {
+    $.mobile.navigate("#home");
+    errorMessage.removeClass('no-error-class');
+    errorMessage.addClass('error-message-class');
+    errorMessage.text("Data for this feature is currently unavailable for this location");
+    $(".home-content").css("margin-top", 0);
+
+}
+
+function hideLoader() {
+    $(".loader").fadeOut("fast");
+    $(".content").fadeIn("slow");
+}

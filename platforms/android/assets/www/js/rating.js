@@ -14,6 +14,8 @@
 
         setTimeout(function () {
             initializeRating.init();
+            $(".content").hide();
+            $('.loader').show();
         }, 1000);
 
 
@@ -71,8 +73,8 @@ function crimeResult (position) {
 
                 var alamedaCounty = 'Alameda County';
                 var sanFranCounty = 'San Francisco County';
-
                 geocoder.geocode({'location': latlng}, function(results, status) {
+
                     if (results[1]) {
 
                         county = findCounty(results[1].address_components);
@@ -232,17 +234,17 @@ function crimeResult (position) {
                             });
                         }
                         else {
-                            // sorry no results for your county
+                            wrongLocation()// sorry no results for your county
                         }
 
                     } else {
-                        // sorry no results for your location
+                        wrongLocation()// sorry no results for your location
                     }
                 });
             }
 
 function plotRating(rating) {
-
+    hideLoader();
     $.jqplot('safety-gauge',[[rating]],{
 
         seriesDefaults: {

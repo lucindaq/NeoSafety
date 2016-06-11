@@ -123,6 +123,9 @@ function wrongLocation() {
 }
 
 function hideLoader() {
-    $(".loader").fadeOut("fast");
-    $(".content").fadeIn("slow");
+    $(".content").show();
+    
+    $(".loader").hide();
 }
+
+

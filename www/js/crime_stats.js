@@ -4,7 +4,7 @@
 
         init: function () {
 
-            navigator.geolocation.getCurrentPosition(crimeResult, showError);
+            navigator.geolocation.getCurrentPosition(crimeResult, showError, {enableHighAccuracy: true});
 
 		}
 
@@ -173,7 +173,6 @@ function crimeResult (position) {
 			}
 
     function plotCrimeStats(data) {
-			hideLoader(); 
 			$.jqplot.config.enablePlugins = true;
 
 			var plot1 = $.jqplot('crime-chart', [data], {
@@ -208,14 +207,16 @@ function crimeResult (position) {
                  	borderColor: 'transparent', shadow: false, drawBorder: true
              	}    
 		    });
+			hideLoader(); 
 
     	
     }
 	
 
     $(document).on('pageshow', '#crimeStats', function (e, data) {
-
+// localStorage.clear();
         setTimeout(function () {
+            hideLoader();
 
 			var radius = localStorage.getItem("radius");
 			var timespan = localStorage.getItem("timespan");
@@ -225,9 +226,11 @@ function crimeResult (position) {
 
 				$('#select-native-11').val('2');
 				$('#select-native-11').selectmenu('refresh');
+
 			} else {
 				$('#select-native-11').val(radius);
 				$('#select-native-11').selectmenu('refresh');
+
 			}
 			
 			if (timespan === null) {
@@ -235,29 +238,35 @@ function crimeResult (position) {
 
 				$('#select-native-12').val('6');
 				$('#select-native-12').selectmenu('refresh');
+
 			} else {
 				$('#select-native-12').val(timespan);
 				$('#select-native-12').selectmenu('refresh');
+
 			}
-            $(".content").hide();
 
         	toggleInvertClass($("#crimeStats-footer"));
             initializeCrimeStats.init();
 
+
         }, 100);
 
   
-        $('#submit-configurations').on('click', function() {
-            $('#crime-chart').empty();
-            initializeCrimeStats.init();
-        })
+        // function submitConfigurations() {
+        // 	$('#crime-chart').empty();
+        //     initializeCrimeStats.init();
+        // }
 
 		$('#select-native-11').on('change', function () {
 			localStorage.setItem('radius', $(this).val());
+            initializeCrimeStats.init();
+
 		})
 
 		$('#select-native-12').on('change', function () {
 			localStorage.setItem('timespan', $(this).val());
+            initializeCrimeStats.init();
+
 		})
     });
 

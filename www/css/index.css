@@ -146,6 +146,14 @@ img.center {
     top: 1em !important;
 }
 
+.ui-icon-info {
+    top: 1em !important;
+}
+
+.ui-icon-back {
+    top: 1em !important;
+}
+
 .header {
     border-top-width: 20px;
     border-top-color: red;

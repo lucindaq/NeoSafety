@@ -24,6 +24,7 @@
         <meta charset="utf-8" />
         <meta name="format-detection" content="telephone=no" />
         <meta name="msapplication-tap-highlight" content="no" />
+
         <!-- WARNING: for iOS 7, remove the width=device-width and height=device-height attributes. See https://issues.apache.org/jira/browse/CB-4323 -->
         <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=medium-dpi" />
         <link rel="stylesheet" type="text/css" href="css/index.css" />
@@ -110,18 +111,20 @@
             </div>
             <div data-role="content" class="mapContent">
                 <h4 class="top-message">Safety rating based on crimes near you and demographics provided.</h4>
-                <div style="text-align: center;">
-                    <a href="#" id="refresh-rating" name="refresh-rating" data-role="button" data-icon="refresh" data-inline="true">Refresh</a>
-                </div>
-                <div class="loader">
-                    <img src="not-final-loader.gif">
-                </div>
+                <div class="content">
+                    <div style="text-align: center;">
+                        <a href="#" id="refresh-rating" name="refresh-rating" data-role="button" data-icon="refresh" data-inline="true">Refresh</a>
+                    </div>
+                    <div class="loader">
+                        <img src="not-final-loader.gif">
+                    </div>
 
-                <div>
-                    <div id="safety-gauge" class="plot" style="width: 100%;height: 200px;"></div>
-                    <img src="gauge_legend.png" height="100px" style="align-content: center;" />
-                </div>
+                    <div>
+                        <div id="safety-gauge" class="plot" style="width: 100%;height: 200px;"></div>
+                        <img src="gauge_legend.png" height="100px" style="align-content: center;" />
+                    </div>
 
+                    </div>  
             </div>
         </div>
 
@@ -174,6 +177,8 @@
             <div class="header" data-role="header" data-theme="b" data-position="fixed">
                 <h1>Report</h1>
 				<a href="#home" data-icon="home" data-iconpos="notext" class="custom-logo" data-transition="pop"></a>
+                <a href="#info" data-icon="info" data-iconpos="notext" class="custom-logo" data-transition="pop"></a>
+
             </div>
             <div data-role="content" class="mapContent">
                 <h4 class="top-message">Below is a list of police stations you can call to report crimes or suspicious activity.</h4>  
@@ -198,6 +203,69 @@
                 </div>
                 </div>
                 
+            </div>
+        </div>
+
+        <div data-role="page" id="info">
+            <div class="header" data-role="header" data-theme="b" data-position="fixed">
+                <h1>Info</h1>
+				<a href="#report" data-icon="back" data-iconpos="notext" class="custom-logo" data-transition="pop"></a>
+            </div>
+            <div data-role="content" id="info-content">
+                <p>Citizens have prevented countlesss crimes by becoming actively involved in protecting their communities. The police needs your help! Sometimes it can be confusing about what to report, though. </p>
+
+                <p class="heading">What exactly is “suspicious activity”? </p>
+
+                <p>Suspicious activity can refer to incidents, events, individuals or circumstances that seem unusual or out of place. Some common examples of suspicious activities include: <br></p>
+                <ul style="list-style-type:disc">
+                    <li>A stranger loitering in your neighborhood or a vehicle cruising the streets repeatedly</li>
+                    <li>Strangers loitering around schools, parks or secluded areas</li>
+                    <li>Strange odors coming from a house or building</li>
+                    <li>Someone tampering with electrical, gas or sewer systems without an identifiable company vehicle or uniform</li>
+                    <li>Sounds of breaking glass, gunshots, screaming or fighting</li>
+                </ul>
+                <br>
+                <p><span class="heading">Remember</span> – A quick and accurate description of events, vehicles, and persons can make all the difference in apprehending a potential criminal. Any type of activity or circumstance that seems unusual should be reported. Generally, there are four categories:</p>
+                <ul style="list-style-type:disc">
+                    <li>Suspicious activities, people and vehicles</li>
+                    <li>Illegal activities</li>
+                    <li>Unusual events or incidents</li>
+                    <li>Dangerous situations</li>
+                </ul> 
+                <br>
+                <p class="heading">Items you can describe when providing a suspect description:</p>
+                <ul style="list-style-type:disc">
+                    <li>Sex – male or female</li>
+                    <li>Race – white, black, asian or hispanic, etc.</li>
+                    <li>Age</li>
+                    <li>Height and weight</li>
+                    <li>Hair color and style</li>
+                    <li>Complexion – skin tone, imperfections, etc.</li>
+                    <li>Speech – accent, slurred, vulgar</li>
+                    <li>Scars – tattoos, facial hair, glasses</li>
+                    <li>General appearance – dirty, well-groomed</li>
+                    <li>Clothing – color, style, shoes, jewelry</li>
+                </ul>
+                <br>
+                <p class="heading">Items you can describe when providing a suspicious vehicle:</p>
+                <ul style="list-style-type:disc">
+                    <li>Make (e.g. Ford, Chevrolet, Honda)</li>
+                    <li>Model (e.g. Escort, Impala, Pick-up truck)</li>
+                    <li>Year</li>
+                    <li>Color</li>
+                    <li>License plate number and state</li>
+                    <li>Bumper stickers, damage or dents, lettering</li>
+                    <li>Direction of travel (e.g. “east on State street”)</li>
+                    <li>Occupants (e.g. “one male and one female about high school age”)</li>
+                </ul>
+                <br>
+                <p class="heading">Items you can describe when reporting a location of suspicious activity:<br></p>
+                <ul style="list-style-type:disc">
+                     <li>Provide exact address if possible</li>
+                     <li>Provide cross streets or closest major intersection</li>
+                     <li>In rural areas, provide county road numbers or mile markers along state or federal highways.</li>
+                     <li>Provide landmarks that can be recognized by law enforcers or emergency responders. Describe the location with as much detail as possible.</li>
+                </ul>
             </div>
         </div>
 
@@ -288,36 +356,41 @@
                 <h1>Crime Stats</h1>
 				<a href="#home" data-icon="home" data-iconpos="notext" class="custom-logo" data-transition="pop"></a>
             </div>
-            <div class="loader">
-                <img src="not-final-loader.gif">
-            </div>
-            <div data-role="content" class="mapContent content" style="display: none">
-				<div role="main" class="ui-content">
-                    <form>
-                        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true" style="width: 100%;">
-                            <label for="select-native-11">Radius</label>
-                            <select name="select-native-11" id="select-native-11">
-                                <option value="1">1 Mile</option>
-                                <option value="2">2 Mile</option>
-                                <option value="3">3 Mile</option>
-                                <option value="4">4 Mile</option>
-                            </select>
-                            <label for="select-native-12">Timespan</label>
-                            <select name="select-native-12" id="select-native-12">
-                                <option value="1">1 Month</option>
-                                <option value="6">6 Month</option>
-                                <option value="12">1 Year</option>
-                                <option value="24">2 Years</option>
-                            </select>
-                        <!-- <a href="#" id="submit-configurations" name="submit-configurations" class="ui-btn ui-shadow ui-corner-all ui-icon-refresh ui-btn-icon">Search</a> -->
-                        <a href="#" id="submit-configurations" name="submit-configurations" data-role="button" data-inline="true">Enter</a>
+            <div data-role="content" class="mapContent">
+                <h4 class="top-message">View the amount of crimes that have occured near you or in a certain location.</h4>
+                <div class="loader">
+                    <img src="not-final-loader.gif">
+                </div>
+                <div class="content">
+                    <div role="main" class="ui-content">
+                        <form class="center">
+                            <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                                <label for="select-native-11">Radius</label>
+                                <select name="select-native-11" id="select-native-11">
+                                    <option value="1">1 Mile</option>
+                                    <option value="2">2 Mile</option>
+                                    <option value="3">3 Mile</option>
+                                    <option value="4">4 Mile</option>
+                                </select>
+                                <label for="select-native-12">Timespan</label>
+                                <select name="select-native-12" id="select-native-12">
+                                    <option value="1">1 Month</option>
+                                    <option value="6">6 Month</option>
+                                    <option value="12">1 Year</option>
+                                    <option value="24">2 Years</option>
+                                </select>
+                            <!-- <a href="#" id="submit-configurations" name="submit-configurations" class="ui-btn ui-shadow ui-corner-all ui-icon-refresh ui-btn-icon">Search</a> -->
+                            <!-- <a href="#" onclick="submitConfigurations" id="submit-configurations" name="submit-configurations" data-role="button" data-inline="true">Enter</a> -->
 
-                        </fieldset>
-                    </form>
+                            </fieldset>
 
-                    <div id="crime-chart"></div>
+                        </form>
+                <div id="crime-chart"></div>
 
-				</div>
+
+                    </div>
+                </div>
+				
                       
             </div>
 

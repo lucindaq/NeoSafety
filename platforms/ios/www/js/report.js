@@ -17,7 +17,7 @@
                 $.when(searchPlaceMap('police', self.map, $("#report-table tbody"), location))
                   .done(hideLoader);
 
-            }, showError);
+            }, showError, {enableHighAccuracy: true});
         }
     };
 
@@ -97,6 +97,7 @@
                 }
 
             } else {
+                // what is rejectSearch?
                 rejectSearch('search status not ok: ' + searchStatus);
             }
         });

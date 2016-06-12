@@ -3,8 +3,8 @@
     initializeRating = {
 
         init: function () {
-// removed '{enableHighAccuracy: true, timeout: 500}' from after 'showError,' from all js files
-            app.locationService.getCurrentPosition(crimeResult, showError, {enableHighAccuracy: true, timeout: 500});
+// removed '{enableHighAccuracy: true, timeout: 2000}' from after 'showError,' from all js files
+            app.locationService.getCurrentPosition(crimeResult, showError, {enableHighAccuracy: true, timeout: 2000});
 
         }
     };

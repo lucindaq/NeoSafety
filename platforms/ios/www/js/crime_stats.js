@@ -4,7 +4,7 @@
 
         init: function () {
 
-            app.locationService.getCurrentPosition(crimeResult, showError, {enableHighAccuracy: true, timeout: 500});
+            app.locationService.getCurrentPosition(crimeResult, showError, {enableHighAccuracy: true, timeout: 2000});
 
 		}
 

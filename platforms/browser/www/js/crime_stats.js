@@ -4,7 +4,7 @@
 
         init: function () {
 
-            app.locationService.getCurrentPosition(crimeResult, showError, {enableHighAccuracy: true});
+            app.locationService.getCurrentPosition(crimeResult, showError, {enableHighAccuracy: true, timeout: 500});
 
 		}
 
@@ -215,7 +215,7 @@ function crimeResult (position) {
 	
 
     $(document).on('pageshow', '#crimeStats', function (e, data) {
-// localStorage.clear();
+		clearError();
         setTimeout(function () {
             hideLoader();
 

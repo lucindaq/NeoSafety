@@ -133,6 +133,13 @@ function showError() {
 
 }
 
+function clearError() {
+    errorMessage.addClass('no-error-class');
+    errorMessage.removeClass('error-message-class');
+    errorMessage.text("");
+    $(".home-content").css("margin-top", 0);
+}
+
 function wrongLocation() {
     $.mobile.navigate("#home");
     errorMessage.removeClass('no-error-class');

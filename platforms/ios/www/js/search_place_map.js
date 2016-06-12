@@ -4,6 +4,7 @@
 // what does the $mapEl do?
         init: function ($mapEl) {
 //moved the variable "self" from here into the mapResult function
+
             app.locationService.getCurrentPosition(function mapResult (position) {
                 var self = this;
                 var location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -20,7 +21,7 @@
                     searchPlaceMap('police', self.map, $("#police tbody"), location),
                     searchPlaceMap('fire_station', self.map, $("#fire tbody"), location)
                 ).done(hideLoader);
-            }, showError, {enableHighAccuracy: true});
+            }, showError, {enableHighAccuracy: true, timeout: 500});
 
         }
     };
@@ -149,7 +150,7 @@
 
 
     $(document).on('pageshow', '#emergServ', function (e, data) {
-
+        clearError();
         setTimeout(function () {
             toggleInvertClass($("#emergServ-footer"));
 

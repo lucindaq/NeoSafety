@@ -224,13 +224,14 @@
                 alert('code: '    + error.code    + '\n' +
                     'message: ' + error.message + '\n');
             }, 
-            {enableHighAccuracy: true}
+            {enableHighAccuracy: true, timeout: 500}
             );
 
         }
     };
 
     $(document).on('pageshow', '#rating', function (e, data) {
+        clearError();
         toggleInvertClass($("#rating-footer"));
 
         setTimeout(function () {

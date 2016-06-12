@@ -3,15 +3,15 @@
     initializeRating = {
 
         init: function () {
-// removed '{enableHighAccuracy: true}' from after 'showError,' from all js files
-            app.locationService.getCurrentPosition(crimeResult, showError, {enableHighAccuracy: true});
+// removed '{enableHighAccuracy: true, timeout: 500}' from after 'showError,' from all js files
+            app.locationService.getCurrentPosition(crimeResult, showError, {enableHighAccuracy: true, timeout: 500});
 
         }
     };
 
     $(document).on('pageshow', '#rating', function (e, data) {
         toggleInvertClass($("#rating-footer"));
-
+        clearError();
         $("#geocomplete").geocomplete()
                 .bind("geocode:result", function(event, result){
                     var latitude = result.geometry.location.lat();

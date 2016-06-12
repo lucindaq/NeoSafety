@@ -12,6 +12,15 @@
     $(document).on('pageshow', '#rating', function (e, data) {
         toggleInvertClass($("#rating-footer"));
 
+        $("#geocomplete").geocomplete()
+                .bind("geocode:result", function(event, result){
+                    var latitude = result.geometry.location.lat();
+                    var longitude = result.geometry.location.lng());
+                })
+                .bind("geocode:error", function(event, status){
+                    alert("ERROR: " + status);
+                })
+
         setTimeout(function () {
             initializeRating.init();
             $(".content").hide();
@@ -24,7 +33,8 @@
             initializeRating.init();
         })
 
-    });
+        
+        });
 })();
 
 function crimeResult (position) {

@@ -173,7 +173,8 @@ function crimeResult (position) {
 			}
 
     function plotCrimeStats(data) {
-			$.jqplot.config.enablePlugins = true;
+		$("#crime-chart").empty();
+		$.jqplot.config.enablePlugins = true;
 
 			var plot1 = $.jqplot('crime-chart', [data], {
 		        gridPadding: {

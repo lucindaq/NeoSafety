@@ -36,7 +36,7 @@ var app = {
     // function, we must explicitly call 'app.receivedEvent(...);'
     onDeviceReady: function() {
         app.receivedEvent('deviceready');
-        
+        initNativeGeolocation();
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) {
@@ -56,6 +56,26 @@ var app = {
     }
 
 };
+
+// BEFORE the deviceready event has fired:
+
+// Check if HTML5 location support exists
+app.geolocation = false;
+if(navigator.geolocation) {
+    app.geolocation = navigator.geolocation;
+}
+
+function initNativeGeolocation() {
+    // AFTER the deviceready event:
+
+    if(app.geolocation) {
+        app.locationService = app.geolocation; // native HTML5 geolocation
+    }
+    else {
+        app.locationService = navigator.geolocation; // cordova geolocation plugin
+    }
+}
+
 
 $(document).ready(function(){
     if(localStorage.getItem("gender") == undefined || localStorage.getItem("age") == undefined)

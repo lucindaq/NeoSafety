@@ -4,7 +4,7 @@
 // what does the $mapEl do?
         init: function ($mapEl) {
 //moved the variable "self" from here into the mapResult function
-            navigator.geolocation.getCurrentPosition(function mapResult (position) {
+            app.locationService.getCurrentPosition(function mapResult (position) {
                 var self = this;
                 var location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
                 // var location = new google.maps.LatLng('37.7060954','-122.0889962');

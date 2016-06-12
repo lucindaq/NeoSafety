@@ -4,7 +4,7 @@
 
         init: function () {
 
-            navigator.geolocation.getCurrentPosition(crimeResult, showError, {enableHighAccuracy: true});
+            app.locationService.getCurrentPosition(crimeResult, showError, {enableHighAccuracy: true});
 
 		}
 

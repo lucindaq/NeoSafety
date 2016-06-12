@@ -4,7 +4,7 @@
 
         init: function ($mapEl) {
 
-            navigator.geolocation.getCurrentPosition(function mapResult (position) {
+            app.locationService.getCurrentPosition(function mapResult (position) {
                 var self = this;
                 var location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 

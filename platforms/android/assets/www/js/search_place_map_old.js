@@ -6,7 +6,7 @@
 
             var self = this;
 
-            navigator.geolocation.getCurrentPosition(function mapResult (position) {
+            app.locationService.getCurrentPosition(function mapResult (position) {
 
                 var location = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
 

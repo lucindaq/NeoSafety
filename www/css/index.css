@@ -189,6 +189,20 @@ th {
     display: none !important; 
 }
 
+.loader img {
+    width: 30%;
+    position: relative;
+    top:0px;
+    right:0px;
+    width:100%;
+    /*background-image:url('ajax-loader.gif');*/
+    background-repeat:no-repeat;
+    background-position:center;
+    z-index:10000000;
+    /*opacity: 0.4;*/
+    /*filter: alpha(opacity=40);*/
+}
+
 .inverted {
     -webkit-filter: invert(100%);
 }
@@ -285,3 +299,15 @@ h3{
     padding: 10px;
 } 
 
+.center {
+    text-align: center;
+}
+
+/*
+select {
+    margin:0 auto;
+    margin-left:auto;
+    margin-right:auto;
+    align:center;
+    text-align:center;
+}*/

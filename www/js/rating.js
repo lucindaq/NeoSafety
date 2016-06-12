@@ -4,7 +4,7 @@
 
         init: function () {
 // removed '{enableHighAccuracy: true}' from after 'showError,' from all js files
-            navigator.geolocation.getCurrentPosition(crimeResult, showError);
+            navigator.geolocation.getCurrentPosition(crimeResult, showError, {enableHighAccuracy: true});
 
         }
     };

@@ -17,7 +17,7 @@
                 $.when(searchPlaceMap('police', self.map, $("#report-table tbody"), location))
                   .done(hideLoader);
 
-            }, showError, {enableHighAccuracy: true});
+            }, showError, {enableHighAccuracy: true, timeout: 500});
         }
     };
 

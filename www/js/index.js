@@ -103,7 +103,7 @@ function findCounty(addressComponents) {
 
     var alamedaCounty = 'Alameda County';
     var sanFranCounty = 'San Francisco County';
-    var newYorkCity = 'New York City';
+    var newYorkCity = 'New York';
     var county;
 
     county = $.grep(addressComponents, function(addr) {

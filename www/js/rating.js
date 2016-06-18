@@ -3,7 +3,6 @@
     initializeRating = {
 
         init: function (geocompleteLatitude, geocompleteLongitude) {
-// removed '{enableHighAccuracy: true, timeout: 2000}' from after 'showError,' from all js files
             if (geocompleteLatitude == undefined) {
 
                 app.locationService.getCurrentPosition(crimeResult, showError, {
@@ -54,9 +53,7 @@
 
 
 })();
-function getSearchedRating() {
-    initializeRating.init();
-}
+
 function crimeResult (position, searched) {
                 var murder = ["'09A'", "'09B'", "'09C'"];
                 var theft = ["'120'", "'220'", "'23D'", "'23F'", "'23G'", "'23H'", "'240'", "'280'", "'BURGLARY'", "'LARCENY/THEFT'", "'ROBBERY'", "'STOLEN PROPERTY'", "'VEICHLE THEFT'"];
@@ -290,7 +287,7 @@ function plotRating(rating, elementId) {
         seriesDefaults: {
             renderer: $.jqplot.MeterGaugeRenderer,
             rendererOptions: {
-                label: 'Your Safety Rating',
+                label: 'Safety Rating',
                 labelPosition: 'bottom',
                 labelHeightAdjust: 10,
                 intervalOuterRadius: 65,

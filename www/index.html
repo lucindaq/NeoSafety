@@ -375,34 +375,66 @@
             </div>
             <div data-role="content" class="mapContent">
                 <h4 class="top-message">View the amount of crimes that have occured near you or in a certain location.</h4>
-                <div class="loader">
-                    <img src="not-final-loader.gif">
-                </div>
-                <div class="content">
-                    <div role="main" class="ui-content">
-                        <form class="center">
-                            <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
-                                <label for="select-native-11">Radius</label>
-                                <select name="select-native-11" id="select-native-11">
-                                    <option value="1">1 Mile</option>
-                                    <option value="2">2 Mile</option>
-                                    <option value="3">3 Mile</option>
-                                    <option value="4">4 Mile</option>
-                                </select>
-                                <label for="select-native-12">Timespan</label>
-                                <select name="select-native-12" id="select-native-12">
-                                    <option value="1">1 Month</option>
-                                    <option value="6">6 Month</option>
-                                    <option value="12">1 Year</option>
-                                    <option value="24">2 Years</option>
-                                </select>
-                            <!-- <a href="#" id="submit-configurations" name="submit-configurations" class="ui-btn ui-shadow ui-corner-all ui-icon-refresh ui-btn-icon">Search</a> -->
-                            <!-- <a href="#" onclick="submitConfigurations" id="submit-configurations" name="submit-configurations" data-role="button" data-inline="true">Enter</a> -->
-
-                            </fieldset>
-
-                        </form>
-                <div id="crime-chart"></div>
+                <div data-role="tabs">
+                    <div data-role="navbar" id="crimestats-navbar">
+                        <ul>
+                            <li><a href="#current-location-crimestats-tab" class="ui-btn-active">Current Location</a></li>
+                            <li><a href="#search-location-crimestats-tab">Search Location</a></li>
+                        </ul>
+                    </div>
+                    <div class="loader">
+                        <img src="not-final-loader.gif">
+                    </div>
+                    <div class="content">
+                        <div id="current-location-crimestats-tab">
+                            <div role="main" class="ui-content">
+                                <form class="center">
+                                    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                                        <label for="select-native-11">Radius</label>
+                                        <select name="select-native-11" id="select-native-11">
+                                            <option value="1">1 Mile</option>
+                                            <option value="2">2 Mile</option>
+                                            <option value="3">3 Mile</option>
+                                            <option value="4">4 Mile</option>
+                                        </select>
+                                        <label for="select-native-12">Timespan</label>
+                                        <select name="select-native-12" id="select-native-12">
+                                            <option value="1">1 Month</option>
+                                            <option value="6">6 Month</option>
+                                            <option value="12">1 Year</option>
+                                            <option value="24">2 Years</option>
+                                        </select>
+                                    </fieldset>
+                                </form>
+                                <div id="current-location-crime-chart"></div>
+                            </div>
+                        </div>
+                        <div id="search-location-crimestats-tab">
+                            <div role="main" class="ui-content">
+                                <div class="twenty-pix-padding">
+                                    <input id="geocomplete-crimestats" type="text" placeholder="Type in an address" data-clear-btn="true"/>
+                                </div>
+                                <form class="center">
+                                    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                                        <label for="select-native-11">Radius</label>
+                                        <select name="select-native-11" id="select-native-11">
+                                            <option value="1">1 Mile</option>
+                                            <option value="2">2 Mile</option>
+                                            <option value="3">3 Mile</option>
+                                            <option value="4">4 Mile</option>
+                                        </select>
+                                        <label for="select-native-12">Timespan</label>
+                                        <select name="select-native-12" id="select-native-12">
+                                            <option value="1">1 Month</option>
+                                            <option value="6">6 Month</option>
+                                            <option value="12">1 Year</option>
+                                            <option value="24">2 Years</option>
+                                        </select>
+                                    </fieldset>
+                                </form>
+                                <div id="search-location-crime-chart"></div>
+                            </div>
+                        </div>
 
 
                     </div>

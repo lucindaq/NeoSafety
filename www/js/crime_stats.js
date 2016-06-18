@@ -14,10 +14,10 @@
 
 function crimeResult (position) {
 				var murder = ["'09A'", "'09B'", "'09C'"];
-				var theft = ["'120'", "'220'", "'23D'", "'23F'", "'23G'", "'23H'", "'240'", "'280'", "'BURGLARY'", "'LARCENY/THEFT'", "'ROBBERY'", "'STOLEN PROPERTY'", "'VEICHLE THEFT'"];
+				var theft = ["'120'", "'220'", "'23D'", "'23F'", "'23G'", "'23H'", "'240'", "'280'", "'BURGLARY'", "'LARCENY/THEFT'", "'ROBBERY'", "'STOLEN PROPERTY'", "'VEICHLE THEFT'", "'GRAND LARCENY'", "'GRAND LARCENY OF MOTOR VEHICLE'"];
 				var subAbuse = ["'35A'", "'35B'", "'90D'", "'90E'", "'90G'", "'DRIVING UNDER THE INFLUENCE'", "'DRUG/NARCOTIC'", "'DRUNKENNESS'", "'LIQUOR LAWS'"];
-				var assault = ["'13A'", "'13B'", "'13C'",  "'ASSAULT'"];
-				var sexual = ["'11A'", "'11B'", "'11C'", "'11D'", "'90H'", "'SEX OFFENSES, FORCIBLE'", "'SEX OFFENSES, NON FORCIBLE'"];
+				var assault = ["'13A'", "'13B'", "'13C'",  "'ASSAULT'", "'FELONY ASSAULT'"];
+				var sexual = ["'11A'", "'11B'", "'11C'", "'11D'", "'90H'", "'SEX OFFENSES, FORCIBLE'", "'SEX OFFENSES, NON FORCIBLE'", "'RAPE'"];
 				var other = ["'100'", "'290'", "'40A'", "'40B'", "'90B'", "'90C'", "'90J'", "'520'", "'DISORDERLY CONDUCT'", "'KIDNAPPING'", "'LOITERING'", "'OTHER OFFENSES'", "'PROSTITUTION'", "'SUSPICIOUS OCC'", "'TRESPASSING'", "'VANDALISM'", "'WEAPON LAWS'"];
 				var crimeCodesQuery = murder + "," + theft + "," + subAbuse + "," + assault + "," + sexual + "," + other;
 
@@ -160,7 +160,7 @@ function crimeResult (position) {
 										});
 
 										var crimeStatsData;
-										if(county != sanFranCounty) {
+										if(county != sanFranCounty && county == alamedaCounty) {
 											crimeStatsData = [[murderCount + ' Murders', murderCount],
 												[theftCount+ ' Thefts',theftCount],
 												[subAbuseCount+ ' Drug/Alcohol Cases',subAbuseCount],
@@ -168,6 +168,12 @@ function crimeResult (position) {
 												[sexualCount+ ' Sexual Assaults',sexualCount],
 												[otherCount+ ' Uncategorized Crimes',otherCount]];
 										}
+                    else if(county != sanFranCounty && county == newYorkCity) {
+                      crimeStatsData = [[murderCount + ' Murders', murderCount],
+                        [theftCount+ ' Thefts',theftCount],
+                        [assaultCount+ ' Assaults',assaultCount],
+                        [sexualCount+ ' Sexual Assaults',sexualCount]];
+                    }
 										else {
 											crimeStatsData =
 												[[theftCount + ' Thefts', theftCount],

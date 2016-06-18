@@ -127,6 +127,10 @@ function crimeResult (position) {
 											{
 												crimeCode = crimes.category;
 											}
+                      else if(county == newYorkCity)
+                      {
+                        crimeCode = crimes.offense;
+                      }
 											crimeCode = "'" + crimeCode + "'";
 											var crimeCount = parseInt(crimes.count);
 											if ($.inArray(crimeCode, murder) > -1)

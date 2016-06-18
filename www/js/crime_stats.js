@@ -13,7 +13,7 @@
 
 
 function crimeResult (position) {
-				var murder = ["'09A'", "'09B'", "'09C'", "'MURDER %26 NON-NEGL%2E MANSLAUGHTE'"];
+				var murder = ["'09A'", "'09B'", "'09C'", "'MURDER%20%26%20NON-NEGL.%20MANSLAUGHTE'"];
 				var theft = ["'120'", "'220'", "'23D'", "'23F'", "'23G'", "'23H'", "'240'", "'280'", "'BURGLARY'", "'LARCENY/THEFT'", "'ROBBERY'", "'STOLEN PROPERTY'", "'VEHICLE THEFT'", "'GRAND LARCENY'", "'GRAND LARCENY OF MOTOR VEHICLE'"];
 				var subAbuse = ["'35A'", "'35B'", "'90D'", "'90E'", "'90G'", "'DRIVING UNDER THE INFLUENCE'", "'DRUG/NARCOTIC'", "'DRUNKENNESS'", "'LIQUOR LAWS'"];
 				var assault = ["'13A'", "'13B'", "'13C'",  "'ASSAULT'", "'FELONY ASSAULT'"];

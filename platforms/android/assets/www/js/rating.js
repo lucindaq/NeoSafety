@@ -2,9 +2,24 @@
 
     initializeRating = {
 
-        init: function () {
-// removed '{enableHighAccuracy: true, timeout: 2000}' from after 'showError,' from all js files
-            app.locationService.getCurrentPosition(crimeResult, showError, {enableHighAccuracy: true, timeout: 2000});
+        init: function (geocompleteLatitude, geocompleteLongitude) {
+            if (geocompleteLatitude == undefined) {
+
+                app.locationService.getCurrentPosition(crimeResult, showError, {
+                    enableHighAccuracy: true,
+                    timeout: 2000
+                });
+            }
+            else
+            {
+                var searched_position = { 
+                    coords: {
+                        longitude: geocompleteLongitude,
+                        latitude: geocompleteLatitude
+                    } 
+                };
+                crimeResult(searched_position, "searched");
+            } 
 
         }
     };
@@ -12,10 +27,12 @@
     $(document).on('pageshow', '#rating', function (e, data) {
         toggleInvertClass($("#rating-footer"));
         clearError();
+        $("#search-safety-gauge").hide();
         $("#geocomplete").geocomplete()
                 .bind("geocode:result", function(event, result){
                     var latitude = result.geometry.location.lat();
                     var longitude = result.geometry.location.lng();
+                    initializeRating.init(latitude, longitude);
                 })
                 .bind("geocode:error", function(event, status){
                     alert("ERROR: " + status);
@@ -24,9 +41,8 @@
         setTimeout(function () {
             initializeRating.init();
             $(".content").hide();
-            $('.loader').show();
+            // $('.loader').show();
         }, 1000);
-
 
         $('#refresh-rating').on('click', function() {
             $('#safety-gauge').empty();
@@ -34,9 +50,11 @@
         })
 
     });
+
+
 })();
 
-function crimeResult (position) {
+function crimeResult (position, searched) {
                 var murder = ["'09A'", "'09B'", "'09C'"];
                 var theft = ["'120'", "'220'", "'23D'", "'23F'", "'23G'", "'23H'", "'240'", "'280'", "'BURGLARY'", "'LARCENY/THEFT'", "'ROBBERY'", "'STOLEN PROPERTY'", "'VEICHLE THEFT'"];
                 var subAbuse = ["'35A'", "'35B'", "'90D'", "'90E'", "'90G'", "'DRIVING UNDER THE INFLUENCE'", "'DRUG/NARCOTIC'", "'DRUNKENNESS'", "'LIQUOR LAWS'"];
@@ -237,29 +255,39 @@ function crimeResult (position) {
 
                                         }
 
-                                        plotRating(rating);
+                                        if (searched == undefined) {
+                                            plotRating(rating, "current-location-safety-gauge");
+                                        }
+                                        else
+                                        {
+                                            plotRating(rating, "custom-location-safety-gauge");
+                                            $("#search-safety-gauge").show();
+
+                                        }
                                     }
                                 }
                             });
                         }
                         else {
-                            wrongLocation()// sorry no results for your county
+                            wrongLocation();
+                            // sorry no results for your county
                         }
 
                     } else {
-                        wrongLocation()// sorry no results for your location
+                        wrongLocation();
+                        // sorry no results for your location
                     }
                 });
             }
 
-function plotRating(rating) {
+function plotRating(rating, elementId) {
     hideLoader();
-    $.jqplot('safety-gauge',[[rating]],{
+    $.jqplot(elementId,[[rating]],{
 
         seriesDefaults: {
             renderer: $.jqplot.MeterGaugeRenderer,
             rendererOptions: {
-                label: 'Your Safety Rating',
+                label: 'Safety Rating',
                 labelPosition: 'bottom',
                 labelHeightAdjust: 10,
                 intervalOuterRadius: 65,

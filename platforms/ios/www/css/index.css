@@ -192,8 +192,8 @@ th {
 .loader img {
     width: 30%;
     position: relative;
-    top:0px;
-    right:0px;
+    top:0;
+    right:0;
     width:100%;
     /*background-image:url('ajax-loader.gif');*/
     background-repeat:no-repeat;
@@ -311,4 +311,6 @@ h3{
     font-weight: bold;
     font-style: italic;
 }
-
+.twenty-pix-padding {
+    padding: 20px;
+}

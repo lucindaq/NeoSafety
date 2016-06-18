@@ -2,17 +2,31 @@
 
     initializeCrimeStats = {
 
-        init: function () {
+        init: function (geocompleteLatitude, geocompleteLongitude) {
+			if (geocompleteLatitude == undefined) {
 
-            app.locationService.getCurrentPosition(crimeResult, showError, {enableHighAccuracy: true, timeout: 2000});
-
+				app.locationService.getCurrentPosition(crimeResult, showError, {
+					enableHighAccuracy: true,
+					timeout: 2000
+				});
+			}
+			else
+			{
+				var searched_position = {
+					coords: {
+						longitude: geocompleteLongitude,
+						latitude: geocompleteLatitude
+					}
+				};
+				crimeResult(searched_position, "searched");
+			}
 		}
 
 
 	};
 
 
-function crimeResult (position) {
+function crimeResult (position, searched) {
 				var murder = ["'09A'", "'09B'", "'09C'"];
 				var theft = ["'120'", "'220'", "'23D'", "'23F'", "'23G'", "'23H'", "'240'", "'280'", "'BURGLARY'", "'LARCENY/THEFT'", "'ROBBERY'", "'STOLEN PROPERTY'", "'VEICHLE THEFT'"];
 				var subAbuse = ["'35A'", "'35B'", "'90D'", "'90E'", "'90G'", "'DRIVING UNDER THE INFLUENCE'", "'DRUG/NARCOTIC'", "'DRUNKENNESS'", "'LIQUOR LAWS'"];
@@ -154,8 +168,15 @@ function crimeResult (position) {
 													[sexualCount + ' Sexual Assaults', sexualCount],
 													[otherCount + ' Uncategorized Crimes', otherCount]];
 										}
+										if (searched == undefined) {
+											plotCrimeStats(crimeStatsData, "current-location-crime-chart");
+										}
+										else
+										{
+											plotCrimeStats(crimeStatsData, "search-location-crime-chart");
 
-										plotCrimeStats(crimeStatsData);
+										}
+										// plotCrimeStats(crimeStatsData);
 									}
 								}
 							});
@@ -172,11 +193,13 @@ function crimeResult (position) {
 				})
 			}
 
-    function plotCrimeStats(data) {
-		$("#crime-chart").empty();
+    function plotCrimeStats(data, elementId) {
+		//replace #crime-chart with variable like in rating
+		$("#current-location-crime-chart").empty();
+		$("#search-location-crime-chart").empty();
 		$.jqplot.config.enablePlugins = true;
 
-			var plot1 = $.jqplot('crime-chart', [data], {
+			var plot1 = $.jqplot(elementId, [data], {
 		        gridPadding: {
 		        	top: 0,
 		        	bottom: 10, 
@@ -218,7 +241,15 @@ function crimeResult (position) {
 		clearError();
         setTimeout(function () {
             hideLoader();
-
+			$("#geocomplete-crimestats").geocomplete()
+				.bind("geocode:result", function(event, result){
+					var latitude = result.geometry.location.lat();
+					var longitude = result.geometry.location.lng();
+					initializeCrimeStats.init(latitude, longitude);
+				})
+				.bind("geocode:error", function(event, status){
+					alert("ERROR: " + status);
+				});
 			var radius = localStorage.getItem("radius");
 			var timespan = localStorage.getItem("timespan");
 

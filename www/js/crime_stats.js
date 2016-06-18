@@ -133,7 +133,7 @@ function crimeResult (position) {
                       }
 											crimeCode = "'" + crimeCode + "'";
 											var crimeCount = parseInt(crimes.count);
-											if ($.inArray(crimeCode, murder) > -1)
+											if ($.inArray(encodeURIComponent(crimeCode), murder) > -1)
 											{
 												murderCount += crimeCount;
 											}

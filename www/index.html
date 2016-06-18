@@ -111,23 +111,39 @@
             </div>
             <div data-role="content" class="mapContent">
                 <h4 class="top-message">Safety rating based on crimes near you and demographics provided.</h4>
-                <div class="content">
-                    <div style="text-align: center;">
-                        <a href="#" id="refresh-rating" name="refresh-rating" data-role="button" data-icon="refresh" data-inline="true">Refresh</a>
+                    <div data-role="tabs">
+                        <div data-role="navbar" id="safety-navbar">
+                            <ul>
+                                <li><a href="#current-rating-tab" class="ui-btn-active">Current Location</a></li>
+                                <li><a href="#search-rating-tab">Search Location</a></li>
+                            </ul>
+                        </div>
+                        <div class="loader">
+                            <img src="not-final-loader.gif">
+                        </div>
+                        <div class="content">
+                            <div id="current-rating-tab">
+                                <div class="twenty-pix-padding" style="text-align: center;">
+                                    <a href="#" id="refresh-rating" name="refresh-rating" data-role="button" data-icon="refresh" data-inline="true" data-mini="true">Refresh</a>
+                                </div>
+                                <div>
+                                    <div id="current-location-safety-gauge" class="plot" style="width: 100%;height: 200px;"></div>
+                                    <img src="gauge_legend.png" height="100px" style="align-content: center;" />
+                                </div>
+                            </div>
+                            <div id="search-rating-tab">
+                                <div class="twenty-pix-padding">
+                                    <input id="geocomplete" type="text" class="clearable" placeholder="Type in an address" data-clear-btn="true"/>
+                                </div>
+                                <div id="search-safety-gauge">
+                                    <div id="custom-location-safety-gauge" class="plot" style="width: 100%;height: 200px;"></div>
+                                    <img src="gauge_legend.png" height="100px" style="align-content: center;" />
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="loader">
-                        <img src="not-final-loader.gif">
-                    </div>
-
-                    <div>
-                        <div id="safety-gauge" class="plot" style="width: 100%;height: 200px;"></div>
-                        <img src="gauge_legend.png" height="100px" style="align-content: center;" />
-                    </div>
-
-                    <!--<input id="geocomplete" type="text" placeholder="Type in an address"/> -->
                 </div>
             </div>
-        </div>
 
         <div data-role="page" id="profile">
             <div class="header" data-role="header" data-theme="b" data-position="fixed">

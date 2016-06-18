@@ -100,7 +100,7 @@ function crimeResult (position) {
                   radius +
                   ") AND offense IN (" +
                   crimeCodesQuery +
-                  ") AND occurance_date > '" +
+                  ") AND occurrence_date > '" +
                   asOf +
                   "'&$group=offense&$select=offense,count(*)";
               }

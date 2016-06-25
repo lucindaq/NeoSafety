@@ -95,7 +95,18 @@ $(document).ready(function(){
             $("#search-safety-gauge").hide();
         }
     });
+
+    $(".current-tab").on('click', refreshRating);
 });
+
+function refreshRating() {
+    ratingShowLoader();
+    initializeRating.init();
+}
+// $('#refresh-rating').on('click', function() {
+// $('#current-location-safety-gauge').empty();
+// initializeRating.init();
+// })
 
 function toggleInvertClass(element) {
     $(".custom-logo").removeClass("inverted");

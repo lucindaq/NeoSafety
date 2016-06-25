@@ -44,15 +44,15 @@
             // $('.loader').show();
         }, 1000);
 
-        $('#refresh-rating').on('click', function() {
-            $('#safety-gauge').empty();
-            initializeRating.init();
-        })
-
     });
 
 
 })();
+
+function refreshRating() {
+    ratingShowLoader();
+    initializeRating.init();
+}
 
 function crimeResult (position, searched) {
                 var murder = ["'09A'", "'09B'", "'09C'"];

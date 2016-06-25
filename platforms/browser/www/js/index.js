@@ -155,4 +155,14 @@ function hideLoader() {
     $(".loader").hide();
 }
 
+function ratingHideLoader() {
+    $(".fooContent").show();
+    
+    $(".loader").hide();
+}
 
+function ratingShowLoader() {
+    $(".fooContent").hide();
+
+    $(".loader").show();
+}

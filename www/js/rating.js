@@ -26,12 +26,14 @@
 
     $(document).on('pageshow', '#rating', function (e, data) {
         toggleInvertClass($("#rating-footer"));
+        $(".fooContent").hide();
         clearError();
-        $("#search-safety-gauge").hide();
+        // $("#search-safety-gauge").hide();
         $("#geocomplete").geocomplete()
                 .bind("geocode:result", function(event, result){
                     var latitude = result.geometry.location.lat();
                     var longitude = result.geometry.location.lng();
+                    ratingShowLoader();
                     initializeRating.init(latitude, longitude);
                 })
                 .bind("geocode:error", function(event, status){
@@ -40,7 +42,6 @@
 
         setTimeout(function () {
             initializeRating.init();
-            $(".content").hide();
             // $('.loader').show();
         }, 1000);
 
@@ -261,7 +262,7 @@ function crimeResult (position, searched) {
                                         else
                                         {
                                             plotRating(rating, "custom-location-safety-gauge");
-                                            $("#search-safety-gauge").show();
+                                            // $("#search-safety-gauge").show();
 
                                         }
                                     }
@@ -281,7 +282,7 @@ function crimeResult (position, searched) {
             }
 
 function plotRating(rating, elementId) {
-    hideLoader();
+    ratingHideLoader();
     $.jqplot(elementId,[[rating]],{
 
         seriesDefaults: {

@@ -195,6 +195,7 @@ function crimeResult (position, searched) {
 
     function plotCrimeStats(data, elementId) {
 		//replace #crime-chart with variable like in rating
+		statsHideLoader();
 		$("#current-location-crime-chart").empty();
 		$("#search-location-crime-chart").empty();
 		$.jqplot.config.enablePlugins = true;
@@ -239,8 +240,8 @@ function crimeResult (position, searched) {
 
     $(document).on('pageshow', '#crimeStats', function (e, data) {
 		clearError();
+		statsShowLoader();
         setTimeout(function () {
-            hideLoader();
 			$("#geocomplete-crimestats").geocomplete()
 				.bind("geocode:result", function(event, result){
 					var latitude = result.geometry.location.lat();
@@ -282,18 +283,12 @@ function crimeResult (position, searched) {
 
 
         }, 100);
-
-  
-        // function submitConfigurations() {
-        // 	$('#crime-chart').empty();
-        //     initializeCrimeStats.init();
-        // }
-
+		
 		$('#select-native-11').on('change', function () {
 			localStorage.setItem('radius', $(this).val());
             initializeCrimeStats.init();
 
-		})
+		});
 
 		$('#select-native-12').on('change', function () {
 			localStorage.setItem('timespan', $(this).val());

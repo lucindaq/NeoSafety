@@ -376,15 +376,15 @@
             </div>
             <div data-role="content" class="mapContent">
                 <h4 class="top-message">View the amount of crimes that have occured near you or in a certain location.</h4>
-                <div data-role="tabs">
+                <div class="loader">
+                    <img src="not-final-loader.gif">
+                </div>
+                <div data-role="tabs" class="stats-content">
                     <div data-role="navbar" id="crimestats-navbar">
                         <ul>
-                            <li><a href="#current-location-crimestats-tab" class="ui-btn-active">Current Location</a></li>
-                            <li><a href="#search-location-crimestats-tab">Search Location</a></li>
+                            <li><a href="#current-location-crimestats-tab" class="ui-btn-active current-tab-stats">Current Location</a></li>
+                            <li><a href="#search-location-crimestats-tab" class="search-tab-stats">Search Location</a></li>
                         </ul>
-                    </div>
-                    <div class="loader">
-                        <img src="not-final-loader.gif">
                     </div>
                     <div class="content">
                         <div id="current-location-crimestats-tab">

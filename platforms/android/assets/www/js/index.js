@@ -97,16 +97,18 @@ $(document).ready(function(){
     });
 
     $(".current-tab").on('click', refreshRating);
+    $(".current-tab-stats").on('click', refreshStats);
 });
 
 function refreshRating() {
     ratingShowLoader();
     initializeRating.init();
 }
-// $('#refresh-rating').on('click', function() {
-// $('#current-location-safety-gauge').empty();
-// initializeRating.init();
-// })
+function refreshStats() {
+    statsShowLoader();
+    initializeCrimeStats.init();
+}
+
 
 function toggleInvertClass(element) {
     $(".custom-logo").removeClass("inverted");
@@ -167,7 +169,7 @@ function wrongLocation() {
 
 function hideLoader() {
     $(".content").show();
-    
+
     $(".loader").hide();
 }
 
@@ -180,6 +182,19 @@ function ratingHideLoader() {
 
 function ratingShowLoader() {
     $(".ratingContent").hide();
+    $(".loader").show();
+
+}
+
+function statsHideLoader() {
+    $(".stats-content").show();
+    // $("#search-safety-gauge").show();
+
+    $(".loader").hide();
+}
+
+function statsShowLoader() {
+    $(".stats-content").hide();
     $(".loader").show();
 
 }

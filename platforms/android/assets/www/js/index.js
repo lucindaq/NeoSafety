@@ -90,6 +90,11 @@ $(document).ready(function(){
     window.location.hash = 'home';
     $.mobile.initializePage();
 
+    $(".search-tab").on('click', function () {
+        if (!$('#geocomplete').val().length){
+            $("#search-safety-gauge").hide();
+        }
+    });
 });
 
 function toggleInvertClass(element) {
@@ -156,13 +161,14 @@ function hideLoader() {
 }
 
 function ratingHideLoader() {
-    $(".fooContent").show();
-    
+    $(".ratingContent").show();
+    $("#search-safety-gauge").show();
+
     $(".loader").hide();
 }
 
 function ratingShowLoader() {
-    $(".fooContent").hide();
-
+    $(".ratingContent").hide();
     $(".loader").show();
+
 }

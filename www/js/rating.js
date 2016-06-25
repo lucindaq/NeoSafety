@@ -26,9 +26,8 @@
 
     $(document).on('pageshow', '#rating', function (e, data) {
         toggleInvertClass($("#rating-footer"));
-        $(".fooContent").hide();
+        $(".ratingContent").hide();
         clearError();
-        // $("#search-safety-gauge").hide();
         $("#geocomplete").geocomplete()
                 .bind("geocode:result", function(event, result){
                     var latitude = result.geometry.location.lat();

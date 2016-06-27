@@ -314,3 +314,12 @@ h3{
 .fifty-pix-padding {
     padding: 50px;
 }
+
+.ten-pix-padding {
+    padding: 10px;
+}
+
+#current-location-crime-chart, #search-location-crime-chart {
+    height: 400px;
+}
+

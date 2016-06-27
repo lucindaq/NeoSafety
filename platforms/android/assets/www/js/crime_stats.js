@@ -208,15 +208,15 @@ function crimeResult (position, searched) {
 		        	right: 0
 		        },
 
-		        gridDimensions: {
-		        	height: 350,
-		        	width: 236
-		        },
+		        // gridDimensions: {
+		        // 	height: 350,
+		        // 	width: 236
+		        // },
 
 		        seriesDefaults: {
 		        	marginTop: 0,
 		            renderer:$.jqplot.PieRenderer,
-		            rendererOptions: { padding: 0, showDataLabels: true, diameter: 200 },
+		            rendererOptions: { padding: 30, showDataLabels: true, diameter: 200 },
 		            seriesColors: [ "grey", "lightgrey", "#285727", "black", "#FED631", "#58B659", "white"]
 		        },
 

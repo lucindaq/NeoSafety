@@ -26,7 +26,8 @@
 
     $(document).on('pageshow', '#rating', function (e, data) {
         toggleInvertClass($("#rating-footer"));
-        $(".ratingContent").hide();
+        // $(".ratingContent").hide();
+        ratingShowLoader();
         clearError();
         $("#geocomplete").geocomplete()
                 .bind("geocode:result", function(event, result){

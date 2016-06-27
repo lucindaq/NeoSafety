@@ -95,6 +95,11 @@ $(document).ready(function(){
             $("#search-safety-gauge").hide();
         }
     });
+    $(".search-tab-stats").on('click', function () {
+        if (!$('#geocomplete').val().length){
+            $("#stats-dropdowns").hide();
+        }
+    });
 
     $(".current-tab").on('click', refreshRating);
     $(".current-tab-stats").on('click', refreshStats);
@@ -135,9 +140,6 @@ function findCounty(addressComponents) {
 
 $(document).on('pageshow', '#home', function (e, data) {
     toggleInvertClass();
-
-        // $("[data-role=footer]").toolbar({tapToggle: false});
-
 });
 
 var errorMessage = $('#error-message');
@@ -169,7 +171,6 @@ function wrongLocation() {
 
 function hideLoader() {
     $(".content").show();
-
     $(".loader").hide();
 }
 
@@ -188,7 +189,7 @@ function ratingShowLoader() {
 
 function statsHideLoader() {
     $(".stats-content").show();
-    // $("#search-safety-gauge").show();
+    $("#stats-dropdowns").show();
 
     $(".loader").hide();
 }
@@ -196,5 +197,4 @@ function statsHideLoader() {
 function statsShowLoader() {
     $(".stats-content").hide();
     $(".loader").show();
-
 }

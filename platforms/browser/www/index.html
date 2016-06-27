@@ -407,7 +407,7 @@
                                         </select>
                                     </fieldset>
                                 </form>
-                                <div id="current-location-crime-chart"></div>
+                                <div id="current-location-crime-chart" class="twenty-pix-padding"></div>
                             </div>
                         </div>
                         <div id="search-location-crimestats-tab">
@@ -415,25 +415,27 @@
                                 <div class="twenty-pix-padding">
                                     <input id="geocomplete-crimestats" type="text" placeholder="Type in an address" data-clear-btn="true"/>
                                 </div>
-                                <form class="center">
-                                    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
-                                        <label for="select-native-11">Radius</label>
-                                        <select name="select-native-11" id="select-native-11">
-                                            <option value="1">1 Mile</option>
-                                            <option value="2">2 Mile</option>
-                                            <option value="3">3 Mile</option>
-                                            <option value="4">4 Mile</option>
-                                        </select>
-                                        <label for="select-native-12">Timespan</label>
-                                        <select name="select-native-12" id="select-native-12">
-                                            <option value="1">1 Month</option>
-                                            <option value="6">6 Month</option>
-                                            <option value="12">1 Year</option>
-                                            <option value="24">2 Years</option>
-                                        </select>
-                                    </fieldset>
-                                </form>
-                                <div id="search-location-crime-chart"></div>
+                                <div id="stats-dropdowns">
+                                    <form class="center">
+                                        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                                            <label for="select-native-11">Radius</label>
+                                            <select name="select-native-11" id="select-native-11-search">
+                                                <option value="1">1 Mile</option>
+                                                <option value="2">2 Mile</option>
+                                                <option value="3">3 Mile</option>
+                                                <option value="4">4 Mile</option>
+                                            </select>
+                                            <label for="select-native-12">Timespan</label>
+                                            <select name="select-native-12" id="select-native-12-search">
+                                                <option value="1">1 Month</option>
+                                                <option value="6">6 Month</option>
+                                                <option value="12">1 Year</option>
+                                                <option value="24">2 Years</option>
+                                            </select>
+                                        </fieldset>
+                                    </form>
+                                </div>
+                                <div id="search-location-crime-chart" class="twenty-pix-padding"></div>
                             </div>
                         </div>
 

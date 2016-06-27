@@ -281,10 +281,6 @@ h3{
     text-decoration: underline;
 }
 
-#crime-chart {
-    height: 425px;
-}
-
 .no-error-class {
     display: none;
 }
@@ -313,4 +309,8 @@ h3{
 }
 .twenty-pix-padding {
     padding: 20px;
+}
+
+.fifty-pix-padding {
+    padding: 50px;
 }

@@ -194,7 +194,7 @@ function crimeResult (position, searched) {
 			}
 
     function plotCrimeStats(data, elementId) {
-		//replace #crime-chart with variable like in rating
+		// TODO replace #crime-chart with variable like in rating
 		statsHideLoader();
 		$("#current-location-crime-chart").empty();
 		$("#search-location-crime-chart").empty();
@@ -203,9 +203,9 @@ function crimeResult (position, searched) {
 			var plot1 = $.jqplot(elementId, [data], {
 		        gridPadding: {
 		        	top: 0,
-		        	bottom: 10, 
-		        	left: 10, 
-		        	right: 10
+		        	bottom: 0,
+		        	left: 0,
+		        	right: 0
 		        },
 
 		        gridDimensions: {
@@ -236,65 +236,96 @@ function crimeResult (position, searched) {
 
     	
     }
-	
 
-    $(document).on('pageshow', '#crimeStats', function (e, data) {
+	var radius = localStorage.getItem("radius");
+	var timespan = localStorage.getItem("timespan");
+
+	var currentRadiusDropdown = $('#select-native-11');
+	var searchRadiusDropdown = $('#select-native-11-search');
+	var currentTimespanDropdown = $('#select-native-12');
+	var searchTimespanDropdown = $('#select-native-12-search');
+
+
+	function dropdownAction(foo, bar) {
+		if (radius === null) {
+			localStorage.setItem('radius', '2');
+
+			foo.val('2');
+			foo.selectmenu('refresh');
+
+		} else {
+			foo.val(radius);
+			foo.selectmenu('refresh');
+
+		}
+
+		if (timespan === null) {
+			localStorage.setItem('timespan', '6');
+
+			bar.val('6');
+			bar.selectmenu('refresh');
+
+		} else {
+			bar.val(timespan);
+			bar.selectmenu('refresh');
+
+		}
+	}
+
+	$(".current-tab-stats").on("click", function () {
+		dropdownAction(currentRadiusDropdown, currentTimespanDropdown);
+
+	});
+	$(".search-tab-stats").on("click", function () {
+		dropdownAction(searchRadiusDropdown, searchTimespanDropdown);
+
+	});
+
+
+	$(document).on('pageshow', '#crimeStats', function (e, data) {
 		clearError();
 		statsShowLoader();
         setTimeout(function () {
+			var latitude, longitude;
+
 			$("#geocomplete-crimestats").geocomplete()
 				.bind("geocode:result", function(event, result){
-					var latitude = result.geometry.location.lat();
-					var longitude = result.geometry.location.lng();
+					latitude = result.geometry.location.lat();
+					longitude = result.geometry.location.lng();
 					initializeCrimeStats.init(latitude, longitude);
 				})
 				.bind("geocode:error", function(event, status){
 					alert("ERROR: " + status);
 				});
-			var radius = localStorage.getItem("radius");
-			var timespan = localStorage.getItem("timespan");
 
-			if (radius === null) {
-				localStorage.setItem('radius', '2')
-
-				$('#select-native-11').val('2');
-				$('#select-native-11').selectmenu('refresh');
-
-			} else {
-				$('#select-native-11').val(radius);
-				$('#select-native-11').selectmenu('refresh');
-
-			}
-			
-			if (timespan === null) {
-				localStorage.setItem('timespan', '6')
-
-				$('#select-native-12').val('6');
-				$('#select-native-12').selectmenu('refresh');
-
-			} else {
-				$('#select-native-12').val(timespan);
-				$('#select-native-12').selectmenu('refresh');
-
-			}
 
         	toggleInvertClass($("#crimeStats-footer"));
+
             initializeCrimeStats.init();
 
+			currentRadiusDropdown.on('change', function () {
+				localStorage.setItem('radius', $(this).val());
+				initializeCrimeStats.init();
+			});
+
+			currentTimespanDropdown.on('change', function () {
+				localStorage.setItem('timespan', $(this).val());
+				initializeCrimeStats.init();
+			});
+
+			searchRadiusDropdown.on('change', function () {
+				localStorage.setItem('radius', $(this).val());
+				initializeCrimeStats.init(latitude, longitude);
+			});
+
+			searchTimespanDropdown.on('change', function () {
+				localStorage.setItem('timespan', $(this).val());
+				initializeCrimeStats.init(latitude, longitude);
+			});
 
         }, 100);
-		
-		$('#select-native-11').on('change', function () {
-			localStorage.setItem('radius', $(this).val());
-            initializeCrimeStats.init();
 
-		});
 
-		$('#select-native-12').on('change', function () {
-			localStorage.setItem('timespan', $(this).val());
-            initializeCrimeStats.init();
-
-		})
     });
 
 })($);

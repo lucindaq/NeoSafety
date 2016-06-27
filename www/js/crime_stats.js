@@ -304,21 +304,25 @@ function crimeResult (position, searched) {
             initializeCrimeStats.init();
 
 			currentRadiusDropdown.on('change', function () {
+				statsShowLoader();
 				localStorage.setItem('radius', $(this).val());
 				initializeCrimeStats.init();
 			});
 
 			currentTimespanDropdown.on('change', function () {
+				statsShowLoader();
 				localStorage.setItem('timespan', $(this).val());
 				initializeCrimeStats.init();
 			});
 
 			searchRadiusDropdown.on('change', function () {
+				statsShowLoader();
 				localStorage.setItem('radius', $(this).val());
 				initializeCrimeStats.init(latitude, longitude);
 			});
 
 			searchTimespanDropdown.on('change', function () {
+				statsShowLoader();
 				localStorage.setItem('timespan', $(this).val());
 				initializeCrimeStats.init(latitude, longitude);
 			});

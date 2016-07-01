@@ -169,11 +169,28 @@ function crimeResult (position, searched) {
 													[otherCount + ' Uncategorized Crimes', otherCount]];
 										}
 										if (searched == undefined) {
-											plotCrimeStats(crimeStatsData, "current-location-crime-chart");
+
+											if (murderCount && theftCount && subAbuseCount && assaultCount && sexualCount && otherCount !== 0) {
+												plotCrimeStats(crimeStatsData, "current-location-crime-chart");
+											} else {
+												statsHideLoader();
+												$('#current-stats-dropdown').hide();
+												$("#current-location-crime-chart").hide();
+												$('#zero-crimes-message-current').html('No crimes in your area!');
+											}
+
 										}
 										else
 										{
-											plotCrimeStats(crimeStatsData, "search-location-crime-chart");
+											//the murder count for the current location is making the dropdown for
+											// search hide. what variable should i use to reference the geolocation data?
+											if (murderCount && theftCount && subAbuseCount && assaultCount && sexualCount && otherCount !== 0) {
+												plotCrimeStats(crimeStatsData, "search-location-crime-chart");
+											} else {
+												specialStatsHideLoader();
+												$("#search-location-crime-chart").hide();
+												$('#zero-crimes-message-searched').html('No crimes in this area!');
+											}
 
 										}
 										// plotCrimeStats(crimeStatsData);
@@ -196,8 +213,18 @@ function crimeResult (position, searched) {
     function plotCrimeStats(data, elementId) {
 		// TODO replace #crime-chart with variable like in rating
 		statsHideLoader();
-		$("#current-location-crime-chart").empty();
-		$("#search-location-crime-chart").empty();
+
+		$('#zero-crimes-message-current').empty();
+		$('#zero-crimes-message-searched').empty();
+
+		var currentChart = $("#current-location-crime-chart");
+		var searchedChart = $("#search-location-crime-chart");
+
+		currentChart.empty();
+		searchedChart.empty();
+		currentChart.show();
+		searchedChart.show();
+
 		$.jqplot.config.enablePlugins = true;
 
 			var plot1 = $.jqplot(elementId, [data], {

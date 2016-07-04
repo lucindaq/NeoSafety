@@ -389,24 +389,27 @@
                     <div class="content">
                         <div id="current-location-crimestats-tab">
                             <div role="main" class="ui-content">
-                                <div class="center">
-                                    <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
-                                        <label for="select-native-11">Radius</label>
-                                        <select name="select-native-11" id="select-native-11">
-                                            <option value="1">1 Mile</option>
-                                            <option value="2">2 Mile</option>
-                                            <option value="3">3 Mile</option>
-                                            <option value="4">4 Mile</option>
-                                        </select>
-                                        <label for="select-native-12">Timespan</label>
-                                        <select name="select-native-12" id="select-native-12">
-                                            <option value="1">1 Month</option>
-                                            <option value="6">6 Month</option>
-                                            <option value="12">1 Year</option>
-                                            <option value="24">2 Years</option>
-                                        </select>
-                                    </fieldset>
+                                <div id="current-stats-dropdown">
+                                    <div class="center">
+                                        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+                                            <label for="select-native-11">Radius</label>
+                                            <select name="select-native-11" id="select-native-11">
+                                                <option value="1">1 Mile</option>
+                                                <option value="2">2 Mile</option>
+                                                <option value="3">3 Mile</option>
+                                                <option value="4">4 Mile</option>
+                                            </select>
+                                            <label for="select-native-12">Timespan</label>
+                                            <select name="select-native-12" id="select-native-12">
+                                                <option value="1">1 Month</option>
+                                                <option value="6">6 Month</option>
+                                                <option value="12">1 Year</option>
+                                                <option value="24">2 Years</option>
+                                            </select>
+                                        </fieldset>
+                                    </div>
                                 </div>
+                                <p id="zero-crimes-message-current"> </p>
                                 <div id="current-location-crime-chart"></div>
                             </div>
                         </div>
@@ -435,6 +438,7 @@
                                         </fieldset>
                                     </form>
                                 </div>
+                                <p id="zero-crimes-message-searched"> </p>
                                 <div id="search-location-crime-chart"></div>
                             </div>
                         </div>

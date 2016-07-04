@@ -190,6 +190,7 @@ function ratingShowLoader() {
 function statsHideLoader() {
     $(".stats-content").show();
     $("#stats-dropdowns").show();
+    $("#current-stats-dropdown").show();
 
     $(".loader").hide();
 }

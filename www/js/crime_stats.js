@@ -241,8 +241,10 @@ function crimeResult (position, searched) {
 		// TODO replace #crime-chart with variable like in rating
 		statsHideLoader();
 
-		$(".error-message").empty();
-
+		// $(".error-message").hide();
+		clearError();
+		
+		
 		$('#zero-crimes-message-current').empty();
 		$('#zero-crimes-message-searched').empty();
 
@@ -329,12 +331,13 @@ function crimeResult (position, searched) {
 	}
 
 	$(".current-tab-stats").on("click", function () {
+		$('#current-location-crime-chart').show();
 		dropdownAction(currentRadiusDropdown, currentTimespanDropdown);
 	});
 	$(".search-tab-stats").on("click", function () {
 		// $('#stats-dropdowns').show();
 		dropdownAction(searchRadiusDropdown, searchTimespanDropdown);
-
+		$('#search-location-crime-chart').show();
 	});
 
 

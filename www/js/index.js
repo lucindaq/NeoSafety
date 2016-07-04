@@ -96,12 +96,18 @@ $(document).ready(function(){
         }
     });
     $(".search-tab-stats").on('click', function () {
+
+        // $('#search-location-crime-chart').show();
+
         if (!$('#geocomplete-crimestats').val().length){
             $("#stats-dropdowns").hide();
         }
     });
 
-    $(".current-tab").on('click', refreshRating);
+    $(".current-tab").on('click', function (){
+        refreshRating();
+        $('#current-safety-gauge').show();
+    });
     $(".current-tab-stats").on('click', refreshStats);
 });
 
@@ -170,11 +176,23 @@ function wrongLocation() {
 }
 
 function wrongGeolocation() {
+    ratingHideLoader();
+
+    $('#stats-dropdowns').hide();
+
+    errorMessage.show();
+
+    var currentChartRating = $("#current-safety-gauge");
+    var searchedChartRating = $("#search-safety-gauge");
+
+    currentChartRating.hide();
+    searchedChartRating.hide();
+
     var currentChart = $("#current-location-crime-chart");
     var searchedChart = $("#search-location-crime-chart");
 
-    currentChart.empty();
-    searchedChart.empty();
+    currentChart.hide();
+    searchedChart.hide();
 
     errorMessage.removeClass('no-error-class');
     errorMessage.addClass('error-message-class');

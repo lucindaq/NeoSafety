@@ -294,7 +294,8 @@ function crimeResult (position, searched) {
 function plotRating(rating, elementId) {
     ratingHideLoader();
 
-    $(".error-message").empty();
+    // $(".error-message").hide();
+    clearError();
 
     $.jqplot(elementId,[[rating]],{
 

@@ -168,7 +168,6 @@ function crimeResult (position, searched) {
 													[sexualCount + ' Sexual Assaults', sexualCount],
 													[otherCount + ' Uncategorized Crimes', otherCount]];
 										}
-										var errorMessage = $(".error-message");
 										if (searched == undefined) {
 
 											if (murderCount && theftCount && subAbuseCount && assaultCount && sexualCount && otherCount !== 0) {
@@ -183,9 +182,11 @@ function crimeResult (position, searched) {
 											//the murder count for the current location is making the dropdown for
 											// search hide. what variable should i use to reference the geolocation data?
 											if (murderCount && theftCount && subAbuseCount && assaultCount && sexualCount && otherCount !== 0) {
+												geocompleteClearError();
 												plotCrimeStats(crimeStatsData, "search-location-crime-chart");
 											} else {
 												setActiveTab();
+												// errorMessage.hide();
 												$("#search-location-crime-chart").hide();
 												$('#zero-crimes-message-searched').html('No crimes near this area within a ' + getRadiusText('searched') + ' radius and within ' + getTimespanText('searched') + '. Try increasing the radius or timespan to get different results.');
 											}
@@ -226,7 +227,6 @@ function crimeResult (position, searched) {
 		} else {
 			$('.search-tab-stats').addClass('ui-btn-active');
 		}
-		errorMessage.hide();
 	}
 
 	function getRadiusText(tabType) {
@@ -251,8 +251,6 @@ function crimeResult (position, searched) {
 
 		// $(".error-message").hide();
 		homeClearError();
-		geocompleteClearError();
-
 
 		$('#zero-crimes-message-current').empty();
 		$('#zero-crimes-message-searched').empty();

@@ -208,6 +208,7 @@ function wrongGeolocation() {
 }
 
 
+
 function hideLoader() {
     $(".content").show();
     $(".loader").hide();

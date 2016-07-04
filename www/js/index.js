@@ -96,7 +96,7 @@ $(document).ready(function(){
         }
     });
     $(".search-tab-stats").on('click', function () {
-        if (!$('#geocomplete').val().length){
+        if (!$('#geocomplete-crimestats').val().length){
             $("#stats-dropdowns").hide();
         }
     });

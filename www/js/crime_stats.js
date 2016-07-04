@@ -187,7 +187,7 @@ function crimeResult (position, searched) {
 											} else {
 												statsHideLoader();
 												$("#search-location-crime-chart").hide();
-												$('#zero-crimes-message-searched').html('No crimes near this area within a ' + getRadiusText('searched') + ' radius and within' + getTimespanText('searched') + '. Try increasing the radius or timespan to get different results.');
+												$('#zero-crimes-message-searched').html('No crimes near this area within a ' + getRadiusText('searched') + ' radius and within ' + getTimespanText('searched') + '. Try increasing the radius or timespan to get different results.');
 											}
 
 										}
@@ -317,6 +317,7 @@ function crimeResult (position, searched) {
 		dropdownAction(currentRadiusDropdown, currentTimespanDropdown);
 	});
 	$(".search-tab-stats").on("click", function () {
+		// $('#stats-dropdowns').show();
 		dropdownAction(searchRadiusDropdown, searchTimespanDropdown);
 
 	});

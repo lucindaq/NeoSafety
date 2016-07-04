@@ -141,7 +141,7 @@
 
 
     $(document).on('pageshow', '#report', function (e, data) {
-        clearError();
+        homeClearError();
         setTimeout(function () {
             toggleInvertClass($("#report-footer"));
             initializeReport.init(document.getElementById('map-police'));

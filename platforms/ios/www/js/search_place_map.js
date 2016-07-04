@@ -150,7 +150,7 @@
 
 
     $(document).on('pageshow', '#emergServ', function (e, data) {
-        clearError();
+        homeClearError();
         setTimeout(function () {
             toggleInvertClass($("#emergServ-footer"));
 

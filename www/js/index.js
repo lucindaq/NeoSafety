@@ -149,28 +149,36 @@ $(document).on('pageshow', '#home', function (e, data) {
 });
 
 var errorMessage = $('.error-message');
+var homeErrorMessage = $('#error-message-home');
 
 function showError() {
     $.mobile.navigate("#home");
-    errorMessage.removeClass('no-error-class');
-    errorMessage.addClass('error-message-class');
-    errorMessage.text("This app requires location services to be enabled");
+    homeErrorMessage.removeClass('no-error-class');
+    homeErrorMessage.addClass('error-message-class');
+    homeErrorMessage.text("This app requires location services to be enabled.");
     $(".home-content").css("margin-top", 0);
 
 }
 
-function clearError() {
+function homeClearError() {
+    homeErrorMessage.addClass('no-error-class');
+    homeErrorMessage.removeClass('error-message-class');
+    homeErrorMessage.text("");
+    $(".home-content").css("margin-top", 0);
+}
+
+function geocompleteClearError() {
     errorMessage.addClass('no-error-class');
     errorMessage.removeClass('error-message-class');
     errorMessage.text("");
-    $(".home-content").css("margin-top", 0);
+    // $(".home-content").css("margin-top", 0);
 }
 
 function wrongLocation() {
     $.mobile.navigate("#home");
-    errorMessage.removeClass('no-error-class');
-    errorMessage.addClass('error-message-class');
-    errorMessage.text("Data for this feature is currently unavailable in your location");
+    homeErrorMessage.removeClass('no-error-class');
+    homeErrorMessage.addClass('error-message-class');
+    homeErrorMessage.text("Data for this feature is currently unavailable in your location.");
     $(".home-content").css("margin-top", 0);
 
 }
@@ -196,7 +204,7 @@ function wrongGeolocation() {
 
     errorMessage.removeClass('no-error-class');
     errorMessage.addClass('error-message-class');
-    errorMessage.text("Data for this feature is currently unavailable for this location");
+    errorMessage.text("Data for this feature is currently unavailable for this location.");
 }
 
 

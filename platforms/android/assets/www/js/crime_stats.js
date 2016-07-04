@@ -324,7 +324,7 @@ function crimeResult (position, searched) {
 
 
 	$(document).on('pageshow', '#crimeStats', function (e, data) {
-		clearError();
+		homeClearError();
 		statsShowLoader();
 		dropdownAction(currentRadiusDropdown, currentTimespanDropdown);
 

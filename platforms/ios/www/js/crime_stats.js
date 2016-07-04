@@ -242,7 +242,7 @@ function crimeResult (position, searched) {
 		statsHideLoader();
 
 		// $(".error-message").hide();
-		clearError();
+		homeClearError();
 		
 		
 		$('#zero-crimes-message-current').empty();
@@ -342,7 +342,7 @@ function crimeResult (position, searched) {
 
 
 	$(document).on('pageshow', '#crimeStats', function (e, data) {
-		clearError();
+		homeClearError();
 		statsShowLoader();
 		dropdownAction(currentRadiusDropdown, currentTimespanDropdown);
 

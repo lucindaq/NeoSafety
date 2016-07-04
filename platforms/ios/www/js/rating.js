@@ -28,7 +28,7 @@
         toggleInvertClass($("#rating-footer"));
         // $(".ratingContent").hide();
         ratingShowLoader();
-        clearError();
+        homeClearError();
         $("#geocomplete").geocomplete()
                 .bind("geocode:result", function(event, result){
                     var latitude = result.geometry.location.lat();
@@ -295,7 +295,8 @@ function plotRating(rating, elementId) {
     ratingHideLoader();
 
     // $(".error-message").hide();
-    clearError();
+    homeClearError();
+    geocompleteClearError();
 
     $.jqplot(elementId,[[rating]],{
 

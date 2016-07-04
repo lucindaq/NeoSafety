@@ -212,7 +212,7 @@
     };
 
     $(document).on('pageshow', '#rating', function (e, data) {
-        clearError();
+        homeClearError();
         toggleInvertClass($("#rating-footer"));
 
         setTimeout(function () {

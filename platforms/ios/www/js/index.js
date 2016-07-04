@@ -142,7 +142,7 @@ $(document).on('pageshow', '#home', function (e, data) {
     toggleInvertClass();
 });
 
-var errorMessage = $('#error-message');
+var errorMessage = $('.error-message');
 
 function showError() {
     $.mobile.navigate("#home");
@@ -164,10 +164,23 @@ function wrongLocation() {
     $.mobile.navigate("#home");
     errorMessage.removeClass('no-error-class');
     errorMessage.addClass('error-message-class');
-    errorMessage.text("Data for this feature is currently unavailable for this location");
+    errorMessage.text("Data for this feature is currently unavailable in your location");
     $(".home-content").css("margin-top", 0);
 
 }
+
+function wrongGeolocation() {
+    var currentChart = $("#current-location-crime-chart");
+    var searchedChart = $("#search-location-crime-chart");
+
+    currentChart.empty();
+    searchedChart.empty();
+
+    errorMessage.removeClass('no-error-class');
+    errorMessage.addClass('error-message-class');
+    errorMessage.text("Data for this feature is currently unavailable for this location");
+}
+
 
 function hideLoader() {
     $(".content").show();

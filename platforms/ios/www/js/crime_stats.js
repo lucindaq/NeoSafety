@@ -168,13 +168,14 @@ function crimeResult (position, searched) {
 													[sexualCount + ' Sexual Assaults', sexualCount],
 													[otherCount + ' Uncategorized Crimes', otherCount]];
 										}
-
+										var errorMessage = $(".error-message");
 										if (searched == undefined) {
 
 											if (murderCount && theftCount && subAbuseCount && assaultCount && sexualCount && otherCount !== 0) {
 												plotCrimeStats(crimeStatsData, "current-location-crime-chart");
 											} else {
 												statsHideLoader();
+												errorMessage.hide();
 												$("#current-location-crime-chart").hide();
 												$('#zero-crimes-message-current').html('No crimes near you within a ' + getRadiusText('current') + ' radius and within ' + getTimespanText('current') + '. Try increasing your radius or timespan to get different results.');
 											}
@@ -186,6 +187,7 @@ function crimeResult (position, searched) {
 												plotCrimeStats(crimeStatsData, "search-location-crime-chart");
 											} else {
 												statsHideLoader();
+												errorMessage.hide();
 												$("#search-location-crime-chart").hide();
 												$('#zero-crimes-message-searched').html('No crimes near this area within a ' + getRadiusText('searched') + ' radius and within ' + getTimespanText('searched') + '. Try increasing the radius or timespan to get different results.');
 											}
@@ -197,11 +199,22 @@ function crimeResult (position, searched) {
 							});
 
 						} else {
-							wrongLocation();// sorry no results for your county
+							if ($(".search-option")){
+								wrongGeolocation();
+							} else {
+								wrongLocation();
+							}
+								
+							// sorry no results for your county
 						}
 
 					} else {
-						wrongLocation();// sorry no results for your location
+						if ($(".search-option")) {
+							wrongGeolocation(); 
+						} else {
+							wrongLocation();
+						}
+						// sorry no results for your location
 					}
 
 
@@ -227,6 +240,8 @@ function crimeResult (position, searched) {
     function plotCrimeStats(data, elementId) {
 		// TODO replace #crime-chart with variable like in rating
 		statsHideLoader();
+
+		$(".error-message").empty();
 
 		$('#zero-crimes-message-current').empty();
 		$('#zero-crimes-message-searched').empty();

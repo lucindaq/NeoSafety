@@ -176,12 +176,10 @@ function crimeResult (position, searched) {
 											} else {
 												statsHideLoader();
 												$("#current-location-crime-chart").hide();
-												$('#zero-crimes-message-current').html('No crimes near you for ' + radius/1600 + ' miles and ' + timespan + ' months. Try increasing your radius or timespan to get different results.');
+												$('#zero-crimes-message-current').html('No crimes near you within a ' + getRadiusText('current') + ' radius and within ' + getTimespanText('current') + '. Try increasing your radius or timespan to get different results.');
 											}
 
-										}
-										else
-										{
+										} else {
 											//the murder count for the current location is making the dropdown for
 											// search hide. what variable should i use to reference the geolocation data?
 											if (murderCount && theftCount && subAbuseCount && assaultCount && sexualCount && otherCount !== 0) {
@@ -189,7 +187,7 @@ function crimeResult (position, searched) {
 											} else {
 												statsHideLoader();
 												$("#search-location-crime-chart").hide();
-												$('#zero-crimes-message-searched').html('No crimes near this area for ' + radius/1600 + ' miles and ' + timespan + ' months. Try increasing the radius or timespan to get different results.');
+												$('#zero-crimes-message-searched').html('No crimes near this area within a ' + getRadiusText('searched') + ' radius and within ' + getTimespanText('searched') + '. Try increasing the radius or timespan to get different results.');
 											}
 
 										}
@@ -210,6 +208,22 @@ function crimeResult (position, searched) {
 				})
 			}
 
+	function getRadiusText(tabType) {
+		if (tabType == 'current') {
+			return $("#select-native-11 option:selected").text().toLowerCase();
+		} else {
+			return $("#select-native-11-search option:selected").text().toLowerCase();
+		}
+	}
+	
+	function getTimespanText(tabType) {
+		if (tabType == 'current') {
+			return $("#select-native-12 option:selected").text().toLowerCase();
+		} else {
+			return $("#select-native-12-search option:selected").text().toLowerCase();
+		}
+	}
+	
     function plotCrimeStats(data, elementId) {
 		// TODO replace #crime-chart with variable like in rating
 		statsHideLoader();
@@ -301,9 +315,9 @@ function crimeResult (position, searched) {
 
 	$(".current-tab-stats").on("click", function () {
 		dropdownAction(currentRadiusDropdown, currentTimespanDropdown);
-
 	});
 	$(".search-tab-stats").on("click", function () {
+		// $('#stats-dropdowns').show();
 		dropdownAction(searchRadiusDropdown, searchTimespanDropdown);
 
 	});
@@ -312,7 +326,9 @@ function crimeResult (position, searched) {
 	$(document).on('pageshow', '#crimeStats', function (e, data) {
 		clearError();
 		statsShowLoader();
-        setTimeout(function () {
+		dropdownAction(currentRadiusDropdown, currentTimespanDropdown);
+
+		setTimeout(function () {
 			var latitude, longitude;
 
 			$("#geocomplete-crimestats").geocomplete()

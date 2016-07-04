@@ -92,7 +92,7 @@
                 <h1>Home</h1>
             </div>
             <div data-role="content" class="mapContent">
-                <p id="error-message" class="no-error-class">&nbsp;</p>
+                <p id="error-message" class="no-error-class error-message">&nbsp;</p>
               <div style="display:flex;justify-content:center;align-items:center;">
                 <div class="home-content" style="width:250px;height:250px;">
                   <a href="#rating"><img src="http://merl.us/cdn/neosafety/icons/ButtonRating.png" class="home-bubble" data-transition="pop"></a>
@@ -110,7 +110,7 @@
 				<a href="#home" data-icon="home" data-iconpos="notext" class="custom-logo" data-transition="pop"></a>
             </div>
             <div data-role="content" class="mapContent">
-                <h4 class="top-message">Safety rating based on crimes near you and demographics provided.</h4>
+                <h4 class="top-message">See how safe an area is based on the crimes committed and demographics you provided.</h4>
                 <div class="loader">
                     <img src="not-final-loader.gif">
                 </div>
@@ -118,13 +118,13 @@
                     <div data-role="navbar" id="safety-navbar">
                         <ul>
                             <li><a href="#current-rating-tab" class="ui-btn-active current-tab">Current Location</a></li>
-                            <li><a href="#search-rating-tab" class="search-tab">Search Location</a></li>
+                            <li><a href="#search-rating-tab" class="search-tab search-option">Search Location</a></li>
                         </ul>
                     </div>
 
                     <div class="content">
                         <div id="current-rating-tab">
-                            <div class="twenty-pix-padding" style="text-align: center;">
+                            <div class="ten-pix-padding" style="text-align: center;">
                                 <a href="#" id="refresh-rating" name="refresh-rating" data-role="button" data-icon="refresh" data-inline="true" data-mini="true" onclick="refreshRating()">Refresh</a>
                             </div>
                             <div>
@@ -136,6 +136,7 @@
                             <div class="twenty-pix-padding">
                                 <input id="geocomplete" type="text" class="clearable" placeholder="Type in an address" data-clear-btn="true"/>
                             </div>
+                            <p class="no-error-class error-message">&nbsp;</p>
                             <div id="search-safety-gauge">
                                 <div id="custom-location-safety-gauge" class="plot" style="width: 100%;height: 200px;"></div>
                                 <img src="gauge_legend.png" height="100px" style="align-content: center;" />
@@ -152,7 +153,7 @@
 				<a href="#home" data-icon="home" data-iconpos="notext" class="custom-logo" data-transition="pop"></a>
             </div>
             <div data-role="content" class="mapContent">
-                <h4 class="top-message">Enter Demographics For You or Someone Else to Get a More Accurate Safety Rating</h4>
+                <h4 class="top-message">Enter demographics for you or someone else. This information can be changed at any time and will only be used for a more accurate safety rating.</h4>
                 <div data-role="fieldcontain">
                     <fieldset data-role="controlgroup">
 					
@@ -199,7 +200,8 @@
 
             </div>
             <div data-role="content" class="mapContent">
-                <h4 class="top-message">Below is a list of police stations you can call to report crimes or suspicious activity.</h4>  
+                <h4 class="top-message">Call to report crimes or suspicious activity to police stations near you.</h4>
+                <p style="font-size:13px">*If you aren't sure if it is worth reporting, click the &#9432; button in the top right corner.</p>
 				<div id="map-police" class="map" style="display: none;"></div>
                 <div class="loader">
                     <img src="not-final-loader.gif">
@@ -375,7 +377,7 @@
 				<a href="#home" data-icon="home" data-iconpos="notext" class="custom-logo" data-transition="pop"></a>
             </div>
             <div data-role="content" class="mapContent">
-                <h4 class="top-message">View the amount of crimes that have occured near you or in a certain location.</h4>
+                <h4 class="top-message">View the type and quantity of crimes that have occured near you or in a certain location.</h4>
                 <div class="loader">
                     <img src="not-final-loader.gif">
                 </div>
@@ -383,7 +385,7 @@
                     <div data-role="navbar" id="crimestats-navbar">
                         <ul>
                             <li><a href="#current-location-crimestats-tab" class="ui-btn-active current-tab-stats">Current Location</a></li>
-                            <li><a href="#search-location-crimestats-tab" class="search-tab-stats">Search Location</a></li>
+                            <li><a href="#search-location-crimestats-tab" class="search-tab-stats search-option">Search Location</a></li>
                         </ul>
                     </div>
                     <div class="content">
@@ -438,6 +440,7 @@
                                         </fieldset>
                                     </form>
                                 </div>
+                                <p class="no-error-class error-message">&nbsp;</p>
                                 <p id="zero-crimes-message-searched"> </p>
                                 <div id="search-location-crime-chart"></div>
                             </div>

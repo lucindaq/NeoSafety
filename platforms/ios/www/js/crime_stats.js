@@ -174,8 +174,7 @@ function crimeResult (position, searched) {
 											if (murderCount && theftCount && subAbuseCount && assaultCount && sexualCount && otherCount !== 0) {
 												plotCrimeStats(crimeStatsData, "current-location-crime-chart");
 											} else {
-												statsHideLoader();
-												errorMessage.hide();
+												setActiveTab();
 												$("#current-location-crime-chart").hide();
 												$('#zero-crimes-message-current').html('No crimes near you within a ' + getRadiusText('current') + ' radius and within ' + getTimespanText('current') + '. Try increasing your radius or timespan to get different results.');
 											}
@@ -186,8 +185,7 @@ function crimeResult (position, searched) {
 											if (murderCount && theftCount && subAbuseCount && assaultCount && sexualCount && otherCount !== 0) {
 												plotCrimeStats(crimeStatsData, "search-location-crime-chart");
 											} else {
-												statsHideLoader();
-												errorMessage.hide();
+												setActiveTab();
 												$("#search-location-crime-chart").hide();
 												$('#zero-crimes-message-searched').html('No crimes near this area within a ' + getRadiusText('searched') + ' radius and within ' + getTimespanText('searched') + '. Try increasing the radius or timespan to get different results.');
 											}
@@ -221,6 +219,16 @@ function crimeResult (position, searched) {
 				})
 			}
 
+	function setActiveTab() {
+		statsHideLoader();
+		if ($('#current-location-crimestats-tab').is(":visible")) {
+			$('.current-tab-stats').addClass('ui-btn-active');
+		} else {
+			$('.search-tab-stats').addClass('ui-btn-active');
+		}
+		errorMessage.hide();
+	}
+
 	function getRadiusText(tabType) {
 		if (tabType == 'current') {
 			return $("#select-native-11 option:selected").text().toLowerCase();
@@ -243,8 +251,9 @@ function crimeResult (position, searched) {
 
 		// $(".error-message").hide();
 		homeClearError();
-		
-		
+		geocompleteClearError();
+
+
 		$('#zero-crimes-message-current').empty();
 		$('#zero-crimes-message-searched').empty();
 
@@ -342,11 +351,17 @@ function crimeResult (position, searched) {
 
 
 	$(document).on('pageshow', '#crimeStats', function (e, data) {
+
+		// $('#current-location-crimestats-tab').show();
+		// $('#search-location-crimestats-tab').hide();
+
+
 		homeClearError();
 		statsShowLoader();
 		dropdownAction(currentRadiusDropdown, currentTimespanDropdown);
 
 		setTimeout(function () {
+			
 			var latitude, longitude;
 
 			$("#geocomplete-crimestats").geocomplete()

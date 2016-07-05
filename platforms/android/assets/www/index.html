@@ -92,7 +92,7 @@
                 <h1>Home</h1>
             </div>
             <div data-role="content" class="mapContent">
-                <p id="error-message" class="no-error-class">&nbsp;</p>
+                <p id="error-message-home" class="no-error-class">&nbsp;</p>
               <div style="display:flex;justify-content:center;align-items:center;">
                 <div class="home-content" style="width:250px;height:250px;">
                   <a href="#rating"><img src="http://merl.us/cdn/neosafety/icons/ButtonRating.png" class="home-bubble" data-transition="pop"></a>
@@ -118,7 +118,7 @@
                     <div data-role="navbar" id="safety-navbar">
                         <ul>
                             <li><a href="#current-rating-tab" class="ui-btn-active current-tab">Current Location</a></li>
-                            <li><a href="#search-rating-tab" class="search-tab">Search Location</a></li>
+                            <li><a href="#search-rating-tab" class="search-tab search-option">Search Location</a></li>
                         </ul>
                     </div>
 
@@ -127,7 +127,7 @@
                             <div class="ten-pix-padding" style="text-align: center;">
                                 <a href="#" id="refresh-rating" name="refresh-rating" data-role="button" data-icon="refresh" data-inline="true" data-mini="true" onclick="refreshRating()">Refresh</a>
                             </div>
-                            <div>
+                            <div id="current-safety-gauge">
                                 <div id="current-location-safety-gauge" class="plot" style="width: 100%;height: 200px;"></div>
                                 <img src="gauge_legend.png" height="100px" style="align-content: center;" />
                             </div>
@@ -136,6 +136,7 @@
                             <div class="twenty-pix-padding">
                                 <input id="geocomplete" type="text" class="clearable" placeholder="Type in an address" data-clear-btn="true"/>
                             </div>
+                            <p class="no-error-class error-message">&nbsp;</p>
                             <div id="search-safety-gauge">
                                 <div id="custom-location-safety-gauge" class="plot" style="width: 100%;height: 200px;"></div>
                                 <img src="gauge_legend.png" height="100px" style="align-content: center;" />
@@ -384,7 +385,7 @@
                     <div data-role="navbar" id="crimestats-navbar">
                         <ul>
                             <li><a href="#current-location-crimestats-tab" class="ui-btn-active current-tab-stats">Current Location</a></li>
-                            <li><a href="#search-location-crimestats-tab" class="search-tab-stats">Search Location</a></li>
+                            <li><a href="#search-location-crimestats-tab" class="search-tab-stats search-option">Search Location</a></li>
                         </ul>
                     </div>
                     <div class="content">
@@ -439,6 +440,7 @@
                                         </fieldset>
                                     </form>
                                 </div>
+                                <p class="no-error-class error-message">&nbsp;</p>
                                 <p id="zero-crimes-message-searched"> </p>
                                 <div id="search-location-crime-chart"></div>
                             </div>

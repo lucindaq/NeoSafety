@@ -170,7 +170,7 @@ function crimeResult (position, searched) {
 										}
 										if (searched == undefined) {
 
-											if (murderCount && theftCount && subAbuseCount && assaultCount && sexualCount && otherCount !== 0) {
+											if (murderCount || theftCount || subAbuseCount || assaultCount || sexualCount || otherCount) {
 												plotCrimeStats(crimeStatsData, "current-location-crime-chart");
 											} else {
 												setActiveTab();
@@ -181,7 +181,7 @@ function crimeResult (position, searched) {
 										} else {
 											//the murder count for the current location is making the dropdown for
 											// search hide. what variable should i use to reference the geolocation data?
-											if (murderCount && theftCount && subAbuseCount && assaultCount && sexualCount && otherCount !== 0) {
+											if (murderCount || theftCount || subAbuseCount || assaultCount || sexualCount || otherCount) {
 												geocompleteClearError();
 												plotCrimeStats(crimeStatsData, "search-location-crime-chart");
 											} else {

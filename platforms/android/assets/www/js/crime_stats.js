@@ -5,12 +5,12 @@
         init: function (geocompleteLatitude, geocompleteLongitude) {
 			$('#brian').html('geocompleteLatitude: ' + geocompleteLatitude + ' / geocompleteLongitude: ' + geocompleteLongitude);
 			if (!geocompleteLatitude) {
-				$('#brian').html('bar');
-
-				app.locationService.getCurrentPosition(crimeResult, showError, {
-					enableHighAccuracy: true,
-					timeout: 2000
-				});
+				setTimeout(function() {
+					app.locationService.getCurrentPosition(crimeResult, showError, {
+						enableHighAccuracy: true,
+						timeout: 2000
+					});
+				},10);
 			}
 			else
 			{

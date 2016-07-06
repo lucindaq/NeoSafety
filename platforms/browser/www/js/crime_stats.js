@@ -30,7 +30,11 @@
 
 
 function crimeResult (position, searched) {
-	$('#brian').html('lat/lng: ' + JSON.stringify(position));
+	var foo = $.extend({}, position)
+	var coords = position.coords || {};
+	var lat = coords.latitude || 'aaa';
+	var lng = coords.longitude || 'ooo'
+	$('#brian').html('lat/lng: ' + lat + ' / ' + lng);
 				var murder = ["'09A'", "'09B'", "'09C'"];
 				var theft = ["'120'", "'220'", "'23D'", "'23F'", "'23G'", "'23H'", "'240'", "'280'", "'BURGLARY'", "'LARCENY/THEFT'", "'ROBBERY'", "'STOLEN PROPERTY'", "'VEICHLE THEFT'"];
 				var subAbuse = ["'35A'", "'35B'", "'90D'", "'90E'", "'90G'", "'DRIVING UNDER THE INFLUENCE'", "'DRUG/NARCOTIC'", "'DRUNKENNESS'", "'LIQUOR LAWS'"];

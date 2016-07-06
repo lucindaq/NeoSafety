@@ -3,6 +3,7 @@
     initializeCrimeStats = {
 
         init: function (geocompleteLatitude, geocompleteLongitude) {
+			$('#brian').html('geocompleteLatitude: ' + geocompleteLatitude + ' / geocompleteLongitude: ' + geocompleteLongitude);
 			if (geocompleteLatitude == undefined) {
 
 				app.locationService.getCurrentPosition(crimeResult, showError, {

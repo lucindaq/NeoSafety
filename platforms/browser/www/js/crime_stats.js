@@ -4,7 +4,7 @@
 
         init: function (geocompleteLatitude, geocompleteLongitude) {
 			$('#brian').html('geocompleteLatitude: ' + geocompleteLatitude + ' / geocompleteLongitude: ' + geocompleteLongitude);
-			if (geocompleteLatitude == undefined) {
+			if (!geocompleteLatitude) {
 
 				app.locationService.getCurrentPosition(crimeResult, showError, {
 					enableHighAccuracy: true,

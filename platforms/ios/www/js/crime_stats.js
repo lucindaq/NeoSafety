@@ -108,6 +108,7 @@ function crimeResult (position, searched) {
 									asOf +
 									"'&$group=crimecode&$select=crimecode,count(*)";
 							}
+							$('#brian').append(' URL: ' + url);
 
 							$.ajax({
 								type: 'GET',

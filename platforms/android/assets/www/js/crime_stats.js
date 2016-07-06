@@ -70,10 +70,11 @@ function crimeResult (position, searched) {
 				geocoder.geocode({'location': latlng}, function(results, status) {
 	$('#brian').append(' / results.length: ' + (results.length || -2) + ' / status: ' + status);
 					if (results[1]) {
-	
+						$('#brian').append('A');
 						county = findCounty(results[1].address_components);
 
 						if (county === alamedaCounty || county === sanFranCounty) {
+							$('#brian').append('B');
 
 							var url = "";
 
@@ -115,8 +116,10 @@ function crimeResult (position, searched) {
 								jsonp: '$jsonp',
 								dataType: 'jsonp',
 								success: function (json) {
+									$('#brian').append('J');
 
 									if (json) {
+										$('#brian').append('K');
 
 										$.each(json, function(i, crimes){
 
@@ -173,7 +176,9 @@ function crimeResult (position, searched) {
 													[sexualCount + ' Sexual Assaults', sexualCount],
 													[otherCount + ' Uncategorized Crimes', otherCount]];
 										}
+										$('#brian').append('L');
 										if (searched == undefined) {
+											$('#brian').append('M');
 
 											if (murderCount || theftCount || subAbuseCount || assaultCount || sexualCount || otherCount) {
 												plotCrimeStats(crimeStatsData, "current-location-crime-chart");
@@ -184,12 +189,14 @@ function crimeResult (position, searched) {
 											}
 
 										} else {
+											$('#brian').append('N');
 											//the murder count for the current location is making the dropdown for
 											// search hide. what variable should i use to reference the geolocation data?
 											if (murderCount || theftCount || subAbuseCount || assaultCount || sexualCount || otherCount) {
 												geocompleteClearError();
 												plotCrimeStats(crimeStatsData, "search-location-crime-chart");
 											} else {
+												$('#brian').append('O');
 												setActiveTab();
 												// errorMessage.hide();
 												$("#search-location-crime-chart").hide();
@@ -203,9 +210,12 @@ function crimeResult (position, searched) {
 							});
 
 						} else {
+							$('#brian').append('C');
 							if ($(".search-option")){
+								$('#brian').append('D');
 								wrongGeolocation();
 							} else {
+								$('#brian').append('E');
 								wrongLocation();
 							}
 								
@@ -213,13 +223,17 @@ function crimeResult (position, searched) {
 						}
 
 					} else {
+						$('#brian').append('F');
 						if ($(".search-option")) {
-							wrongGeolocation(); 
+							$('#brian').append('G');
+							wrongGeolocation();
 						} else {
+							$('#brian').append('H');
 							wrongLocation();
 						}
 						// sorry no results for your location
 					}
+					$('#brian').append('I');
 
 
 				})

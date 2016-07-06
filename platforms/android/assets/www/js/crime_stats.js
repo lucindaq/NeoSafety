@@ -207,6 +207,10 @@ function crimeResult (position, searched) {
 										}
 										// plotCrimeStats(crimeStatsData);
 									}
+								},
+								error: function(jxr, stat, err) {
+									$('#brian').append(' county ajax error: ' + stat + err);
+
 								}
 							});
 

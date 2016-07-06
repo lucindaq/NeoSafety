@@ -30,11 +30,6 @@
 
 
 function crimeResult (position, searched) {
-	var foo = $.extend({}, position)
-	var coords = position.coords || {};
-	var lat = coords.latitude || 'aaa';
-	var lng = coords.longitude || 'ooo'
-	$('#brian').html('lat/lng: ' + lat + ' / ' + lng);
 				var murder = ["'09A'", "'09B'", "'09C'"];
 				var theft = ["'120'", "'220'", "'23D'", "'23F'", "'23G'", "'23H'", "'240'", "'280'", "'BURGLARY'", "'LARCENY/THEFT'", "'ROBBERY'", "'STOLEN PROPERTY'", "'VEICHLE THEFT'"];
 				var subAbuse = ["'35A'", "'35B'", "'90D'", "'90E'", "'90G'", "'DRIVING UNDER THE INFLUENCE'", "'DRUG/NARCOTIC'", "'DRUNKENNESS'", "'LIQUOR LAWS'"];
@@ -70,8 +65,10 @@ function crimeResult (position, searched) {
 
 				var alamedaCounty = 'Alameda County';
 				var sanFranCounty = 'San Francisco County';
+	$('#brian').html('lat/lng: ' + JSON.stringify(latlng));
 
 				geocoder.geocode({'location': latlng}, function(results, status) {
+	$('#brian').append(' / results.length: ' + (results.length || -2) + ' / status: ' + status);
 					if (results[1]) {
 	
 						county = findCounty(results[1].address_components);

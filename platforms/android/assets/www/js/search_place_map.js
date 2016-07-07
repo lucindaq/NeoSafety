@@ -21,7 +21,7 @@
                     searchPlaceMap('police', self.map, $("#police tbody"), location),
                     searchPlaceMap('fire_station', self.map, $("#fire tbody"), location)
                 ).done(hideLoader);
-            }, showError, {enableHighAccuracy: true, timeout: 2000});
+            }, showError, {enableHighAccuracy: true, timeout: 3000});
 
         }
     };

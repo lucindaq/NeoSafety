@@ -7,7 +7,7 @@
 
                 app.locationService.getCurrentPosition(crimeResult, showError, {
                     enableHighAccuracy: true,
-                    timeout: 2000
+                    timeout: 3000
                 });
             }
             else
@@ -144,8 +144,10 @@ function crimeResult (position, searched) {
                                 type:        'GET',
                                 url:         url,
                                 contentType: "application/json",
-                                jsonp:       '$jsonp',
-                                dataType:    'jsonp',
+                                xhrFields: {
+                                    withCredentials: true
+                                },
+                                dataType:    'json',
                                 success:     function (json) {
 
                                     if (json) {

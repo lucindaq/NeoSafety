@@ -224,7 +224,7 @@
                 alert('code: '    + error.code    + '\n' +
                     'message: ' + error.message + '\n');
             }, 
-            {enableHighAccuracy: true, timeout: 2000}
+            {enableHighAccuracy: true, timeout: 3000}
             );
 
         }

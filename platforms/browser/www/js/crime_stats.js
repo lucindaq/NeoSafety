@@ -106,6 +106,7 @@ function crimeResult (position, searched) {
 							$.ajax({
 								type: 'GET',
 								url: url,
+								headers: {"X-App-Token": "5ck6SisMgkNJtZjAY7pXTz4Ek"},
 								contentType: "application/json",
 								xhrFields: {
 									withCredentials: true

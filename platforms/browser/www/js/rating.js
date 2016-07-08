@@ -144,6 +144,7 @@ function crimeResult (position, searched) {
                                 type:        'GET',
                                 url:         url,
                                 contentType: "application/json",
+                                headers: {"X-App-Token": "5ck6SisMgkNJtZjAY7pXTz4Ek"},
                                 xhrFields: {
                                     withCredentials: true
                                 },

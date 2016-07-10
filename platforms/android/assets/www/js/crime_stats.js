@@ -210,7 +210,7 @@
 											} else {
 												setActiveTab();
 												$("#current-location-crime-chart").hide();
-												$('#zero-crimes-message-current').html('No crimes near you within a ' + getRadiusText('current') + ' radius and within ' + getTimespanText('current') + '. Try increasing your radius or timespan to get different results.');
+												$('#zero-crimes-message-current').html('No crimes near you within a ' + getRadiusText('current') + ' radius and within ' + getTimespanText('current') + '.');
 											}
 
 										} else {
@@ -223,7 +223,7 @@
 												setActiveTab();
 												// errorMessage.hide();
 												$("#search-location-crime-chart").hide();
-												$('#zero-crimes-message-searched').html('No crimes near this area within a ' + getRadiusText('searched') + ' radius and within ' + getTimespanText('searched') + '. Try increasing the radius or timespan to get different results.');
+												$('#zero-crimes-message-searched').html('No crimes near <span style="font-weight: bold; font-style: italic">' + $('#geocomplete-crimestats').val() + '</span> within a ' + getRadiusText('searched') + ' radius and within ' + getTimespanText('searched') + '.');
 											}
 
 										}

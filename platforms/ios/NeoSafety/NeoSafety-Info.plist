@@ -34,8 +34,10 @@
     <string/>
     <key>UIRequiresFullScreen</key>
     <true/>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>NeoSafety app would like to use your phone's location service to identify your current location.</string>
     <key>NSLocationWhenInUseUsageDescription</key>
-    <string/>
+    <string>NeoSafety app would like to use your phone's location service to identify your current location.</string>
     <key>NSAppTransportSecurity</key>
     <dict>
       <key>NSAllowsArbitraryLoads</key>

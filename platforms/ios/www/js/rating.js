@@ -299,7 +299,7 @@ function plotRating(rating, elementId) {
 
     // $(".error-message").hide();
     homeClearError();
-    wrongLocationClearError();
+    wrongLocationClearError(".error-message");
 
     $.jqplot(elementId,[[rating]],{
 

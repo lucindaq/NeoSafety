@@ -117,7 +117,7 @@
                 <div id="tabs" class="ratingContent" data-role="tabs">
                     <div data-role="navbar" id="safety-navbar">
                         <ul>
-                            <li><a href="#current-rating-tab" class="ui-btn-active current-tab">Current Location</a></li>
+                            <li><a href="#current-rating-tab" class="ui-btn-active current-tab current-option">Current Location</a></li>
                             <li><a href="#search-rating-tab" class="search-tab search-option">Search Location</a></li>
                         </ul>
                     </div>
@@ -127,6 +127,7 @@
                             <div class="ten-pix-padding" style="text-align: center;">
                                 <a href="#" id="refresh-rating" name="refresh-rating" data-role="button" data-icon="refresh" data-inline="true" data-mini="true" onclick="refreshRating()">Refresh</a>
                             </div>
+                            <p class="no-error-class error-message">&nbsp;</p>
                             <div id="current-safety-gauge">
                                 <div id="current-location-safety-gauge" class="plot" style="width: 100%;height: 200px;"></div>
                                 <img src="gauge_legend.png" height="100px" style="align-content: center;" />
@@ -384,14 +385,14 @@
                 <div data-role="tabs" class="stats-content">
                     <div data-role="navbar" id="crimestats-navbar">
                         <ul>
-                            <li><a href="#current-location-crimestats-tab" class="ui-btn-active current-tab-stats">Current Location</a></li>
+                            <li><a href="#current-location-crimestats-tab" class="ui-btn-active current-tab-stats current-option">Current Location</a></li>
                             <li><a href="#search-location-crimestats-tab" class="search-tab-stats search-option">Search Location</a></li>
                         </ul>
                     </div>
                     <div class="content">
                         <div id="current-location-crimestats-tab">
                             <div role="main" class="ui-content">
-                                <div id="current-stats-dropdown">
+                                <div id="current-stats-dropdown" class="dropdowns">
                                     <div class="center">
                                         <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
                                             <label for="select-native-11">Radius</label>
@@ -411,6 +412,7 @@
                                         </fieldset>
                                     </div>
                                 </div>
+                                <p class="no-error-class error-message">&nbsp;</p>
                                 <p id="zero-crimes-message-current"> </p>
                                 <div id="current-location-crime-chart"></div>
                             </div>
@@ -420,7 +422,7 @@
                                 <div>
                                     <input id="geocomplete-crimestats" type="text" placeholder="Type in an address" data-clear-btn="true"/>
                                 </div>
-                                <div id="stats-dropdowns">
+                                <div id="stats-dropdowns" class="dropdowns">
                                     <form class="center">
                                         <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
                                             <label for="select-native-11">Radius</label>

@@ -96,9 +96,8 @@ $(document).ready(function(){
         }
     });
     $(".search-tab-stats").on('click', function () {
-
+        wrongLocationClearError();
         // $('#search-location-crime-chart').show();
-
         if (!$('#geocomplete-crimestats').val().length){
             $("#stats-dropdowns").hide();
         }
@@ -108,7 +107,10 @@ $(document).ready(function(){
         refreshRating();
         $('#current-safety-gauge').show();
     });
-    $(".current-tab-stats").on('click', refreshStats);
+    $(".current-tab-stats").on('click', function() {
+        refreshStats();
+        wrongLocationClearError();
+    });
 });
 
 function refreshRating() {
@@ -167,26 +169,26 @@ function homeClearError() {
     $(".home-content").css("margin-top", 0);
 }
 
-function geocompleteClearError() {
+function wrongLocationClearError() {
     errorMessage.addClass('no-error-class');
     errorMessage.removeClass('error-message-class');
     errorMessage.text("");
     // $(".home-content").css("margin-top", 0);
 }
 
-function wrongLocation() {
-    $.mobile.navigate("#home");
-    homeErrorMessage.removeClass('no-error-class');
-    homeErrorMessage.addClass('error-message-class');
-    homeErrorMessage.text("Data for this feature is currently unavailable in your location.");
-    $(".home-content").css("margin-top", 0);
+//
+// function wrongLocationError() {
+//     $.mobile.navigate("#home");
+//     homeErrorMessage.removeClass('no-error-class');
+//     homeErrorMessage.addClass('error-message-class');
+//     homeErrorMessage.text("Data for this feature is currently unavailable in your location.");
+//     $(".home-content").css("margin-top", 0);
+//
+// }
 
-}
-
-function wrongGeolocation() {
+//used to be geolocation error
+function ratingWrongLocationError() {
     ratingHideLoader();
-
-    $('#stats-dropdowns').hide();
 
     errorMessage.show();
 
@@ -195,6 +197,18 @@ function wrongGeolocation() {
 
     currentChartRating.hide();
     searchedChartRating.hide();
+
+    errorMessage.removeClass('no-error-class');
+    errorMessage.addClass('error-message-class');
+    errorMessage.text("Data for this feature is currently unavailable for this location.");
+}
+
+function statsWrongLocationError() {
+    statsHideLoader();
+
+    $('.dropdowns').hide();
+
+    errorMessage.show();
 
     var currentChart = $("#current-location-crime-chart");
     var searchedChart = $("#search-location-crime-chart");
@@ -206,7 +220,6 @@ function wrongGeolocation() {
     errorMessage.addClass('error-message-class');
     errorMessage.text("Data for this feature is currently unavailable for this location.");
 }
-
 
 
 function hideLoader() {

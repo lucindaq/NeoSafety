@@ -174,6 +174,7 @@ function crimeResult (position, searched) {
 										if (searched == undefined) {
 
 											if (murderCount || theftCount || subAbuseCount || assaultCount || sexualCount || otherCount) {
+												wrongLocationClearError();
 												plotCrimeStats(crimeStatsData, "current-location-crime-chart");
 											} else {
 												setActiveTab();
@@ -185,7 +186,7 @@ function crimeResult (position, searched) {
 											//the murder count for the current location is making the dropdown for
 											// search hide. what variable should i use to reference the geolocation data?
 											if (murderCount || theftCount || subAbuseCount || assaultCount || sexualCount || otherCount) {
-												geocompleteClearError();
+												wrongLocationClearError();
 												plotCrimeStats(crimeStatsData, "search-location-crime-chart");
 											} else {
 												setActiveTab();
@@ -201,20 +202,24 @@ function crimeResult (position, searched) {
 							});
 
 						} else {
-							if ($(".search-option")){
-								wrongGeolocation();
+							if ($(".search-option").hasClass('ui-btn-active')){
+								statsWrongLocationError();
+							} else if ($(".current-option").hasClass('ui-btn-active')) {
+								statsWrongLocationError();
 							} else {
-								wrongLocation();
+								statsWrongLocationError();
 							}
 								
 							// sorry no results for your county
 						}
 
 					} else {
-						if ($(".search-option")) {
-							wrongGeolocation();
+						if ($(".search-option").hasClass('ui-btn-active')) {
+							statsWrongLocationError();
+						} else if ($(".current-option").hasClass('ui-btn-active')) {
+							statsWrongLocationError();
 						} else {
-							wrongLocation();
+							statsWrongLocationError();
 						}
 						// sorry no results for your location
 					}

@@ -274,21 +274,21 @@ function crimeResult (position, searched) {
                         }
                         else {
                             if ($(".search-option")){
-                                wrongGeolocation();
+                                wrongLocationError();
                             } else {
-                                wrongLocation();
+                                wrongLocationError();
                             }
-                            // wrongLocation();
+                            // wrongLocationError();
                             // sorry no results for your county
                         }
 
                     } else {
                         if ($(".search-option")){
-                            wrongGeolocation();
+                            wrongLocationError();
                         } else {
-                            wrongLocation();
+                            wrongLocationError();
                         }
-                        // wrongLocation();
+                        // wrongLocationError();
                         // sorry no results for your location
                     }
                 });
@@ -299,7 +299,7 @@ function plotRating(rating, elementId) {
 
     // $(".error-message").hide();
     homeClearError();
-    geocompleteClearError();
+    wrongLocationClearError();
 
     $.jqplot(elementId,[[rating]],{
 

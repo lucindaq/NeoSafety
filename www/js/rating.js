@@ -50,6 +50,14 @@
 
 })();
 
+function setActiveTabRating() {
+    if ($('#current-rating-tab').is(":visible")) {
+        $('.rating-current-option').addClass('ui-btn-active');
+    } else {
+        $('.rating-searched-option').addClass('ui-btn-active');
+    }
+}
+
 function refreshRating() {
     ratingShowLoader();
     initializeRating.init();
@@ -158,17 +166,20 @@ function refreshRating() {
 
                             $.ajax({
                                 type: 'GET',
-                                // NOTE: to test in ripple comment this and uncomment the following line
+                                // NOTE: to test in ripple comment the following line and uncomment the line after that one
                                 url: url+"?"+data,
                                 // url: url,
+
                                 headers: {"X-App-Token": "5ck6SisMgkNJtZjAY7pXTz4Ek"},
                                 contentType: "application/json",
                                 xhrFields: {
                                     withCredentials: true
                                 },
-                                // NOTE: to test in ripple uncomment the following lines
+                                
+                                // NOTE: to test in ripple uncomment the following 2 lines
                                 // processData: false,
                                 // data: encodeURIComponent(data),
+
                                 dataType: 'json',
                                 success:     function (json) {
 
@@ -312,8 +323,7 @@ function refreshRating() {
                                         if (searched == undefined) {
                                             plotRating(rating, "current-location-safety-gauge");
                                         }
-                                        else
-                                        {
+                                        else {
                                             plotRating(rating, "custom-location-safety-gauge");
                                             // $("#search-safety-gauge").show();
 
@@ -325,8 +335,10 @@ function refreshRating() {
                         else {
                             if ($(".search-option").hasClass('ui-btn-active')){
                                 ratingWrongLocationError(".rating-searched-error-message");
+                                setActiveTabRating();
                             } else if ($(".current-option").hasClass('ui-btn-active')) {
                                 ratingWrongLocationError(".rating-current-error-message");
+                                setActiveTabRating();
                             }
                             // wrongLocationError();
                             // sorry no results for your county
@@ -345,7 +357,7 @@ function refreshRating() {
 
 function plotRating(rating, elementId) {
     ratingHideLoader();
-
+    setActiveTabRating();
     // $(".error-message").hide();
     homeClearError();
     if ($(".rating-current-option").hasClass('ui-btn-active')){

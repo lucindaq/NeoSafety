@@ -157,17 +157,18 @@ function toggleInvertClass(element) {
     $(".custom-logo").removeClass("inverted");
     if (element != undefined) {
         $(element).addClass("inverted");
-    }   
+    }
 }
 
 function findCounty(addressComponents) {
 
     var alamedaCounty = 'Alameda County';
     var sanFranCounty = 'San Francisco County';
+    var newYorkCity = 'New York';
     var county;
 
     county = $.grep(addressComponents, function(addr) {
-        return addr.long_name == alamedaCounty || addr.long_name == sanFranCounty;
+        return addr.long_name == alamedaCounty || addr.long_name == sanFranCounty || addr.long_name == newYorkCity;
     });
 
     if (county.length) {
@@ -267,6 +268,7 @@ function statsWrongLocationError(errorClass) {
 
 function hideLoader() {
     $(".content").show();
+
     $(".loader").hide();
 }
 

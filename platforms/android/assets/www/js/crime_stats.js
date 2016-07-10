@@ -210,25 +210,23 @@
 												plotCrimeStats(crimeStatsData, "current-location-crime-chart", 'current');
 											} else {
 												setActiveTab();
+												wrongLocationClearError(".stats-current-error-message");
 												$("#current-location-crime-chart").hide();
 												$('#zero-crimes-message-current').html('No crimes near you within a ' + getRadiusText('current') + ' radius and within ' + getTimespanText('current') + '.');
 											}
 
 										} else {
-											//the murder count for the current location is making the dropdown for
-											// search hide. what variable should i use to reference the geolocation data?
 											if (murderCount || theftCount || subAbuseCount || assaultCount || sexualCount || otherCount) {
 												wrongLocationClearError(".stats-searched-error-message");
 												plotCrimeStats(crimeStatsData, "search-location-crime-chart", 'searched');
 											} else {
 												setActiveTab();
-												// errorMessage.hide();
+												wrongLocationClearError(".stats-searched-error-message");
 												$("#search-location-crime-chart").hide();
 												$('#zero-crimes-message-searched').html('No crimes near <span style="font-weight: bold; font-style: italic">' + $('#geocomplete-crimestats').val() + '</span> within a ' + getRadiusText('searched') + ' radius and within ' + getTimespanText('searched') + '.');
 											}
 
 										}
-										// plotCrimeStats(crimeStatsData);
 									}
 								}
 							});
@@ -259,7 +257,6 @@
 	
 	
 	function setActiveTab() {
-		statsHideLoader();
 		if ($('#current-location-crimestats-tab').is(":visible")) {
 			$('.current-tab-stats').addClass('ui-btn-active');
 		} else {
@@ -286,7 +283,6 @@
     function plotCrimeStats(data, elementId, tabType) {
 		statsHideLoader();
 		setActiveTab();
-		// $(".error-message").hide();
 		homeClearError();
 
 		$('#zero-crimes-message-current').empty();
@@ -313,12 +309,7 @@
 		        	left: 0,
 		        	right: 0
 		        },
-
-		        // gridDimensions: {
-		        // 	height: 350,
-		        // 	width: 236
-		        // },
-
+				
 		        seriesDefaults: {
 		        	marginTop: 0,
 		            renderer:$.jqplot.PieRenderer,
@@ -392,9 +383,6 @@
 
 	$(document).on('pageshow', '#crimeStats', function (e, data) {
 
-		// $('#current-location-crimestats-tab').show();
-		// $('#search-location-crimestats-tab').hide();
-		
 		homeClearError();
 		statsShowLoader();
 		statsSetErrorClass();

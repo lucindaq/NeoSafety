@@ -251,6 +251,7 @@ function ratingWrongLocationError(errorClass) {
 
 function statsWrongLocationError(errorClass) {
     statsHideLoader();
+    $('#zero-crimes-message-searched').empty();
 
     var errorMessage = $(errorClass);
     
@@ -278,6 +279,7 @@ function hideLoader() {
 
 function ratingHideLoader() {
     $(".ratingContent").show();
+    $(".ratingContent .content").show();
     $("#search-safety-gauge").show();
 
     $(".loader").hide();
@@ -291,6 +293,7 @@ function ratingShowLoader() {
 
 function statsHideLoader() {
     $(".stats-content").show();
+    $(".stats-content .content").show();
     $("#stats-dropdowns").show();
     $("#current-stats-dropdown").show();
     $("#search-location-crime-chart").show();

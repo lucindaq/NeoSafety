@@ -26,7 +26,6 @@
 
     $(document).on('pageshow', '#rating', function (e, data) {
         toggleInvertClass($("#rating-footer"));
-        // $(".ratingContent").hide();
         ratingShowLoader();
         homeClearError();
         $("#geocomplete").geocomplete()
@@ -42,7 +41,6 @@
 
         setTimeout(function () {
             initializeRating.init();
-            // $('.loader').show();
         }, 1000);
 
     });
@@ -53,7 +51,7 @@
 function setActiveTabRating() {
     if ($('#current-rating-tab').is(":visible")) {
         $('.rating-current-option').addClass('ui-btn-active');
-    } else {
+    } else if ($('#search-rating-tab').is(":visible")) {
         $('.rating-searched-option').addClass('ui-btn-active');
     }
 }
@@ -89,7 +87,7 @@ function refreshRating() {
                 var date = new Date();
                 date.setMonth(date.getMonth() - 12);
                 // .418Z
-                var iso = date.toISOString()
+                var iso = date.toISOString();
                 var asOf = iso.substring(0, iso.length - 5);
 
                var latitude = position.coords.latitude;
@@ -357,7 +355,6 @@ function refreshRating() {
 
 function plotRating(rating, elementId) {
     ratingHideLoader();
-    setActiveTabRating();
     // $(".error-message").hide();
     homeClearError();
     if ($(".rating-current-option").hasClass('ui-btn-active')){
@@ -365,6 +362,9 @@ function plotRating(rating, elementId) {
     } else if ($(".rating-searched-option").hasClass('ui-btn-active')){
         wrongLocationClearError(".rating-searched-error-message");
     }
+
+    setActiveTabRating();
+
 
     $.jqplot(elementId,[[rating]],{
 

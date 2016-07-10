@@ -122,16 +122,17 @@
 							$.ajax({
 								type: 'GET',
 								// NOTE: to test in ripple comment this and uncomment the following line
-								// url: url+"?"+data,
-								url: url,
+								url: url+"?"+data,
+								// url: url,
 								headers: {"X-App-Token": "5ck6SisMgkNJtZjAY7pXTz4Ek"},
 								contentType: "application/json",
 								xhrFields: {
 									withCredentials: true
 								},
 								// NOTE: to test in ripple uncomment the following lines
-								processData: false,
-								data: encodeURIComponent(data),
+								// processData: false,
+								// data: encodeURIComponent(data),
+
 								dataType: 'json',
 								success: function (json) {
 

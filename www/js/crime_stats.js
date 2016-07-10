@@ -23,15 +23,10 @@
 			}
 		}
 
-
 	};
 
-
-function crimeResult (position, searched) {
-				var murder = ["'09A'", "'09B'", "'09C'"];
-				var theft = ["'120'", "'220'", "'23D'", "'23F'", "'23G'", "'23H'", "'240'", "'280'", "'BURGLARY'", "'LARCENY/THEFT'", "'ROBBERY'", "'STOLEN PROPERTY'", "'VEICHLE THEFT'"];
-function crimeResult (position) {
-				var murder = ["'09A'", "'09B'", "'09C'", "'MURDER%20%26%20NON-NEGL.%20MANSLAUGHTE'"];
+	function crimeResult (position, searched) {
+				var murder = ["'09A'", "'09B'", "'09C'", "'MURDER %26 NON-NEGL. MANSLAUGHTE'"];
 				var theft = ["'120'", "'220'", "'23D'", "'23F'", "'23G'", "'23H'", "'240'", "'280'", "'BURGLARY'", "'LARCENY/THEFT'", "'ROBBERY'", "'STOLEN PROPERTY'", "'VEHICLE THEFT'", "'GRAND LARCENY'", "'GRAND LARCENY OF MOTOR VEHICLE'"];
 				var subAbuse = ["'35A'", "'35B'", "'90D'", "'90E'", "'90G'", "'DRIVING UNDER THE INFLUENCE'", "'DRUG/NARCOTIC'", "'DRUNKENNESS'", "'LIQUOR LAWS'"];
 				var assault = ["'13A'", "'13B'", "'13C'",  "'ASSAULT'", "'FELONY ASSAULT'"];
@@ -66,7 +61,7 @@ function crimeResult (position) {
 
 				var alamedaCounty = 'Alameda County';
 				var sanFranCounty = 'San Francisco County';
-        var newYorkCity = 'New York';
+        		var newYorkCity = 'New York';
 
 				geocoder.geocode({'location': latlng}, function(results, status) {
 					if (results[1]) {
@@ -79,8 +74,8 @@ function crimeResult (position) {
 
 							if (county == sanFranCounty)
 							{
-								url =
-									'https://data.sfgov.org/resource/cuks-n6tp.json?$where=within_circle(location, '  +
+								url = 'https://data.sfgov.org/resource/cuks-n6tp.json';
+								var data = '$where=within_circle(location, '  +
 									latitude +
 									',' +
 									longitude +
@@ -94,8 +89,8 @@ function crimeResult (position) {
 							}
 							else if (county == alamedaCounty)
 							{
-								url =
-									'https://data.acgov.org/resource/js8f-yfqf.json?$where=within_circle(location_1, ' +
+								url = 'https://data.acgov.org/resource/js8f-yfqf.json';
+								var data ='$where=within_circle(location_1, ' +
 									latitude +
 									',' +
 									longitude +
@@ -107,32 +102,36 @@ function crimeResult (position) {
 									asOf +
 									"'&$group=crimecode&$select=crimecode,count(*)";
 							}
-              else if (county == newYorkCity)
-              {
-                url =
-                  'https://data.cityofnewyork.us/resource/e4qk-cpnv.json?$where=within_circle(location_1, ' +
-                  latitude +
-                  ',' +
-                  longitude +
-                  "," +
-                  radius +
-                  ") AND offense IN (" +
-                  crimeCodesQuery +
-                  ") AND occurrence_date > '" +
-                  asOf +
-                  "'&$group=offense&$select=offense,count(*)";
-              }
+							  else if (county == newYorkCity)
+							  {
+								url = 'https://data.cityofnewyork.us/resource/e4qk-cpnv.json';
 
-
+								var data = '$where=within_circle(location_1, ' +
+								  latitude +
+								  ',' +
+								  longitude +
+								  "," +
+								  radius +
+								  ") AND offense IN (" +
+								  crimeCodesQuery +
+								  ") AND occurrence_date > '" +
+								  asOf +
+								  "'&$group=offense&$select=offense,count(*)";
+							  }
 
 							$.ajax({
 								type: 'GET',
-								url: url,
+								// NOTE: to test in ripple comment this and uncomment the following line
+								url: url+"?"+data,
+								// url: url,
 								headers: {"X-App-Token": "5ck6SisMgkNJtZjAY7pXTz4Ek"},
 								contentType: "application/json",
 								xhrFields: {
 									withCredentials: true
 								},
+								// NOTE: to test in ripple uncomment the following lines
+								// processData: false,
+								// data: encodeURIComponent(data),
 								dataType: 'json',
 								success: function (json) {
 
@@ -148,13 +147,13 @@ function crimeResult (position) {
 											{
 												crimeCode = crimes.category;
 											}
-                      else if(county == newYorkCity)
-                      {
-                        crimeCode = crimes.offense;
-                      }
+											  else if(county == newYorkCity)
+											  {
+												crimeCode = crimes.offense;
+											  }
 											crimeCode = "'" + crimeCode + "'";
 											var crimeCount = parseInt(crimes.count);
-											if ($.inArray(encodeURIComponent(crimeCode), murder) > -1)
+											if ($.inArray(crimeCode.replace("&", "%26"), murder) > -1)
 											{
 												murderCount += crimeCount;
 											}
@@ -189,12 +188,12 @@ function crimeResult (position) {
 												[sexualCount+ ' Sexual Assaults',sexualCount],
 												[otherCount+ ' Uncategorized Crimes',otherCount]];
 										}
-                    else if(county != sanFranCounty && county == newYorkCity) {
-                      crimeStatsData = [[murderCount + ' Murders', murderCount],
-                        [theftCount+ ' Thefts',theftCount],
-                        [assaultCount+ ' Assaults',assaultCount],
-                        [sexualCount+ ' Sexual Assaults',sexualCount]];
-                    }
+										else if(county != sanFranCounty && county == newYorkCity) {
+										  crimeStatsData = [[murderCount + ' Murders', murderCount],
+											[theftCount+ ' Thefts',theftCount],
+											[assaultCount+ ' Assaults',assaultCount],
+											[sexualCount+ ' Sexual Assaults',sexualCount]];
+										}
 										else {
 											crimeStatsData =
 												[[theftCount + ' Thefts', theftCount],

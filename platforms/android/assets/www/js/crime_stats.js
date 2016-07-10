@@ -23,27 +23,25 @@
 			}
 		}
 
-
 	};
 
-
-function crimeResult (position, searched) {
-				var murder = ["'09A'", "'09B'", "'09C'"];
-				var theft = ["'120'", "'220'", "'23D'", "'23F'", "'23G'", "'23H'", "'240'", "'280'", "'BURGLARY'", "'LARCENY/THEFT'", "'ROBBERY'", "'STOLEN PROPERTY'", "'VEICHLE THEFT'"];
+	function crimeResult (position, searched) {
+				var murder = ["'09A'", "'09B'", "'09C'", "'MURDER %26 NON-NEGL. MANSLAUGHTE'"];
+				var theft = ["'120'", "'220'", "'23D'", "'23F'", "'23G'", "'23H'", "'240'", "'280'", "'BURGLARY'", "'LARCENY/THEFT'", "'ROBBERY'", "'STOLEN PROPERTY'", "'VEHICLE THEFT'", "'GRAND LARCENY'", "'GRAND LARCENY OF MOTOR VEHICLE'"];
 				var subAbuse = ["'35A'", "'35B'", "'90D'", "'90E'", "'90G'", "'DRIVING UNDER THE INFLUENCE'", "'DRUG/NARCOTIC'", "'DRUNKENNESS'", "'LIQUOR LAWS'"];
-				var assault = ["'13A'", "'13B'", "'13C'",  "'ASSAULT'"];
-				var sexual = ["'11A'", "'11B'", "'11C'", "'11D'", "'90H'", "'SEX OFFENSES, FORCIBLE'", "'SEX OFFENSES, NON FORCIBLE'"];
+				var assault = ["'13A'", "'13B'", "'13C'",  "'ASSAULT'", "'FELONY ASSAULT'"];
+				var sexual = ["'11A'", "'11B'", "'11C'", "'11D'", "'90H'", "'SEX OFFENSES, FORCIBLE'", "'SEX OFFENSES, NON FORCIBLE'", "'RAPE'"];
 				var other = ["'100'", "'290'", "'40A'", "'40B'", "'90B'", "'90C'", "'90J'", "'520'", "'DISORDERLY CONDUCT'", "'KIDNAPPING'", "'LOITERING'", "'OTHER OFFENSES'", "'PROSTITUTION'", "'SUSPICIOUS OCC'", "'TRESPASSING'", "'VANDALISM'", "'WEAPON LAWS'"];
 				var crimeCodesQuery = murder + "," + theft + "," + subAbuse + "," + assault + "," + sexual + "," + other;
-					
+
 				var murderCount = 0;
 				var theftCount = 0;
 				var subAbuseCount = 0;
 				var assaultCount = 0;
 				var sexualCount = 0;
 				var otherCount = 0;
-								
-				
+
+
 				var radius = Number(localStorage.getItem('radius'))* 1600;
 				var timespan = localStorage.getItem('timespan');
 				var date = new Date();
@@ -55,7 +53,7 @@ function crimeResult (position, searched) {
 
 				var latitude = position.coords.latitude;
 				var longitude = position.coords.longitude;
-				
+
 
 				var latlng = {lat: latitude, lng: longitude};
 				var geocoder = new google.maps.Geocoder;
@@ -63,19 +61,21 @@ function crimeResult (position, searched) {
 
 				var alamedaCounty = 'Alameda County';
 				var sanFranCounty = 'San Francisco County';
+        		var newYorkCity = 'New York';
 
 				geocoder.geocode({'location': latlng}, function(results, status) {
 					if (results[1]) {
+
 						county = findCounty(results[1].address_components);
 
-						if (county === alamedaCounty || county === sanFranCounty) {
+						if (county === alamedaCounty || county === sanFranCounty || county === newYorkCity) {
 
 							var url = "";
 
 							if (county == sanFranCounty)
 							{
-								url =
-									'https://data.sfgov.org/resource/cuks-n6tp.json?$where=within_circle(location, '  +
+								url = 'https://data.sfgov.org/resource/cuks-n6tp.json';
+								var data = '$where=within_circle(location, '  +
 									latitude +
 									',' +
 									longitude +
@@ -89,8 +89,8 @@ function crimeResult (position, searched) {
 							}
 							else if (county == alamedaCounty)
 							{
-								url =
-									'https://data.acgov.org/resource/js8f-yfqf.json?$where=within_circle(location_1, ' +
+								url = 'https://data.acgov.org/resource/js8f-yfqf.json';
+								var data ='$where=within_circle(location_1, ' +
 									latitude +
 									',' +
 									longitude +
@@ -102,15 +102,36 @@ function crimeResult (position, searched) {
 									asOf +
 									"'&$group=crimecode&$select=crimecode,count(*)";
 							}
+							  else if (county == newYorkCity)
+							  {
+								url = 'https://data.cityofnewyork.us/resource/e4qk-cpnv.json';
+
+								var data = '$where=within_circle(location_1, ' +
+								  latitude +
+								  ',' +
+								  longitude +
+								  "," +
+								  radius +
+								  ") AND offense IN (" +
+								  crimeCodesQuery +
+								  ") AND occurrence_date > '" +
+								  asOf +
+								  "'&$group=offense&$select=offense,count(*)";
+							  }
 
 							$.ajax({
 								type: 'GET',
-								url: url,
+								// NOTE: to test in ripple comment this and uncomment the following line
+								url: url+"?"+data,
+								// url: url,
 								headers: {"X-App-Token": "5ck6SisMgkNJtZjAY7pXTz4Ek"},
 								contentType: "application/json",
 								xhrFields: {
 									withCredentials: true
 								},
+								// NOTE: to test in ripple uncomment the following lines
+								// processData: false,
+								// data: encodeURIComponent(data),
 								dataType: 'json',
 								success: function (json) {
 
@@ -126,9 +147,13 @@ function crimeResult (position, searched) {
 											{
 												crimeCode = crimes.category;
 											}
+											  else if(county == newYorkCity)
+											  {
+												crimeCode = crimes.offense;
+											  }
 											crimeCode = "'" + crimeCode + "'";
 											var crimeCount = parseInt(crimes.count);
-											if ($.inArray(crimeCode, murder) > -1)
+											if ($.inArray(crimeCode.replace("&", "%26"), murder) > -1)
 											{
 												murderCount += crimeCount;
 											}
@@ -155,13 +180,19 @@ function crimeResult (position, searched) {
 										});
 
 										var crimeStatsData;
-										if(county != sanFranCounty) {
+										if(county != sanFranCounty && county == alamedaCounty) {
 											crimeStatsData = [[murderCount + ' Murders', murderCount],
 												[theftCount+ ' Thefts',theftCount],
 												[subAbuseCount+ ' Drug/Alcohol Cases',subAbuseCount],
 												[assaultCount+ ' Assaults',assaultCount],
 												[sexualCount+ ' Sexual Assaults',sexualCount],
 												[otherCount+ ' Uncategorized Crimes',otherCount]];
+										}
+										else if(county != sanFranCounty && county == newYorkCity) {
+										  crimeStatsData = [[murderCount + ' Murders', murderCount],
+											[theftCount+ ' Thefts',theftCount],
+											[assaultCount+ ' Assaults',assaultCount],
+											[sexualCount+ ' Sexual Assaults',sexualCount]];
 										}
 										else {
 											crimeStatsData =
@@ -294,17 +325,18 @@ function crimeResult (position, searched) {
 		            rendererOptions: { numberRows: 6 },
 		            location:'s',
 		            marginTop: 0
-		        },  
+		        },
 
 		        grid: {
                  	background: 'transparent',
                  	borderColor: 'transparent', shadow: false, drawBorder: true
-             	}    
+             	}
 		    });
-			hideLoader(); 
+			hideLoader();
 
-    	
+
     }
+
 
 	var radius = localStorage.getItem("radius");
 	var timespan = localStorage.getItem("timespan");

@@ -111,22 +111,29 @@ $(document).ready(function(){
             }
         }
     });
-    $(".search-tab-stats").on('click', function () {
 
-        // $('#search-location-crime-chart').show();
-        if ($('#geocomplete-crimestats').val().length == 0){
-            $(".dropdowns").hide();
-            $('.error-message').addClass('no-error-class');
-        } else {
-            if ($('.stats-searched-error-message').hasClass('error-message-class')) {
-                $('#stats-dropdowns').hide();
-                $("#search-location-crime-chart").hide();
+    $(".stats-content").on('tabsactivate', function (event, ui) {
 
+        if ($(ui.newTab.context).hasClass('search-tab-stats')) {
+            if ($('#geocomplete-crimestats').val().length == 0){
+                $(".dropdowns").hide();
+                $('.error-message').addClass('no-error-class');
             } else {
-                wrongLocationClearError(".stats-searched-error-message");
-                $(".stats-content").show();
+                if ($('.stats-searched-error-message').hasClass('error-message-class')) {
+                    $('#stats-dropdowns').hide();
+                    $("#search-location-crime-chart").hide();
+
+                } else {
+                    wrongLocationClearError(".stats-searched-error-message");
+                    // $(".stats-content").show();
+                    $("#search-location-crime-chart").show();
+                }
             }
+        } else {
+                wrongLocationClearError(".stats-current-error-message");
+                refreshStats();
         }
+
     });
 
     $(".current-tab").on('click', function (){
@@ -134,10 +141,7 @@ $(document).ready(function(){
         $('#current-safety-gauge').show();
         refreshRating();
     });
-    $(".current-tab-stats").on('click', function() {
-        wrongLocationClearError(".stats-current-error-message");
-        refreshStats();
-    });
+
 });
 
 
@@ -289,6 +293,7 @@ function statsHideLoader() {
     $(".stats-content").show();
     $("#stats-dropdowns").show();
     $("#current-stats-dropdown").show();
+    $("#search-location-crime-chart").show();
 
     $(".loader").hide();
 }

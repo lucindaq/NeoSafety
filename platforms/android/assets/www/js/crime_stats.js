@@ -122,16 +122,16 @@
 							$.ajax({
 								type: 'GET',
 								// NOTE: to test in ripple comment this and uncomment the following line
-								url: url+"?"+data,
-								// url: url,
+								// url: url+"?"+data,
+								url: url,
 								headers: {"X-App-Token": "5ck6SisMgkNJtZjAY7pXTz4Ek"},
 								contentType: "application/json",
 								xhrFields: {
 									withCredentials: true
 								},
 								// NOTE: to test in ripple uncomment the following lines
-								// processData: false,
-								// data: encodeURIComponent(data),
+								processData: false,
+								data: encodeURIComponent(data),
 								dataType: 'json',
 								success: function (json) {
 
@@ -206,7 +206,7 @@
 
 											if (murderCount || theftCount || subAbuseCount || assaultCount || sexualCount || otherCount) {
 												wrongLocationClearError(".stats-current-error-message");
-												plotCrimeStats(crimeStatsData, "current-location-crime-chart");
+												plotCrimeStats(crimeStatsData, "current-location-crime-chart", 'current');
 											} else {
 												setActiveTab();
 												$("#current-location-crime-chart").hide();
@@ -218,7 +218,7 @@
 											// search hide. what variable should i use to reference the geolocation data?
 											if (murderCount || theftCount || subAbuseCount || assaultCount || sexualCount || otherCount) {
 												wrongLocationClearError(".stats-searched-error-message");
-												plotCrimeStats(crimeStatsData, "search-location-crime-chart");
+												plotCrimeStats(crimeStatsData, "search-location-crime-chart", 'searched');
 											} else {
 												setActiveTab();
 												// errorMessage.hide();
@@ -235,8 +235,10 @@
 						} else {
 							if ($(".search-option").hasClass('ui-btn-active')){
 								statsWrongLocationError(".stats-searched-error-message");
+								setActiveTab();
 							} else if ($(".current-option").hasClass('ui-btn-active')) {
 								statsWrongLocationError(".stats-current-error-message");
+								setActiveTab();
 							}
 							// sorry no results for your county
 						}
@@ -246,7 +248,7 @@
 							statsWrongLocationError(".stats-searched-error-message");
 						} else if ($(".current-option").hasClass('ui-btn-active')) {
 							statsWrongLocationError(".stats-current-error-message");
-						} 
+						}
 						// sorry no results for your location
 					}
 
@@ -280,23 +282,26 @@
 		}
 	}
 	
-    function plotCrimeStats(data, elementId) {
-		// TODO replace #crime-chart with variable like in rating
+    function plotCrimeStats(data, elementId, tabType) {
 		statsHideLoader();
-
+		setActiveTab();
 		// $(".error-message").hide();
 		homeClearError();
 
 		$('#zero-crimes-message-current').empty();
 		$('#zero-crimes-message-searched').empty();
 
-		var currentChart = $("#current-location-crime-chart");
-		var searchedChart = $("#search-location-crime-chart");
+		if (tabType == 'current') {
+			var currentChart = $("#current-location-crime-chart");
+			currentChart.empty();
+			currentChart.show();
 
-		currentChart.empty();
-		searchedChart.empty();
-		currentChart.show();
-		searchedChart.show();
+		} else {
+			var searchedChart = $("#search-location-crime-chart");
+			searchedChart.empty();
+			searchedChart.show();
+
+		}
 
 		$.jqplot.config.enablePlugins = true;
 

@@ -167,8 +167,8 @@ function refreshRating() {
                             $.ajax({
                                 type: 'GET',
                                 // NOTE: to test in ripple comment the following line and uncomment the line after that one
-                                url: url+"?"+data,
-                                // url: url,
+                                // url: url+"?"+data,
+                                url: url,
 
                                 headers: {"X-App-Token": "5ck6SisMgkNJtZjAY7pXTz4Ek"},
                                 contentType: "application/json",
@@ -177,8 +177,8 @@ function refreshRating() {
                                 },
                                 
                                 // NOTE: to test in ripple uncomment the following 2 lines
-                                // processData: false,
-                                // data: encodeURIComponent(data),
+                                processData: false,
+                                data: encodeURIComponent(data),
 
                                 dataType: 'json',
                                 success:     function (json) {

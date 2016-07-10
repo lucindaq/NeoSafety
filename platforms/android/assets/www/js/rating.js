@@ -273,22 +273,21 @@ function crimeResult (position, searched) {
                             });
                         }
                         else {
-                            if ($(".search-option")){
-                                wrongLocationError();
-                            } else {
-                                wrongLocationError();
+                            if ($(".search-option").hasClass('ui-btn-active')){
+                                ratingWrongLocationError(".rating-searched-error-message");
+                            } else if ($(".current-option").hasClass('ui-btn-active')) {
+                                ratingWrongLocationError(".rating-current-error-message");
                             }
                             // wrongLocationError();
                             // sorry no results for your county
                         }
 
                     } else {
-                        if ($(".search-option")){
-                            wrongLocationError();
-                        } else {
-                            wrongLocationError();
+                        if ($(".search-option").hasClass('ui-btn-active')){
+                            ratingWrongLocationError(".rating-searched-error-message");
+                        } else if ($(".current-option").hasClass('ui-btn-active')) {
+                            ratingWrongLocationError(".rating-current-error-message");
                         }
-                        // wrongLocationError();
                         // sorry no results for your location
                     }
                 });
@@ -299,7 +298,11 @@ function plotRating(rating, elementId) {
 
     // $(".error-message").hide();
     homeClearError();
-    wrongLocationClearError('all');
+    if ($(".rating-current-option").hasClass('ui-btn-active')){
+        wrongLocationClearError(".rating-current-error-message");
+    } else if ($(".rating-searched-option").hasClass('ui-btn-active')){
+        wrongLocationClearError(".rating-searched-error-message");
+    }
 
     $.jqplot(elementId,[[rating]],{
 

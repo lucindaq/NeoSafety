@@ -174,7 +174,7 @@ function crimeResult (position, searched) {
 										if (searched == undefined) {
 
 											if (murderCount || theftCount || subAbuseCount || assaultCount || sexualCount || otherCount) {
-												wrongLocationClearError();
+												wrongLocationClearError(".stats-current-error-message");
 												plotCrimeStats(crimeStatsData, "current-location-crime-chart");
 											} else {
 												setActiveTab();
@@ -186,7 +186,7 @@ function crimeResult (position, searched) {
 											//the murder count for the current location is making the dropdown for
 											// search hide. what variable should i use to reference the geolocation data?
 											if (murderCount || theftCount || subAbuseCount || assaultCount || sexualCount || otherCount) {
-												wrongLocationClearError();
+												wrongLocationClearError(".stats-searched-error-message");
 												plotCrimeStats(crimeStatsData, "search-location-crime-chart");
 											} else {
 												setActiveTab();
@@ -203,31 +203,27 @@ function crimeResult (position, searched) {
 
 						} else {
 							if ($(".search-option").hasClass('ui-btn-active')){
-								statsWrongLocationError();
+								statsWrongLocationError(".stats-searched-error-message");
 							} else if ($(".current-option").hasClass('ui-btn-active')) {
-								statsWrongLocationError();
-							} else {
-								statsWrongLocationError();
+								statsWrongLocationError(".stats-current-error-message");
 							}
-								
 							// sorry no results for your county
 						}
 
 					} else {
 						if ($(".search-option").hasClass('ui-btn-active')) {
-							statsWrongLocationError();
+							statsWrongLocationError(".stats-searched-error-message");
 						} else if ($(".current-option").hasClass('ui-btn-active')) {
-							statsWrongLocationError();
-						} else {
-							statsWrongLocationError();
-						}
+							statsWrongLocationError(".stats-current-error-message");
+						} 
 						// sorry no results for your location
 					}
 
 
 				})
 			}
-
+	
+	
 	function setActiveTab() {
 		statsHideLoader();
 		if ($('#current-location-crimestats-tab').is(":visible")) {
@@ -360,12 +356,12 @@ function crimeResult (position, searched) {
 
 		// $('#current-location-crimestats-tab').show();
 		// $('#search-location-crimestats-tab').hide();
-
-
+		
 		homeClearError();
 		statsShowLoader();
+		statsSetErrorClass();
 		dropdownAction(currentRadiusDropdown, currentTimespanDropdown);
-
+		
 		setTimeout(function () {
 			
 			var latitude, longitude;

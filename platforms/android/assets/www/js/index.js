@@ -76,6 +76,11 @@ function initNativeGeolocation() {
     }
 }
 
+function statsSetErrorClass() {
+    if ($('#geocomplete-crimestats').val().length == 0){
+        $('.error-message').addClass('no-error-class');
+    }
+}
 
 $(document).ready(function(){
     if(localStorage.getItem("gender") == undefined || localStorage.getItem("age") == undefined)
@@ -91,27 +96,52 @@ $(document).ready(function(){
     $.mobile.initializePage();
 
     $(".search-tab").on('click', function () {
-        if (!$('#geocomplete').val().length){
+        if ($('#geocomplete').val().length == 0){
             $("#search-safety-gauge").hide();
+            $('.error-message').addClass('no-error-class');
+        } else {
+            if ($('.rating-searched-error-message').hasClass('error-message-class')) {
+                $('#rating-refresh-button').hide();
+                $('#search-safety-gauge').hide();
+            } else {
+                wrongLocationClearError(".rating-searched-error-message");
+                $(".ratingContent").show();
+                $('#search-safety-gauge').show();
+
+            }
         }
     });
     $(".search-tab-stats").on('click', function () {
-        wrongLocationClearError();
+
         // $('#search-location-crime-chart').show();
-        if (!$('#geocomplete-crimestats').val().length){
-            $("#stats-dropdowns").hide();
+        if ($('#geocomplete-crimestats').val().length == 0){
+            $(".dropdowns").hide();
+            $('.error-message').addClass('no-error-class');
+        } else {
+            if ($('.stats-searched-error-message').hasClass('error-message-class')) {
+                $('#stats-dropdowns').hide();
+                $("#search-location-crime-chart").hide();
+
+            } else {
+                wrongLocationClearError(".stats-searched-error-message");
+                $(".stats-content").show();
+            }
         }
     });
 
     $(".current-tab").on('click', function (){
-        refreshRating();
+        wrongLocationClearError(".rating-current-error-message");
         $('#current-safety-gauge').show();
+        refreshRating();
     });
     $(".current-tab-stats").on('click', function() {
+        wrongLocationClearError(".stats-current-error-message");
         refreshStats();
-        wrongLocationClearError();
     });
 });
+
+
+
 
 function refreshRating() {
     ratingShowLoader();
@@ -150,7 +180,9 @@ $(document).on('pageshow', '#home', function (e, data) {
     toggleInvertClass();
 });
 
-var errorMessage = $('.error-message');
+var statsCurrentErrorMessage = $('.stats-current-error-message');
+var statsSearchedErrorMessage = $('.stats-searched-error-message');
+//todo make safety rating variables here
 var homeErrorMessage = $('#error-message-home');
 
 function showError() {
@@ -169,10 +201,17 @@ function homeClearError() {
     $(".home-content").css("margin-top", 0);
 }
 
-function wrongLocationClearError() {
-    errorMessage.addClass('no-error-class');
-    errorMessage.removeClass('error-message-class');
-    errorMessage.text("");
+function wrongLocationClearError(errorClass) {
+    
+    if (errorClass == '.rating-current-error-message') {
+        $('#rating-refresh-button').show();
+    }
+    
+    var errorElem = $(errorClass);
+
+    errorElem.addClass('no-error-class');
+    errorElem.removeClass('error-message-class');
+    errorElem.text("");
     // $(".home-content").css("margin-top", 0);
 }
 
@@ -187,11 +226,13 @@ function wrongLocationClearError() {
 // }
 
 //used to be geolocation error
-function ratingWrongLocationError() {
+function ratingWrongLocationError(errorClass) {
     ratingHideLoader();
 
-    errorMessage.show();
-
+    var errorMessage = $(errorClass);
+    
+    $('#rating-refresh-button').hide();
+    
     var currentChartRating = $("#current-safety-gauge");
     var searchedChartRating = $("#search-safety-gauge");
 
@@ -203,22 +244,24 @@ function ratingWrongLocationError() {
     errorMessage.text("Data for this feature is currently unavailable for this location.");
 }
 
-function statsWrongLocationError() {
+function statsWrongLocationError(errorClass) {
     statsHideLoader();
 
+    var errorMessage = $(errorClass);
+    
     $('.dropdowns').hide();
-
-    errorMessage.show();
 
     var currentChart = $("#current-location-crime-chart");
     var searchedChart = $("#search-location-crime-chart");
 
-    currentChart.hide();
-    searchedChart.hide();
-
     errorMessage.removeClass('no-error-class');
     errorMessage.addClass('error-message-class');
     errorMessage.text("Data for this feature is currently unavailable for this location.");
+
+    currentChart.hide();
+    searchedChart.hide();
+
+
 }
 
 

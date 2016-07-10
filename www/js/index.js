@@ -99,6 +99,16 @@ $(document).ready(function(){
         if ($('#geocomplete').val().length == 0){
             $("#search-safety-gauge").hide();
             $('.error-message').addClass('no-error-class');
+        } else {
+            if ($('.rating-searched-error-message').hasClass('error-message-class')) {
+                $('#rating-refresh-button').hide();
+                $('#search-safety-gauge').hide();
+            } else {
+                wrongLocationClearError(".rating-searched-error-message");
+                $(".ratingContent").show();
+                $('#search-safety-gauge').show();
+
+            }
         }
     });
     $(".search-tab-stats").on('click', function () {
@@ -120,6 +130,7 @@ $(document).ready(function(){
     });
 
     $(".current-tab").on('click', function (){
+        wrongLocationClearError(".rating-current-error-message");
         $('#current-safety-gauge').show();
         refreshRating();
     });
@@ -191,7 +202,11 @@ function homeClearError() {
 }
 
 function wrongLocationClearError(errorClass) {
-
+    
+    if (errorClass == '.rating-current-error-message') {
+        $('#rating-refresh-button').show();
+    }
+    
     var errorElem = $(errorClass);
 
     errorElem.addClass('no-error-class');
@@ -211,11 +226,13 @@ function wrongLocationClearError(errorClass) {
 // }
 
 //used to be geolocation error
-function ratingWrongLocationError() {
+function ratingWrongLocationError(errorClass) {
     ratingHideLoader();
 
-    errorMessage.show();
-
+    var errorMessage = $(errorClass);
+    
+    $('#rating-refresh-button').hide();
+    
     var currentChartRating = $("#current-safety-gauge");
     var searchedChartRating = $("#search-safety-gauge");
 
@@ -233,8 +250,6 @@ function statsWrongLocationError(errorClass) {
     var errorMessage = $(errorClass);
     
     $('.dropdowns').hide();
-
-    errorMessage.show();
 
     var currentChart = $("#current-location-crime-chart");
     var searchedChart = $("#search-location-crime-chart");
